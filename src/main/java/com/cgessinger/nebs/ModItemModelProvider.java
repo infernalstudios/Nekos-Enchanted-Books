@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourcePackType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -22,7 +23,7 @@ public class ModItemModelProvider extends ItemModelProvider
 		super(generator, NekosEnchantedBooks.MOD_ID, existingFileHelper);
 	}
 
-	public void generateModel (String name)
+	public ModelFile generateModel (String name)
 	{
 		ResourceLocation location = modLoc("items/" + name);
 		if(!existingFileHelper.exists(location, ResourcePackType.CLIENT_RESOURCES, ".png", "textures"))
@@ -30,7 +31,7 @@ public class ModItemModelProvider extends ItemModelProvider
 			location = mcLoc("item/enchanted_book");
 		}
 
-		getBuilder(name).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", location);
+		return getBuilder(name).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", location);
 	}
 
 	@Override
@@ -43,9 +44,17 @@ public class ModItemModelProvider extends ItemModelProvider
 			NekosEnchantedBooks.enchantementMap = new Gson().fromJson(new BufferedReader(input), type);
 		}
 
+		ItemModelBuilder enchanted_book = getBuilder("minecraft:item/enchanted_book")
+				.parent(new ModelFile.UncheckedModelFile("item/generated"))
+				.texture("layer0", mcLoc("item/enchanted_book"));
+
 		for(Map.Entry<String, Float> entry : NekosEnchantedBooks.enchantementMap.entrySet())
 		{
-			generateModel(entry.getKey().split("\\.")[2]);
+			ModelFile file = generateModel(entry.getKey().split("\\.")[2]);
+			enchanted_book.override()
+					.predicate(modLoc("enchant"), entry.getValue())
+					.model(file)
+					.end();
 		}
 	}
 }

@@ -14,7 +14,7 @@ apply plugin: 'maven-publish'
 
 version = '1.0.0'
 group = 'com.cgessinger.nebs' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'nebs'
+archivesBaseName = 'NekosEnchantedBooks-1.16'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 

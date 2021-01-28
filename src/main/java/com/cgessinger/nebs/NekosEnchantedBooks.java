@@ -3,6 +3,7 @@ package com.cgessinger.nebs;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.item.Items;
@@ -43,10 +44,11 @@ public class NekosEnchantedBooks
 		enchantementMap = new Gson().fromJson(new BufferedReader(input), type);
 
 		ItemModelsProperties.registerProperty(Items.ENCHANTED_BOOK, new ResourceLocation("nebs:enchant"), (stack, world, entity) -> {
-			if(enchantementMap == null)
+			Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack);
+			if(map.isEmpty() || enchantementMap == null)
 				return 0.0F;
 
-			String key = EnchantmentHelper.getEnchantments(stack).entrySet().iterator().next().getKey().getName();
+			String key = map.entrySet().iterator().next().getKey().getName();
 			return enchantementMap.getOrDefault(key, 0.0F);
 		});
 	}
