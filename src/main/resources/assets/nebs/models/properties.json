@@ -78,7 +78,8 @@
   "enchantment.walljump.speedboost": 3.03,
   "enchantment.veinmining.vein_mining": 4.01,
   "enchantment.charm.tinted": 5.01,
-  "enchantment.charm.acquisition": 5.02,
+  "enchantment.charm.aerial_affinity": 5.02,
+  "enchantment.charm.acquisition": 5.03,
   "enchantment.farmersdelight.backstabbing": 6.01,
   "enchantment.dash.dashing": 7.01
 }

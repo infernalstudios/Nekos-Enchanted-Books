@@ -482,6 +482,12 @@
       "predicate": {
         "nebs:enchant": 5.02
       },
+      "model": "nebs:item/aerial_affinity"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 5.03
+      },
       "model": "nebs:item/acquisition"
     },
     {
