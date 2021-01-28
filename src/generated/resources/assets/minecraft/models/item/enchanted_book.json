@@ -428,13 +428,61 @@
       "predicate": {
         "nebs:enchant": 2.31
       },
-      "model": "nebs:item/foolishness_curse"
+      "model": "nebs:item/curse_fool"
     },
     {
       "predicate": {
         "nebs:enchant": 2.32
       },
-      "model": "nebs:item/mercy_curse"
+      "model": "nebs:item/curse_mercy"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 3.01
+      },
+      "model": "nebs:item/walljump"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 3.02
+      },
+      "model": "nebs:item/doublejump"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 3.03
+      },
+      "model": "nebs:item/speedboost"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 4.01
+      },
+      "model": "nebs:item/vein_mining"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 5.01
+      },
+      "model": "nebs:item/tinted"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 5.02
+      },
+      "model": "nebs:item/acquisition"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 6.01
+      },
+      "model": "nebs:item/backstabbing"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 7.01
+      },
+      "model": "nebs:item/dashing"
     }
   ]
 }

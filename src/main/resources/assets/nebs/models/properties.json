@@ -69,6 +69,14 @@
   "enchantment.ensorcellation.pilfering": 2.28,
   "enchantment.ensorcellation.bulwark": 2.29,
   "enchantment.ensorcellation.phalanx": 2.30,
-  "enchantment.ensorcellation.foolishness_curse": 2.31,
-  "enchantment.ensorcellation.mercy_curse": 2.32
+  "enchantment.ensorcellation.curse_fool": 2.31,
+  "enchantment.ensorcellation.curse_mercy": 2.32,
+  "enchantment.walljump.walljump": 3.01,
+  "enchantment.walljump.doublejump": 3.02,
+  "enchantment.walljump.speedboost": 3.03,
+  "enchantment.veinmining.vein_mining": 4.01,
+  "enchantment.charm.tinted": 5.01,
+  "enchantment.charm.acquisition": 5.02,
+  "enchantment.farmersdelight.backstabbing": 6.01,
+  "enchantment.dash.dashing": 7.01
 }
