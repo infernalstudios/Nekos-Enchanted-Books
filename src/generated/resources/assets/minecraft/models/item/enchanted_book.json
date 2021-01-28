@@ -438,6 +438,18 @@
     },
     {
       "predicate": {
+        "nebs:enchant": 2.33
+      },
+      "model": "nebs:item/frost_walker"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.34
+      },
+      "model": "nebs:item/mending"
+    },
+    {
+      "predicate": {
         "nebs:enchant": 3.01
       },
       "model": "nebs:item/walljump"
