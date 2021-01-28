@@ -4,8 +4,8 @@
   "enchantment.minecraft.blast_protection": 1.02,
   "enchantment.minecraft.channeling": 1.03,
   "enchantment.minecraft.cleaving": 1.04,
-  "enchantment.minecraft.curse_of_binding": 1.05,
-  "enchantment.minecraft.curse_of_vanishing": 1.06,
+  "enchantment.minecraft.binding_curse": 1.05,
+  "enchantment.minecraft.vanishing_curse": 1.06,
   "enchantment.minecraft.depth_strider": 1.07,
   "enchantment.minecraft.efficiency": 1.08,
   "enchantment.minecraft.feather_falling": 1.09,
@@ -34,7 +34,8 @@
   "enchantment.minecraft.silk_touch": 1.32,
   "enchantment.minecraft.smite": 1.33,
   "enchantment.minecraft.soul_speed": 1.34,
-  "enchantment.minecraft.sweeping_edge": 1.35,
+  "enchantment.minecraft.sweeping": 1.35,
   "enchantment.minecraft.thorns": 1.36,
-  "enchantment.minecraft.unbreaking": 1.37
+  "enchantment.minecraft.unbreaking": 1.37,
+  "enchantment.minecraft.fire_protection": 1.38
 }

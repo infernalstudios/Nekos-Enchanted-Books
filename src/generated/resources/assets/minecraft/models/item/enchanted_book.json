@@ -38,13 +38,13 @@
       "predicate": {
         "nebs:enchant": 1.05
       },
-      "model": "nebs:item/curse_of_binding"
+      "model": "nebs:item/binding_curse"
     },
     {
       "predicate": {
         "nebs:enchant": 1.06
       },
-      "model": "nebs:item/curse_of_vanishing"
+      "model": "nebs:item/vanishing_curse"
     },
     {
       "predicate": {
@@ -218,7 +218,7 @@
       "predicate": {
         "nebs:enchant": 1.35
       },
-      "model": "nebs:item/sweeping_edge"
+      "model": "nebs:item/sweeping"
     },
     {
       "predicate": {
@@ -231,6 +231,12 @@
         "nebs:enchant": 1.37
       },
       "model": "nebs:item/unbreaking"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.38
+      },
+      "model": "nebs:item/fire_protection"
     }
   ]
 }
