@@ -14,6 +14,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -27,6 +29,8 @@ public class NekosEnchantedBooks
 {
 	public static final String MOD_ID = "nebs";
 	public static Map<String, Float> enchantementMap;
+
+	public static final Logger LOGGER = LogManager.getLogger();
 
 	public NekosEnchantedBooks ()
 	{

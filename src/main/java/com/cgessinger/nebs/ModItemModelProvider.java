@@ -28,6 +28,7 @@ public class ModItemModelProvider extends ItemModelProvider
 		ResourceLocation location = modLoc("items/" + name);
 		if(!existingFileHelper.exists(location, ResourcePackType.CLIENT_RESOURCES, ".png", "textures"))
 		{
+			NekosEnchantedBooks.LOGGER.debug(name + " book texture not found, defaulting...");
 			location = mcLoc("item/enchanted_book");
 		}
 

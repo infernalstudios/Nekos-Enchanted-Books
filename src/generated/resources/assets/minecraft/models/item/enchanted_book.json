@@ -237,6 +237,204 @@
         "nebs:enchant": 1.38
       },
       "model": "nebs:item/fire_protection"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.0
+      },
+      "model": "nebs:item/soulbound"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.01
+      },
+      "model": "nebs:item/magic_protection"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.02
+      },
+      "model": "nebs:item/displacement"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.03
+      },
+      "model": "nebs:item/fire_rebuke"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.04
+      },
+      "model": "nebs:item/frost_rebuke"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.05
+      },
+      "model": "nebs:item/reach"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.06
+      },
+      "model": "nebs:item/vitality"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.07
+      },
+      "model": "nebs:item/air_affinity"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.08
+      },
+      "model": "nebs:item/gourmand"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.09
+      },
+      "model": "nebs:item/exp_boost"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.1
+      },
+      "model": "nebs:item/cavalier"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.11
+      },
+      "model": "nebs:item/damage_ender"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.12
+      },
+      "model": "nebs:item/frost_aspect"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.13
+      },
+      "model": "nebs:item/leech"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.14
+      },
+      "model": "nebs:item/instigating"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.15
+      },
+      "model": "nebs:item/magic_edge"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.16
+      },
+      "model": "nebs:item/damage_villager"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.17
+      },
+      "model": "nebs:item/damage_illager"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.18
+      },
+      "model": "nebs:item/vorpal"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.19
+      },
+      "model": "nebs:item/excavating"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.2
+      },
+      "model": "nebs:item/furrowing"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.21
+      },
+      "model": "nebs:item/tilling"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.22
+      },
+      "model": "nebs:item/weeding"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.23
+      },
+      "model": "nebs:item/hunter"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.24
+      },
+      "model": "nebs:item/quick_draw"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.25
+      },
+      "model": "nebs:item/trueshot"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.26
+      },
+      "model": "nebs:item/volley"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.27
+      },
+      "model": "nebs:item/angler"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.28
+      },
+      "model": "nebs:item/pilfering"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.29
+      },
+      "model": "nebs:item/bulwark"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.3
+      },
+      "model": "nebs:item/phalanx"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.31
+      },
+      "model": "nebs:item/foolishness_curse"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 2.32
+      },
+      "model": "nebs:item/mercy_curse"
     }
   ]
 }
