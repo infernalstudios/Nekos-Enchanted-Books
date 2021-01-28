@@ -1,0 +1,236 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minecraft:item/enchanted_book"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "nebs:enchant": 1.00
+      },
+      "model": "nebs:item/aqua_affinity"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.01
+      },
+      "model": "nebs:item/bane_of_arthropods"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.02
+      },
+      "model": "nebs:item/blast_protection"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.03
+      },
+      "model": "nebs:item/channeling"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.04
+      },
+      "model": "nebs:item/cleaving"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.05
+      },
+      "model": "nebs:item/curse_of_binding"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.06
+      },
+      "model": "nebs:item/curse_of_vanishing"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.07
+      },
+      "model": "nebs:item/depth_strider"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.08
+      },
+      "model": "nebs:item/efficiency"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.09
+      },
+      "model": "nebs:item/feather_falling"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.10
+      },
+      "model": "nebs:item/fire_aspect"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.11
+      },
+      "model": "nebs:item/flame"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.12
+      },
+      "model": "nebs:item/fortune"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.13
+      },
+      "model": "nebs:item/frost_walker"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.14
+      },
+      "model": "nebs:item/impaling"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.15
+      },
+      "model": "nebs:item/infinity"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.16
+      },
+      "model": "nebs:item/knockback"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.17
+      },
+      "model": "nebs:item/looting"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.18
+      },
+      "model": "nebs:item/loyalty"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.19
+      },
+      "model": "nebs:item/luck_of_the_sea"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.20
+      },
+      "model": "nebs:item/lure"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.21
+      },
+      "model": "nebs:item/mending"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.22
+      },
+      "model": "nebs:item/multishot"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.23
+      },
+      "model": "nebs:item/piercing"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.24
+      },
+      "model": "nebs:item/power"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.25
+      },
+      "model": "nebs:item/projectile_protection"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.26
+      },
+      "model": "nebs:item/protection"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.27
+      },
+      "model": "nebs:item/punch"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.28
+      },
+      "model": "nebs:item/quick_charge"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.29
+      },
+      "model": "nebs:item/respiration"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.30
+      },
+      "model": "nebs:item/riptide"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.31
+      },
+      "model": "nebs:item/sharpness"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.32
+      },
+      "model": "nebs:item/silk_touch"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.33
+      },
+      "model": "nebs:item/smite"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.34
+      },
+      "model": "nebs:item/soul_speed"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.35
+      },
+      "model": "nebs:item/sweeping_edge"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.36
+      },
+      "model": "nebs:item/thorns"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 1.37
+      },
+      "model": "nebs:item/unbreaking"
+    }
+  ]
+}

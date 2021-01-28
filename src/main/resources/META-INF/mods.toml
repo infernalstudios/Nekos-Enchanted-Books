@@ -1,0 +1,29 @@
+modLoader="javafml" #mandatory
+loaderVersion="[34,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+license="All rights reserved"
+issueTrackerURL="http://my.issue.tracker/" #optional
+
+[[mods]] #mandatory
+modId="nebs" #mandatory
+version="${file.jarVersion}" #mandatory
+displayName="Neko’s Enchanted Books" #mandatory
+updateJSONURL="http://myurl.me/" #optional
+displayURL="http://example.com/" #optional
+logoFile="examplemod.png" #optional
+credits="" #optional
+authors="Nekomaster, CGessinger" #optional
+description=''' '''
+
+[[dependencies.examplemod]] #optional
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[34,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.examplemod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.3,]"
+    ordering="NONE"
+    side="BOTH"
