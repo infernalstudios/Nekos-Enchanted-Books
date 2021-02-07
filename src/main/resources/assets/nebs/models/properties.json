@@ -81,5 +81,7 @@
   "enchantment.charm.aerial_affinity": 5.02,
   "enchantment.charm.acquisition": 5.03,
   "enchantment.farmersdelight.backstabbing": 6.01,
-  "enchantment.dash.dashing": 7.01
+  "enchantment.dash.dashing": 7.01,
+  "enchantment.jellyfishing.agility": 8.01,
+  "enchantment.jellyfishing.plundering": 8.02
 }
