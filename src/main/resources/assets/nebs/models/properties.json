@@ -38,6 +38,7 @@
   "enchantment.minecraft.thorns": 1.36,
   "enchantment.minecraft.unbreaking": 1.37,
   "enchantment.minecraft.fire_protection": 1.38,
+
   "enchantment.ensorcellation.soulbound": 2.00,
   "enchantment.ensorcellation.magic_protection": 2.01,
   "enchantment.ensorcellation.displacement": 2.02,
@@ -73,15 +74,43 @@
   "enchantment.ensorcellation.curse_mercy": 2.32,
   "enchantment.ensorcellation.frost_walker": 2.33,
   "enchantment.ensorcellation.mending": 2.34,
+
   "enchantment.walljump.walljump": 3.01,
   "enchantment.walljump.doublejump": 3.02,
   "enchantment.walljump.speedboost": 3.03,
+
   "enchantment.veinmining.vein_mining": 4.01,
+
   "enchantment.charm.tinted": 5.01,
   "enchantment.charm.aerial_affinity": 5.02,
   "enchantment.charm.acquisition": 5.03,
+
   "enchantment.farmersdelight.backstabbing": 6.01,
+
   "enchantment.dash.dashing": 7.01,
+
   "enchantment.jellyfishing.agility": 8.01,
-  "enchantment.jellyfishing.plundering": 8.02
+  "enchantment.jellyfishing.plundering": 8.02,
+
+  "enchantment.apotheosis.bane_of_illagers": 8.01,
+  "enchantment.apotheosis.berserk": 8.02,
+  "enchantment.apotheosis.hell_infusion": 8.03,
+  "enchantment.apotheosis.icy_thorns": 8.04,
+  "enchantment.apotheosis.knowledge": 8.05,
+  "enchantment.apotheosis.life_mending": 8.06,
+  "enchantment.apotheosis.magic_protection": 8.07,
+  "enchantment.apotheosis.depth_miner": 8.08,
+  "enchantment.apotheosis.natures_blessing": 8.09,
+  "enchantment.apotheosis.rebounding": 8.10,
+  "enchantment.apotheosis.reflective": 8.11,
+  "enchantment.apotheosis.scavenger": 8.12,
+  "enchantment.apotheosis.sea_infusion": 8.13,
+  "enchantment.apotheosis.shield_bash": 8.14,
+  "enchantment.apotheosis.stable_footing": 8.15,
+  "enchantment.apotheosis.tempting": 8.16,
+  "enchantment.apotheosis.crescendo": 8.17,
+  "enchantment.apotheosis.obliteration": 8.18,
+  "enchantment.apotheosis.splitting": 8.19,
+  "enchantment.apotheosis.capturing": 8.20,
+  "enchantment.apotheosis.true_infinity": 8.21
 }

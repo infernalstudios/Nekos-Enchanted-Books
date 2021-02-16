@@ -501,6 +501,144 @@
         "nebs:enchant": 7.01
       },
       "model": "nebs:item/dashing"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.01
+      },
+      "model": "nebs:item/agility"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.02
+      },
+      "model": "nebs:item/plundering"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.01
+      },
+      "model": "nebs:item/bane_of_illagers"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.02
+      },
+      "model": "nebs:item/berserk"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.03
+      },
+      "model": "nebs:item/hell_infusion"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.04
+      },
+      "model": "nebs:item/icy_thorns"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.05
+      },
+      "model": "nebs:item/knowledge"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.06
+      },
+      "model": "nebs:item/life_mending"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.07
+      },
+      "model": "nebs:item/magic_protection"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.08
+      },
+      "model": "nebs:item/depth_miner"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.09
+      },
+      "model": "nebs:item/natures_blessing"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.1
+      },
+      "model": "nebs:item/rebounding"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.11
+      },
+      "model": "nebs:item/reflective"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.12
+      },
+      "model": "nebs:item/scavenger"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.13
+      },
+      "model": "nebs:item/sea_infusion"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.14
+      },
+      "model": "nebs:item/shield_bash"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.15
+      },
+      "model": "nebs:item/stable_footing"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.16
+      },
+      "model": "nebs:item/tempting"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.17
+      },
+      "model": "nebs:item/crescendo"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.18
+      },
+      "model": "nebs:item/obliteration"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.19
+      },
+      "model": "nebs:item/splitting"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.2
+      },
+      "model": "nebs:item/capturing"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.21
+      },
+      "model": "nebs:item/true_infinity"
     }
   ]
 }
