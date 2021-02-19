@@ -87,8 +87,6 @@
 
   "enchantment.farmersdelight.backstabbing": 6.01,
 
-  "enchantment.dash.dashing": 7.01,
-
   "enchantment.jellyfishing.agility": 8.01,
   "enchantment.jellyfishing.plundering": 8.02,
 
@@ -112,5 +110,55 @@
   "enchantment.apotheosis.obliteration": 8.18,
   "enchantment.apotheosis.splitting": 8.19,
   "enchantment.apotheosis.capturing": 8.20,
-  "enchantment.apotheosis.true_infinity": 8.21
+  "enchantment.apotheosis.true_infinity": 8.21,
+
+  "enchantment.wonderful_enchantments.fishing_fanatic": 9.01,
+  "enchantment.wonderful_enchantments.human_slayer": 9.02,
+  "enchantment.wonderful_enchantments.dodge": 9.03,
+  "enchantment.wonderful_enchantments.enlightenment": 9.04,
+  "enchantment.wonderful_enchantments.vitality": 9.05,
+  "enchantment.wonderful_enchantments.phoenix_dive": 9.06,
+  "enchantment.wonderful_enchantments.pufferfish_vengeance": 9.07,
+  "enchantment.wonderful_enchantments.immortality": 9.08,
+  "enchantment.wonderful_enchantments.smelter": 9.09,
+  "enchantment.wonderful_enchantments.gotta_mine_fast": 9.10,
+  "enchantment.wonderful_enchantments.leeching": 9.11,
+  "enchantment.wonderful_enchantments.magic_protection": 9.12,
+  "enchantment.wonderful_enchantments.swiftness": 9.13,
+  "enchantment.wonderful_enchantments.horse_protection": 9.14,
+  "enchantment.wonderful_enchantments.horse_frost_walker": 9.15,
+  "enchantment.wonderful_enchantments.telekinesis": 9.16,
+  "enchantment.wonderful_enchantments.absorber": 9.17,
+  "enchantment.wonderful_enchantments.hunter": 9.18,
+  "enchantment.wonderful_enchantments.elder_guardian_favor": 9.19,
+  "enchantment.wonderful_enchantments.harvester": 9.20,
+  "enchantment.wonderful_enchantments.slowness_curse": 9.21,
+  "enchantment.wonderful_enchantments.fatigue_curse": 9.22,
+  "enchantment.wonderful_enchantments.incompatibility_curse": 9.23,
+  "enchantment.wonderful_enchantments.vampirism_curse": 9.24,
+  "enchantment.wonderful_enchantments.corrosion_curse": 9.25,
+
+  "enchantment.vanillatweaks.nimble": 10.01,
+  "enchantment.vanillatweaks.hops": 10.02,
+  "enchantment.vanillatweaks.vigor": 10.03,
+  "enchantment.vanillatweaks.veteran": 10.04,
+  "enchantment.vanillatweaks.blazing": 10.05,
+  "enchantment.vanillatweaks.siphon": 10.06,
+  "enchantment.vanillatweaks.homing": 10.07,
+
+  "enchantment.step.stepping": 11.01,
+  "enchantment.leap.leaping": 12.01,
+  "enchantment.dash.dashing": 13.01,
+
+  "enchantment.betterdefaultbiomes.smelting_touch": 14.01,
+  "enchantment.betterdefaultbiomes.scout": 14.02,
+  "enchantment.betterdefaultbiomes.hunting": 14.03,
+  "enchantment.betterdefaultbiomes.horse_protection": 14.04,
+  "enchantment.betterdefaultbiomes.horse_fire_protection": 14.05,
+  "enchantment.betterdefaultbiomes.horse_feather_falling": 14.06,
+  "enchantment.betterdefaultbiomes.horse_blast_protection": 14.07,
+  "enchantment.betterdefaultbiomes.horse_projectile_protection": 14.08,
+  "enchantment.betterdefaultbiomes.spikes": 14.09,
+  "enchantment.betterdefaultbiomes.guard": 14.10,
+  "enchantment.betterdefaultbiomes.floating": 14.11
 }

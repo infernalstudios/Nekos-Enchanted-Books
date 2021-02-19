@@ -7,9 +7,7 @@ modId="nebs" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Neko’s Enchanted Books" #mandatory
 authors="Nekomaster, CGessinger" #optional
-description='''A small mod that adds unique textures to every Enchanted Book in vanilla Minecraft, in addition to
-every book in the mods Ensorcellation, Veinmining, Charm, Dash, Wall-Jump, Jellyfishing, Apotheosis and Farmer's
-Delight!'''
+description='''A small mod that adds unique textures to every Enchanted Book in vanilla Minecraft, in addition to every book in the mods Ensorcellation, Veinmining, Charm, Wall-Jump, Jellyfishing, Apotheosis, VanillaTweaks, BetterDefaultBiomes, Wonderful Enchantments, Step, Leap, Dash and Farmer's Delight!'''
 
 [[dependencies.nebs]] #optional
     modId="forge" #mandatory

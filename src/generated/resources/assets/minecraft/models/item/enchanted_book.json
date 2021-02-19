@@ -498,12 +498,6 @@
     },
     {
       "predicate": {
-        "nebs:enchant": 7.01
-      },
-      "model": "nebs:item/dashing"
-    },
-    {
-      "predicate": {
         "nebs:enchant": 8.01
       },
       "model": "nebs:item/agility"
@@ -639,6 +633,282 @@
         "nebs:enchant": 8.21
       },
       "model": "nebs:item/true_infinity"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.01
+      },
+      "model": "nebs:item/fishing_fanatic"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.02
+      },
+      "model": "nebs:item/human_slayer"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.03
+      },
+      "model": "nebs:item/dodge"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.04
+      },
+      "model": "nebs:item/enlightenment"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.05
+      },
+      "model": "nebs:item/vitality"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.06
+      },
+      "model": "nebs:item/phoenix_dive"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.07
+      },
+      "model": "nebs:item/pufferfish_vengeance"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.08
+      },
+      "model": "nebs:item/immortality"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.09
+      },
+      "model": "nebs:item/smelter"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.1
+      },
+      "model": "nebs:item/gotta_mine_fast"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.11
+      },
+      "model": "nebs:item/leeching"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.12
+      },
+      "model": "nebs:item/magic_protection"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.13
+      },
+      "model": "nebs:item/swiftness"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.14
+      },
+      "model": "nebs:item/horse_protection"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.15
+      },
+      "model": "nebs:item/horse_frost_walker"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.16
+      },
+      "model": "nebs:item/telekinesis"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.17
+      },
+      "model": "nebs:item/absorber"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.18
+      },
+      "model": "nebs:item/hunter"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.19
+      },
+      "model": "nebs:item/elder_guardian_favor"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.2
+      },
+      "model": "nebs:item/harvester"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.21
+      },
+      "model": "nebs:item/slowness_curse"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.22
+      },
+      "model": "nebs:item/fatigue_curse"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.23
+      },
+      "model": "nebs:item/incompatibility_curse"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.24
+      },
+      "model": "nebs:item/vampirism_curse"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.25
+      },
+      "model": "nebs:item/corrosion_curse"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 10.01
+      },
+      "model": "nebs:item/nimble"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 10.02
+      },
+      "model": "nebs:item/hops"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 10.03
+      },
+      "model": "nebs:item/vigor"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 10.04
+      },
+      "model": "nebs:item/veteran"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 10.05
+      },
+      "model": "nebs:item/blazing"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 10.06
+      },
+      "model": "nebs:item/siphon"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 10.07
+      },
+      "model": "nebs:item/homing"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 11.01
+      },
+      "model": "nebs:item/stepping"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 12.01
+      },
+      "model": "nebs:item/leaping"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 13.01
+      },
+      "model": "nebs:item/dashing"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 14.01
+      },
+      "model": "nebs:item/smelting_touch"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 14.02
+      },
+      "model": "nebs:item/scout"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 14.03
+      },
+      "model": "nebs:item/hunting"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 14.04
+      },
+      "model": "nebs:item/horse_protection"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 14.05
+      },
+      "model": "nebs:item/horse_fire_protection"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 14.06
+      },
+      "model": "nebs:item/horse_feather_falling"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 14.07
+      },
+      "model": "nebs:item/horse_blast_protection"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 14.08
+      },
+      "model": "nebs:item/horse_projectile_protection"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 14.09
+      },
+      "model": "nebs:item/spikes"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 14.1
+      },
+      "model": "nebs:item/guard"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 14.11
+      },
+      "model": "nebs:item/floating"
     }
   ]
 }
