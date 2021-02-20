@@ -22,3 +22,10 @@ description='''A small mod that adds unique textures to every Enchanted Book in 
     versionRange="[1.16.3,1.16.4,1.16.5]"
     ordering="NONE"
     side="BOTH"
+
+[[dependencies.nebs]]
+    modId="wonderful_enchantments"
+    mandatory=false
+    versionRange="[1.0.0,)"
+    ordering="BEFORE"
+    side="CLIENT"

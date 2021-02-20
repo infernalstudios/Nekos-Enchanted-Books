@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @Mod(NekosEnchantedBooks.MOD_ID)
+
 public class NekosEnchantedBooks
 {
 	public static final String MOD_ID = "nebs";
