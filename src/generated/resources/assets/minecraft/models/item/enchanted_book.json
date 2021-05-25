@@ -909,6 +909,90 @@
         "nebs:enchant": 14.11
       },
       "model": "nebs:item/floating"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 15.01
+      },
+      "model": "nebs:item/control"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 15.02
+      },
+      "model": "nebs:item/sever"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 15.03
+      },
+      "model": "nebs:item/brace"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 15.04
+      },
+      "model": "nebs:item/intervention"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 15.05
+      },
+      "model": "nebs:item/form"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 15.06
+      },
+      "model": "nebs:item/recharge"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 15.07
+      },
+      "model": "nebs:item/greed"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 15.08
+      },
+      "model": "nebs:item/shell"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 15.09
+      },
+      "model": "nebs:item/crush"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 15.1
+      },
+      "model": "nebs:item/archmage"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 16.01
+      },
+      "model": "nebs:item/board_return"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 16.02
+      },
+      "model": "nebs:item/lavawax"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 16.03
+      },
+      "model": "nebs:item/serpentfriend"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 16.04
+      },
+      "model": "nebs:item/straddle_jump"
     }
   ]
 }

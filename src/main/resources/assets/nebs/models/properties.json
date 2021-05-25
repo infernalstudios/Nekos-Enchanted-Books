@@ -160,5 +160,21 @@
   "enchantment.betterdefaultbiomes.horse_projectile_protection": 14.08,
   "enchantment.betterdefaultbiomes.spikes": 14.09,
   "enchantment.betterdefaultbiomes.guard": 14.10,
-  "enchantment.betterdefaultbiomes.floating": 14.11
+  "enchantment.betterdefaultbiomes.floating": 14.11,
+
+  "enchantment.aoa3.control": 15.01,
+  "enchantment.aoa3.sever": 15.02,
+  "enchantment.aoa3.brace": 15.03,
+  "enchantment.aoa3.intervention": 15.04,
+  "enchantment.aoa3.form": 15.05,
+  "enchantment.aoa3.recharge": 15.06,
+  "enchantment.aoa3.greed": 15.07,
+  "enchantment.aoa3.shell": 15.08,
+  "enchantment.aoa3.crush": 15.09,
+  "enchantment.aoa3.archmage": 15.10,
+
+  "enchantment.alexmobs.board_return": 16.01,
+  "enchantment.alexmobs.lavawax": 16.02,
+  "enchantment.alexmobs.serpentfriend": 16.03,
+  "enchantment.alexmobs.straddle_jump": 16.04
 }
