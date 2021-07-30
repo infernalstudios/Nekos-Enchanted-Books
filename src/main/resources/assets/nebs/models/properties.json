@@ -81,7 +81,7 @@
 
   "enchantment.veinmining.vein_mining": 4.01,
 
-  "enchantment.charm.tinted": 5.01,
+  "enchantment.charm.change_glint_color": 5.01,
   "enchantment.charm.aerial_affinity": 5.02,
   "enchantment.charm.acquisition": 5.03,
 
@@ -137,6 +137,11 @@
   "enchantment.wonderful_enchantments.incompatibility_curse": 9.23,
   "enchantment.wonderful_enchantments.vampirism_curse": 9.24,
   "enchantment.wonderful_enchantments.corrosion_curse": 9.25,
+  "enchantment.wonderful_enchantments.leech": 9.26,
+
+  "enchantment.wonderful_enchantments.sixth_sense": 9.27,
+  "enchantment.wonderful_enchantments.mithridatism": 9.28,
+  "enchantment.wonderful_enchantments.fuse_cutter": 9.29,
 
   "enchantment.vanillatweaks.nimble": 10.01,
   "enchantment.vanillatweaks.hops": 10.02,
@@ -173,8 +178,23 @@
   "enchantment.aoa3.crush": 15.09,
   "enchantment.aoa3.archmage": 15.10,
 
-  "enchantment.alexmobs.board_return": 16.01,
-  "enchantment.alexmobs.lavawax": 16.02,
-  "enchantment.alexmobs.serpentfriend": 16.03,
-  "enchantment.alexmobs.straddle_jump": 16.04
+  "enchantment.alexsmobs.board_return": 16.01,
+  "enchantment.alexsmobs.lavawax": 16.02,
+  "enchantment.alexsmobs.serpentfriend": 16.03,
+  "enchantment.alexsmobs.straddle_jump": 16.04,
+
+  "enchantment.shulker_enchantments.siphon": 17.01,
+  "enchantment.shulker_enchantments.refill": 17.02,
+
+  "enchantment.allurement.alleviating": 18.01,
+  "enchantment.allurement.reeling": 18.02,
+  "enchantment.allurement.reforming": 18.03,
+  "enchantment.allurement.shockwave": 18.04,
+  "enchantment.allurement.vengeance": 18.05,
+
+  "enchantment.momentum.momentum": 19.01,
+
+  "enchantment.elenaidodge2.lightweight": 20.01,
+
+  "enchantment.greedandbleed.woe_of_swines": 21.01
 }

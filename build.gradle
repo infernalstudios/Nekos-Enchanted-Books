@@ -82,6 +82,7 @@ dependencies {
 jar {
     manifest {
         attributes([
+            'ModSide': 'CLIENT',
             "Specification-Title": "nebs",
             "Specification-Vendor": "examplemodsareus",
             "Specification-Version": "1", // We are version 1 of ourselves

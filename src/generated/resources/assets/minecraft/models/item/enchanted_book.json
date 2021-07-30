@@ -476,7 +476,7 @@
       "predicate": {
         "nebs:enchant": 5.01
       },
-      "model": "nebs:item/tinted"
+      "model": "nebs:item/change_glint_color"
     },
     {
       "predicate": {
@@ -786,6 +786,30 @@
     },
     {
       "predicate": {
+        "nebs:enchant": 9.26
+      },
+      "model": "nebs:item/leech"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.27
+      },
+      "model": "nebs:item/sixth_sense"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.28
+      },
+      "model": "nebs:item/mithridatism"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.29
+      },
+      "model": "nebs:item/fuse_cutter"
+    },
+    {
+      "predicate": {
         "nebs:enchant": 10.01
       },
       "model": "nebs:item/nimble"
@@ -993,6 +1017,66 @@
         "nebs:enchant": 16.04
       },
       "model": "nebs:item/straddle_jump"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 17.01
+      },
+      "model": "nebs:item/siphon"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 17.02
+      },
+      "model": "nebs:item/refill"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 18.01
+      },
+      "model": "nebs:item/alleviating"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 18.02
+      },
+      "model": "nebs:item/reeling"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 18.03
+      },
+      "model": "nebs:item/reforming"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 18.04
+      },
+      "model": "nebs:item/shockwave"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 18.05
+      },
+      "model": "nebs:item/vengeance"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 19.01
+      },
+      "model": "nebs:item/momentum"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 20.01
+      },
+      "model": "nebs:item/lightweight"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 21.01
+      },
+      "model": "nebs:item/woe_of_swines"
     }
   ]
 }

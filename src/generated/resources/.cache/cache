@@ -1,9 +1,10 @@
-3454f350bc444310fc464d810a6b924253b87035 assets/minecraft/models/item/enchanted_book.json
+11972a77d2777b2b458af0e642976d585b16f869 assets/minecraft/models/item/enchanted_book.json
 5fda09a9b7479079b8c47eb80d8bbe2d6bdd5819 assets/nebs/models/item/absorber.json
 0e5d66e937eb9e2ff2e1fc581969a1f020ac9b3c assets/nebs/models/item/acquisition.json
 aba819ee6509514be50130a1a6ef969a61737208 assets/nebs/models/item/aerial_affinity.json
 7e46067cc9239e4c0b7b0caec3bdc10c967f1882 assets/nebs/models/item/agility.json
 fe5c52332a5065677a7449e0b8aa326baf2b19db assets/nebs/models/item/air_affinity.json
+f9b19cbd54bff23572aba730893704496fa9e2ce assets/nebs/models/item/alleviating.json
 935601d1656e4706c5786c37fdac9b02026a5e30 assets/nebs/models/item/angler.json
 b3ad4d53a6fb052ecd0c02325fb91c5d44643952 assets/nebs/models/item/aqua_affinity.json
 b2da4f256634f719659a7efe5c3847fea425a310 assets/nebs/models/item/archmage.json
@@ -19,6 +20,7 @@ ab76f31b6dd15efb65e3c90ee0af7480f838fda9 assets/nebs/models/item/board_return.js
 2d72c36ba91241d536f803df6e73f94328069c9d assets/nebs/models/item/bulwark.json
 58427330c80b458e29fbb76eed1bfa72c82f300f assets/nebs/models/item/capturing.json
 af51b04ad958687cdd633c433948602c5c4a76dd assets/nebs/models/item/cavalier.json
+606a26c97ece743669c91086105187f7ae0fb1a4 assets/nebs/models/item/change_glint_color.json
 b2ff87ba35f1e10764cbbfd71ce2ce7b038654b8 assets/nebs/models/item/channeling.json
 33b3c2edc35e99ffabfb8b75977e46bdb461eb52 assets/nebs/models/item/cleaving.json
 fa92c773cc065f1fe53fa82580e01059fc07e539 assets/nebs/models/item/control.json
@@ -55,6 +57,7 @@ e0f753af4cc6d9c2f56d3dc18b71cdada1e3f58e assets/nebs/models/item/fortune.json
 8fa6c36adab3fd2d6cc2744411b41371697f5c06 assets/nebs/models/item/frost_rebuke.json
 90043b4854d85523f28763af73eafcb5b67b3b4b assets/nebs/models/item/frost_walker.json
 ebf58d16f12b5768318e3e4def7ad119c9823bfd assets/nebs/models/item/furrowing.json
+9f4fb6ef55c3bf52052a2f30d9fab4e6ee399b88 assets/nebs/models/item/fuse_cutter.json
 578bc2b70cb56d45036df9299f5a47670ec9ba6f assets/nebs/models/item/gotta_mine_fast.json
 7cb64f1c535ce8fca69058102852810740b1648e assets/nebs/models/item/gourmand.json
 33c61790d812354697be2ee1d32b4cd77e154d39 assets/nebs/models/item/greed.json
@@ -93,6 +96,8 @@ bc2332c3d4a293887ffa208ada3b7743b77517ea assets/nebs/models/item/looting.json
 d96da59bdf0b260a2be242f9bf447b15a081d8f0 assets/nebs/models/item/magic_edge.json
 b356ad5e705afd494ecc82829566db383a7a93bc assets/nebs/models/item/magic_protection.json
 c1664f23fc9156fb60b4ac38bf79f2a99588f37e assets/nebs/models/item/mending.json
+f2c1b0fa90ee4f62e7833780e8cd0fe9326ea71a assets/nebs/models/item/mithridatism.json
+2df29d122343ff62d9132cf9e7fc2062ae36ee48 assets/nebs/models/item/momentum.json
 65074356cd7dc15c06003b478f967fd6d00b4cad assets/nebs/models/item/multishot.json
 5d24a9566b3a8bce95622010daf7e396b42ea137 assets/nebs/models/item/natures_blessing.json
 51abed4df54c195818f8ecca47cb4b34b449eac4 assets/nebs/models/item/nimble.json
@@ -112,7 +117,10 @@ cd05d727f6ce19dd695e4c424ee6c2e89b4c9dcc assets/nebs/models/item/punch.json
 a364a391bcb986902c9bd09ac524c5761cf7e2cc assets/nebs/models/item/reach.json
 026c42b3af254c4a7514027f0f144c4946a0f0b6 assets/nebs/models/item/rebounding.json
 7bf2424aeb01213c809cdfc32b29200a2446b23e assets/nebs/models/item/recharge.json
+63d58d688ca5fe576d5d5feba2aa0eb9231b6556 assets/nebs/models/item/reeling.json
+f4c5be83946527abac27662e9e333f6cbf7407b0 assets/nebs/models/item/refill.json
 953fd499c3bef9ae3fd5503161bee727e0842c25 assets/nebs/models/item/reflective.json
+a63fad07b7a3ff5118e7631f2ad8445999b890bb assets/nebs/models/item/reforming.json
 9e1dd7b1250fcf6a0522b61818522f42326347ca assets/nebs/models/item/respiration.json
 eb13658b6f264b9e2938f62bc4efcad2aa70d440 assets/nebs/models/item/riptide.json
 7c84763e6386eea28818d0c160f20ec14051f5e2 assets/nebs/models/item/scavenger.json
@@ -123,8 +131,10 @@ c967ffeee56b7dcef4652738d73fad4ddc2adbb3 assets/nebs/models/item/sever.json
 7b8ae31acc30c0eea4cfc98ed36c00aa2ab492d4 assets/nebs/models/item/sharpness.json
 3cd5844e143f55091b252accbe2ed982b4fc979c assets/nebs/models/item/shell.json
 4c695ffd0d3fffc85afa611b81fe80bb17378bc0 assets/nebs/models/item/shield_bash.json
+11d077637e1577db4a33c20f661fce15e31f194e assets/nebs/models/item/shockwave.json
 65dad0a8cbbcbdae074b6e7292973da672a2aea4 assets/nebs/models/item/silk_touch.json
 37c2beed93a1b85c5ddb87a1ac6f15c897e2dbb9 assets/nebs/models/item/siphon.json
+12ff47134ce2a69f925cedbd976be464436e182b assets/nebs/models/item/sixth_sense.json
 38a83e9c0805c1ebfa506cff0a3041ef2eaffaf2 assets/nebs/models/item/slowness_curse.json
 8a7ad81a33415daef65b364fd9356abd35e98d52 assets/nebs/models/item/smelter.json
 8bb81f178ac5a79c9905530248cc089caf86641f assets/nebs/models/item/smelting_touch.json
@@ -143,13 +153,13 @@ df7bcd264cf8cd781da1b4df053946c67f11a40d assets/nebs/models/item/sweeping.json
 18656d868f179e43b2a6cc74e768cccff80ef57d assets/nebs/models/item/tempting.json
 75ff2fc235c16e576dcfe96cfff5f891b0cd52f7 assets/nebs/models/item/thorns.json
 904d0698b4213b7ba145a5e1ba2636e5f5d3134d assets/nebs/models/item/tilling.json
-6e76858ed58b17b5b80d2759d4b0be545f8d315a assets/nebs/models/item/tinted.json
 cff51624a2d8dc5cf0d4dfdaba05e8b15e154640 assets/nebs/models/item/true_infinity.json
 11bfd5c9f83f447e65a0dcee3f00e16fab4e31a3 assets/nebs/models/item/trueshot.json
 719c1a798ee2192e08d861820f54fceca00e9501 assets/nebs/models/item/unbreaking.json
 5ed8e6a55d352fe1f4a7d50431005977da152bd3 assets/nebs/models/item/vampirism_curse.json
 cab26d31a015799f2c550f1aab2e9f983c43d7f4 assets/nebs/models/item/vanishing_curse.json
 1ce15dcfb4c994b50cc96770747bddfa960f4fdd assets/nebs/models/item/vein_mining.json
+226519c3ed7447cf08d9f9655f01d481304015a3 assets/nebs/models/item/vengeance.json
 75cb0711c76a26cef8dd1236517a8e9b21680669 assets/nebs/models/item/veteran.json
 b00451f4998c84777d6c0fc8af3139bba110aaf0 assets/nebs/models/item/vigor.json
 c6b0682826e7d5db59cda063205b1f973c225c16 assets/nebs/models/item/vitality.json
