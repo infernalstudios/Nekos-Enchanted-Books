@@ -1,4 +1,4 @@
-11972a77d2777b2b458af0e642976d585b16f869 assets/minecraft/models/item/enchanted_book.json
+70a75c05c887a6d8a885d8f3ebb18cdd0c747717 assets/minecraft/models/item/enchanted_book.json
 5fda09a9b7479079b8c47eb80d8bbe2d6bdd5819 assets/nebs/models/item/absorber.json
 0e5d66e937eb9e2ff2e1fc581969a1f020ac9b3c assets/nebs/models/item/acquisition.json
 aba819ee6509514be50130a1a6ef969a61737208 assets/nebs/models/item/aerial_affinity.json
@@ -89,6 +89,7 @@ f6daf1b70e9d555661daf6aaf64dd0fd7356b61a assets/nebs/models/item/leaping.json
 9a5bdd0583c54cf20229a180b71fafc96f070165 assets/nebs/models/item/leech.json
 f4c08a7f9f9e550b2a7cc1086c3671783bdda6b6 assets/nebs/models/item/leeching.json
 cae5dfd1eb38d1ae9d510566ecd35beb77946385 assets/nebs/models/item/life_mending.json
+4e7a98be48b196c1e085360d9aca96ef1deb27e9 assets/nebs/models/item/lightweight.json
 bc2332c3d4a293887ffa208ada3b7743b77517ea assets/nebs/models/item/looting.json
 0b3a3627ff3e4bbe2cfcc5cf7db2d6e7d57e33fd assets/nebs/models/item/loyalty.json
 5d85e889045c84947e8617671180ad7448f7227f assets/nebs/models/item/luck_of_the_sea.json
@@ -167,3 +168,4 @@ c6b0682826e7d5db59cda063205b1f973c225c16 assets/nebs/models/item/vitality.json
 c5542b25aa0d9997508d6c635032614286487838 assets/nebs/models/item/vorpal.json
 ad96e7f675518d6e571a4a8dbdc8bc1ff10968ab assets/nebs/models/item/walljump.json
 49bc61f76c38759d83288bc407e8aee7303f87bc assets/nebs/models/item/weeding.json
+e9efa6c2360ed6b860ac3e5752c76105fe6ee2c5 assets/nebs/models/item/woe_of_swines.json
