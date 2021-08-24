@@ -1,4 +1,4 @@
-70a75c05c887a6d8a885d8f3ebb18cdd0c747717 assets/minecraft/models/item/enchanted_book.json
+7bc83b4603717ff7c509adc6530f662dd54957f6 assets/minecraft/models/item/enchanted_book.json
 5fda09a9b7479079b8c47eb80d8bbe2d6bdd5819 assets/nebs/models/item/absorber.json
 0e5d66e937eb9e2ff2e1fc581969a1f020ac9b3c assets/nebs/models/item/acquisition.json
 aba819ee6509514be50130a1a6ef969a61737208 assets/nebs/models/item/aerial_affinity.json
@@ -18,6 +18,7 @@ ea88d21aa0a215b2caa3e776f49371b7cf623453 assets/nebs/models/item/binding_curse.j
 ab76f31b6dd15efb65e3c90ee0af7480f838fda9 assets/nebs/models/item/board_return.json
 6a0bf000a8edd00d7c782ce92c327f90c5c67d8b assets/nebs/models/item/brace.json
 2d72c36ba91241d536f803df6e73f94328069c9d assets/nebs/models/item/bulwark.json
+eff318dbaab601097e34daadb89ea039dc39131b assets/nebs/models/item/capacity.json
 58427330c80b458e29fbb76eed1bfa72c82f300f assets/nebs/models/item/capturing.json
 af51b04ad958687cdd633c433948602c5c4a76dd assets/nebs/models/item/cavalier.json
 606a26c97ece743669c91086105187f7ae0fb1a4 assets/nebs/models/item/change_glint_color.json
@@ -108,6 +109,7 @@ f2c1b0fa90ee4f62e7833780e8cd0fe9326ea71a assets/nebs/models/item/mithridatism.js
 453a6c1c5e3c3f688bfadf888fab0e1ef1a8aa9a assets/nebs/models/item/piercing.json
 ab477cb17836c4bfb54bfadb83ebfc4edddeb62f assets/nebs/models/item/pilfering.json
 fc48a2745bcba05993d8319bcc3973e522b4c784 assets/nebs/models/item/plundering.json
+38530af92b511d23034bc4c8894aa5481722d4a1 assets/nebs/models/item/potato_recovery.json
 a0b49fa232f8e7add586642dec3df97ab9ed1ed2 assets/nebs/models/item/power.json
 40ee93cd9d206e3deb417448b32fdfe71801e87d assets/nebs/models/item/projectile_protection.json
 d241c63bf600e606712d9dd40606273759d41f92 assets/nebs/models/item/protection.json
@@ -141,6 +143,7 @@ c967ffeee56b7dcef4652738d73fad4ddc2adbb3 assets/nebs/models/item/sever.json
 8bb81f178ac5a79c9905530248cc089caf86641f assets/nebs/models/item/smelting_touch.json
 fa8f08daf174720d6d04d569949a4f961ec5c7dd assets/nebs/models/item/smite.json
 479d2b4b3c84282cf9d7e8559603c36797284649 assets/nebs/models/item/soul_speed.json
+b286a69436dc37ca61e3c1842b4c65c8804439cd assets/nebs/models/item/soulbinding.json
 bb4f5ea630e45f014150197a59a4141cc146d99d assets/nebs/models/item/soulbound.json
 06a5303bda4254ca6da6b2548869f607944066c3 assets/nebs/models/item/speedboost.json
 d7469da16d5da09ce85622f73d8b0bfcd6f098e0 assets/nebs/models/item/spikes.json
