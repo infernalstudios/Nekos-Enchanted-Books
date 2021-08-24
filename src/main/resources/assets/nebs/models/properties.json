@@ -196,5 +196,8 @@
 
   "enchantment.elenaidodge2.lightweight": 20.01,
 
-  "enchantment.greedandbleed.woe_of_swines": 21.01
+  "enchantment.greedandbleed.woe_of_swines": 21.01,
+  
+  "enchantment.create.capacity": 22.01,
+  "enchantment.create.potato_recovery": 22.02
 }
