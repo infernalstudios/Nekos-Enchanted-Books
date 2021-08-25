@@ -201,5 +201,7 @@
   "enchantment.create.capacity": 22.01,
   "enchantment.create.potato_recovery": 22.02,
   
-  "enchantment.corpsecomplex.soulbinding": 23.01
+  "enchantment.corpsecomplex.soulbinding": 23.01,
+  
+  "enchantment.betterendforge.end_veil": 24.01
 }

@@ -1,4 +1,4 @@
-7bc83b4603717ff7c509adc6530f662dd54957f6 assets/minecraft/models/item/enchanted_book.json
+19f4aa89c86f519661d6b02ebebe3bd62190306b assets/minecraft/models/item/enchanted_book.json
 5fda09a9b7479079b8c47eb80d8bbe2d6bdd5819 assets/nebs/models/item/absorber.json
 0e5d66e937eb9e2ff2e1fc581969a1f020ac9b3c assets/nebs/models/item/acquisition.json
 aba819ee6509514be50130a1a6ef969a61737208 assets/nebs/models/item/aerial_affinity.json
@@ -41,6 +41,7 @@ b7b28418804aeca6d454bf79e8465653a542f109 assets/nebs/models/item/displacement.js
 14e717cd0642eaaae48313195a994522a4ddedf7 assets/nebs/models/item/doublejump.json
 86c4c9cc27da65560c257e24e9d28cd8fce5a194 assets/nebs/models/item/efficiency.json
 0a52d2343c2f259067caee5b59e458f830cd8ee6 assets/nebs/models/item/elder_guardian_favor.json
+8a0958a0925f7bcb0d350cf1637ce1cb5d063b90 assets/nebs/models/item/end_veil.json
 cb77606d2cf2bccb0527a33994ed53c94794e83a assets/nebs/models/item/enlightenment.json
 02377f5d9bc8b4f0f260953cc7d6fa2e9b77b667 assets/nebs/models/item/excavating.json
 cc0a72eb040569cb4812d74b303ae6e980bf3178 assets/nebs/models/item/exp_boost.json

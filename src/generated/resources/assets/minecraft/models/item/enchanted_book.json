@@ -1095,6 +1095,12 @@
         "nebs:enchant": 23.01
       },
       "model": "nebs:item/soulbinding"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 24.01
+      },
+      "model": "nebs:item/end_veil"
     }
   ]
 }
