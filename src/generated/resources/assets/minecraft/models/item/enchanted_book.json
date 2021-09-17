@@ -1077,6 +1077,30 @@
         "nebs:enchant": 21.01
       },
       "model": "nebs:item/woe_of_swines"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 22.01
+      },
+      "model": "nebs:item/capacity"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 22.02
+      },
+      "model": "nebs:item/potato_recovery"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 23.01
+      },
+      "model": "nebs:item/soulbinding"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 24.01
+      },
+      "model": "nebs:item/end_veil"
     }
   ]
 }
