@@ -993,6 +993,108 @@
         "nebs:enchant": 16.04
       },
       "model": "nebs:item/straddle_jump"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 17.01
+      },
+      "model": "nebs:item/siphon"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 17.02
+      },
+      "model": "nebs:item/refill"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 18.01
+      },
+      "model": "nebs:item/alleviating"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 18.02
+      },
+      "model": "nebs:item/reeling"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 18.03
+      },
+      "model": "nebs:item/reforming"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 18.04
+      },
+      "model": "nebs:item/shockwave"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 18.05
+      },
+      "model": "nebs:item/vengeance"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 19.01
+      },
+      "model": "nebs:item/momentum"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 20.01
+      },
+      "model": "nebs:item/lightweight"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 21.01
+      },
+      "model": "nebs:item/woe_of_swines"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 22.01
+      },
+      "model": "nebs:item/capacity"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 22.02
+      },
+      "model": "nebs:item/potato_recovery"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 23.01
+      },
+      "model": "nebs:item/soulbinding"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 24.01
+      },
+      "model": "nebs:item/end_veil"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 25.01
+      },
+      "model": "nebs:item/shocking"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 25.02
+      },
+      "model": "nebs:item/sturdy"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 25.03
+      },
+      "model": "nebs:item/complexity"
     }
   ]
 }
