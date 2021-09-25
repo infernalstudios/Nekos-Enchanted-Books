@@ -176,5 +176,31 @@
   "enchantment.alexmobs.board_return": 16.01,
   "enchantment.alexmobs.lavawax": 16.02,
   "enchantment.alexmobs.serpentfriend": 16.03,
-  "enchantment.alexmobs.straddle_jump": 16.04
+  "enchantment.alexmobs.straddle_jump": 16.04,
+  
+    "enchantment.shulker_enchantments.siphon": 17.01,
+  "enchantment.shulker_enchantments.refill": 17.02,
+
+  "enchantment.allurement.alleviating": 18.01,
+  "enchantment.allurement.reeling": 18.02,
+  "enchantment.allurement.reforming": 18.03,
+  "enchantment.allurement.shockwave": 18.04,
+  "enchantment.allurement.vengeance": 18.05,
+
+  "enchantment.momentum.momentum": 19.01,
+
+  "enchantment.elenaidodge2.lightweight": 20.01,
+
+  "enchantment.greedandbleed.woe_of_swines": 21.01,
+  
+  "enchantment.create.capacity": 22.01,
+  "enchantment.create.potato_recovery": 22.02,
+  
+  "enchantment.corpsecomplex.soulbinding": 23.01,
+  
+  "enchantment.betterendforge.end_veil": 24.01,
+
+	"enchantment.locks.shocking": 25.01,
+	"enchantment.locks.sturdy": 25.02,
+	"enchantment.locks.complexity": 25.03
 }
