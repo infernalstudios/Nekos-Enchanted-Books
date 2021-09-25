@@ -1,5 +1,6 @@
 # Neko's Enchanted Books
 Neko's Enchanted Books is a Minecraft Forge mod, that adds all kinds of different textures to enchanted books.
+https://www.curseforge.com/minecraft/mc-mods/nekos-enchanted-books
 
 ## How to add more textures?
 This mod is mostly created dynamically using an extended class of ```ItemModelProvider```. This is used to create dynamic models for each enchantment book and one to override the vanilla enchanted book model to make it use property overrides.
