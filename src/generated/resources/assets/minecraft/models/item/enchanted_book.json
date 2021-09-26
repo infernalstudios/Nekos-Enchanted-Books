@@ -476,7 +476,7 @@
       "predicate": {
         "nebs:enchant": 5.01
       },
-      "model": "nebs:item/tinted"
+      "model": "nebs:item/change_glint_color"
     },
     {
       "predicate": {
@@ -783,6 +783,30 @@
         "nebs:enchant": 9.25
       },
       "model": "nebs:item/corrosion_curse"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.26
+      },
+      "model": "nebs:item/leech"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.27
+      },
+      "model": "nebs:item/sixth_sense"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.28
+      },
+      "model": "nebs:item/mithridatism"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 9.29
+      },
+      "model": "nebs:item/fuse_cutter"
     },
     {
       "predicate": {

@@ -7,7 +7,29 @@ modId="nebs" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Neko’s Enchanted Books" #mandatory
 authors="Nekomaster, CGessinger" #optional
-description='''A small mod that adds unique textures to every Enchanted Book in vanilla Minecraft, in addition to every book in the mods Ensorcellation, Veinmining, Charm, Wall-Jump, Jellyfishing, Apotheosis, VanillaTweaks, BetterDefaultBiomes, Wonderful Enchantments, Step, Leap, Dash and Farmer's Delight!'''
+description='''A small mod that adds unique textures to every Enchanted Book in vanilla Minecraft, in addition to every book in the mods...
+- Ensorcellation
+- Veinmining
+- Charm
+- Wall-Jump!
+- Apotheosis
+- Jellyfishing
+- VanillaTweaks
+- BetterDefaultBiomes
+- Wonderful Enchantments
+- Shulker Enchantments
+- Step, Leap, Dash
+- Farmer's Delight
+- Alex's Mobs
+- Allurement
+- Momentum
+- Elenai Dodge 2
+- Advent of Ascension 3
+- Greed N' Bleed
+- Create
+- Corpse Complex
+- BetterEnd (Forge)
+'''
 
 [[dependencies.nebs]] #optional
     modId="forge" #mandatory
@@ -25,6 +47,13 @@ description='''A small mod that adds unique textures to every Enchanted Book in 
 
 [[dependencies.nebs]]
     modId="wonderful_enchantments"
+    mandatory=false
+    versionRange="[1.0.0,)"
+    ordering="BEFORE"
+    side="CLIENT"
+
+[[dependencies.nebs]]
+    modId="inspirations"
     mandatory=false
     versionRange="[1.0.0,)"
     ordering="BEFORE"
