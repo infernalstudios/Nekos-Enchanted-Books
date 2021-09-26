@@ -1101,6 +1101,24 @@
         "nebs:enchant": 24.01
       },
       "model": "nebs:item/end_veil"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 25.01
+      },
+      "model": "nebs:item/shocking"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 25.02
+      },
+      "model": "nebs:item/sturdy"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 25.03
+      },
+      "model": "nebs:item/complexity"
     }
   ]
 }

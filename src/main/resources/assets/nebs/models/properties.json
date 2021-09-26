@@ -177,7 +177,7 @@
   "enchantment.aoa3.shell": 15.08,
   "enchantment.aoa3.crush": 15.09,
   "enchantment.aoa3.archmage": 15.10,
-
+  
   "enchantment.alexsmobs.board_return": 16.01,
   "enchantment.alexsmobs.lavawax": 16.02,
   "enchantment.alexsmobs.serpentfriend": 16.03,
@@ -203,5 +203,9 @@
   
   "enchantment.corpsecomplex.soulbinding": 23.01,
   
-  "enchantment.betterendforge.end_veil": 24.01
+  "enchantment.betterendforge.end_veil": 24.01,
+
+	"enchantment.locks.shocking": 25.01,
+	"enchantment.locks.sturdy": 25.02,
+	"enchantment.locks.complexity": 25.03
 }
