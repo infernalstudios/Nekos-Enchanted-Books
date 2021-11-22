@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/change_glint_color"
+    "layer0": "nebs:items/snowpiercer"
   }
 }

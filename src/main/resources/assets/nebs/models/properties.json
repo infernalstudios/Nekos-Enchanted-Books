@@ -81,7 +81,7 @@
 
   "enchantment.veinmining.vein_mining": 4.01,
 
-  "enchantment.charm.change_glint_color": 5.01,
+  "enchantment.charm.glinted": 5.01,
   "enchantment.charm.aerial_affinity": 5.02,
   "enchantment.charm.acquisition": 5.03,
 
@@ -191,6 +191,7 @@
   "enchantment.allurement.reforming": 18.03,
   "enchantment.allurement.shockwave": 18.04,
   "enchantment.allurement.vengeance": 18.05,
+  "enchantment.allurement.launch": 18.06,
 
   "enchantment.momentum.momentum": 19.01,
 
@@ -202,10 +203,30 @@
   "enchantment.create.potato_recovery": 22.02,
   
   "enchantment.corpsecomplex.soulbinding": 23.01,
-  
   "enchantment.betterendforge.end_veil": 24.01,
 
-	"enchantment.locks.shocking": 25.01,
-	"enchantment.locks.sturdy": 25.02,
-	"enchantment.locks.complexity": 25.03
+  "enchantment.locks.shocking": 25.01,
+  "enchantment.locks.sturdy": 25.02,
+  "enchantment.locks.complexity": 25.03,
+
+  "enchantment.bigbrain.turning": 26.01,
+  "enchantment.bigbrain.bang": 26.02,
+
+  "enchantment.miningmaster.freezing": 27.01,
+  "enchantment.miningmaster.leeching": 27.02,
+  "enchantment.miningmaster.smelting": 27.03,
+  "enchantment.miningmaster.stonebreaker": 27.04,
+  "enchantment.miningmaster.runner": 27.05,
+  "enchantment.miningmaster.heartfelt": 27.06,
+  "enchantment.miningmaster.floatation": 27.07,
+  "enchantment.miningmaster.knight_jump": 27.08,
+  "enchantment.miningmaster.snowpiercer": 27.09,
+  "enchantment.miningmaster.grace": 27.10,
+
+  "enchantment.seeker_compass.voodoo": 28.01,
+  "enchantment.seeker_compass.tracking": 28.02,
+  "enchantment.seeker_compass.warping": 28.03,
+  "enchantment.seeker_compass.summoning": 28.04,
+  "enchantment.seeker_compass.persistence": 28.05,
+  "enchantment.seeker_compass.stalking": 28.06
 }

@@ -29,6 +29,10 @@ description='''A small mod that adds unique textures to every Enchanted Book in 
 - Create
 - Corpse Complex
 - BetterEnd (Forge)
+- Locks
+- Big Brain
+- Mining Master
+- Seeker's Compass
 '''
 
 [[dependencies.nebs]] #optional

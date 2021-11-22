@@ -476,7 +476,7 @@
       "predicate": {
         "nebs:enchant": 5.01
       },
-      "model": "nebs:item/change_glint_color"
+      "model": "nebs:item/glinted"
     },
     {
       "predicate": {
@@ -1062,6 +1062,12 @@
     },
     {
       "predicate": {
+        "nebs:enchant": 18.06
+      },
+      "model": "nebs:item/launch"
+    },
+    {
+      "predicate": {
         "nebs:enchant": 19.01
       },
       "model": "nebs:item/momentum"
@@ -1119,6 +1125,114 @@
         "nebs:enchant": 25.03
       },
       "model": "nebs:item/complexity"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 26.01
+      },
+      "model": "nebs:item/turning"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 26.02
+      },
+      "model": "nebs:item/bang"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 27.01
+      },
+      "model": "nebs:item/freezing"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 27.02
+      },
+      "model": "nebs:item/leeching"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 27.03
+      },
+      "model": "nebs:item/smelting"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 27.04
+      },
+      "model": "nebs:item/stonebreaker"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 27.05
+      },
+      "model": "nebs:item/runner"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 27.06
+      },
+      "model": "nebs:item/heartfelt"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 27.07
+      },
+      "model": "nebs:item/floatation"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 27.08
+      },
+      "model": "nebs:item/knight_jump"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 27.09
+      },
+      "model": "nebs:item/snowpiercer"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 27.1
+      },
+      "model": "nebs:item/grace"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 28.01
+      },
+      "model": "nebs:item/voodoo"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 28.02
+      },
+      "model": "nebs:item/tracking"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 28.03
+      },
+      "model": "nebs:item/warping"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 28.04
+      },
+      "model": "nebs:item/summoning"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 28.05
+      },
+      "model": "nebs:item/persistence"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 28.06
+      },
+      "model": "nebs:item/stalking"
     }
   ]
 }
