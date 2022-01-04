@@ -1,10 +1,10 @@
-package com.cgessinger.nebs;
+package org.infernalstudios.nebs;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourcePackType;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -26,7 +26,7 @@ public class ModItemModelProvider extends ItemModelProvider
 	public ModelFile generateModel (String name)
 	{
 		ResourceLocation location = modLoc("items/" + name);
-		if(!existingFileHelper.exists(location, ResourcePackType.CLIENT_RESOURCES, ".png", "textures"))
+		if(!existingFileHelper.exists(location, PackType.CLIENT_RESOURCES, ".png", "textures"))
 		{
 			NekosEnchantedBooks.LOGGER.debug(name + " book texture not found, defaulting...");
 			location = mcLoc("item/enchanted_book");

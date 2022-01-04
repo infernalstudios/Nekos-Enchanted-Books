@@ -5,23 +5,24 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
 }
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
 
-version = '1.5.0'
-group = 'com.cgessinger.nebs' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'NekosEnchantedBooks-1.16'
+// This initializes the config. Please try to modify the variables in the config file, if needed, add more if you see a reason to.
+ext.config = parseConfig(file('build.properties'))
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+version = config.VERSION
+group = "${config.GROUP}.${config.ARTIFACT}"
+archivesBaseName = "${config.ARCHIVES_BASE_NAME}-${config.MINECRAFT_VERSION}"
 
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+java.toolchain.languageVersion = JavaLanguageVersion.of(16)
+
 minecraft {
-    mappings channel: 'snapshot', version: '20201028-1.16.3'
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    mappings channel: config.MAPPINGS_CHANNEL, version: config.MAPPINGS_VERSION
     
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -75,36 +76,38 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.3-34.1.42'
+    minecraft "net.minecraftforge:forge:${config.MINECRAFT_VERSION}-${config.FORGE_VERSION}"
 }
 
-// Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
         attributes([
-            'ModSide': 'CLIENT',
-            "Specification-Title": "nebs",
-            "Specification-Vendor": "examplemodsareus",
-            "Specification-Version": "1", // We are version 1 of ourselves
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"examplemodsareus",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                'Specification-Title'   : config.TITLE,
+                'Specification-Vendor'  : config.AUTHOR,
+                'Specification-Version' : '1',
+                'Implementation-Title'  : config.TITLE,
+                'Implementation-Version': config.VERSION,
+                'Implementation-Vendor' : config.AUTHOR,
+                'MixinConfigs'          : 'infernal-expansion.mixins.json',
+                'MixinConnector'        : 'org.infernalstudios.infernalexp.mixin.MixinConnector'
         ])
     }
 }
 
 jar.finalizedBy('reobfJar')
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact jar
-        }
-    }
-    repositories {
-        maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
-        }
-    }
+task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from sourceSets.main.allJava
+}
+
+tasks.build.dependsOn sourcesJar
+
+// Config parse function
+def parseConfig(File config) {
+  config.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    return new ConfigSlurper().parse(prop)
+  }
 }
