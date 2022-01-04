@@ -1,4 +1,4 @@
-949a796cbcc6d083ba88c9a03d31e1ae7cb40828 assets/minecraft/models/item/enchanted_book.json
+4908fccee4acca3188a7a82fb45dadeeba0c49a3 assets/minecraft/models/item/enchanted_book.json
 5fda09a9b7479079b8c47eb80d8bbe2d6bdd5819 assets/nebs/models/item/absorber.json
 0e5d66e937eb9e2ff2e1fc581969a1f020ac9b3c assets/nebs/models/item/acquisition.json
 aba819ee6509514be50130a1a6ef969a61737208 assets/nebs/models/item/aerial_affinity.json
@@ -63,7 +63,6 @@ c5a752cb7b9f2c0891c18b2a3d29c69e08633941 assets/nebs/models/item/freezing.json
 90043b4854d85523f28763af73eafcb5b67b3b4b assets/nebs/models/item/frost_walker.json
 ebf58d16f12b5768318e3e4def7ad119c9823bfd assets/nebs/models/item/furrowing.json
 9f4fb6ef55c3bf52052a2f30d9fab4e6ee399b88 assets/nebs/models/item/fuse_cutter.json
-41132ce5470fa6e5f58f0207e04f283fe1c985e8 assets/nebs/models/item/glinted.json
 578bc2b70cb56d45036df9299f5a47670ec9ba6f assets/nebs/models/item/gotta_mine_fast.json
 7cb64f1c535ce8fca69058102852810740b1648e assets/nebs/models/item/gourmand.json
 cc45f30552759c58483d0e37267f9097bfd01f3c assets/nebs/models/item/grace.json
@@ -175,6 +174,7 @@ df7bcd264cf8cd781da1b4df053946c67f11a40d assets/nebs/models/item/sweeping.json
 18656d868f179e43b2a6cc74e768cccff80ef57d assets/nebs/models/item/tempting.json
 75ff2fc235c16e576dcfe96cfff5f891b0cd52f7 assets/nebs/models/item/thorns.json
 904d0698b4213b7ba145a5e1ba2636e5f5d3134d assets/nebs/models/item/tilling.json
+6e76858ed58b17b5b80d2759d4b0be545f8d315a assets/nebs/models/item/tinted.json
 d9b2dc96d4f4cc966ae6125ac4d8e7caf427114b assets/nebs/models/item/tracking.json
 cff51624a2d8dc5cf0d4dfdaba05e8b15e154640 assets/nebs/models/item/true_infinity.json
 11bfd5c9f83f447e65a0dcee3f00e16fab4e31a3 assets/nebs/models/item/trueshot.json

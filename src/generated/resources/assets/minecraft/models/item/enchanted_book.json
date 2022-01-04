@@ -476,7 +476,7 @@
       "predicate": {
         "nebs:enchant": 5.01
       },
-      "model": "nebs:item/glinted"
+      "model": "nebs:item/tinted"
     },
     {
       "predicate": {
