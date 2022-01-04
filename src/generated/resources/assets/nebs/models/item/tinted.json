@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/glinted"
+    "layer0": "nebs:items/tinted"
   }
 }
