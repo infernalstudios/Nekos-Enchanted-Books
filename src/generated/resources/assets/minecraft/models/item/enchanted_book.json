@@ -1233,6 +1233,156 @@
         "nebs:enchant": 28.06
       },
       "model": "nebs:item/stalking"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.01
+      },
+      "model": "nebs:item/curse_breaking"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.02
+      },
+      "model": "nebs:item/curse_butterfingers"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.03
+      },
+      "model": "nebs:item/curse_aquaphobia"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.04
+      },
+      "model": "nebs:item/curse_death"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.05
+      },
+      "model": "nebs:item/reinforced_tip"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.06
+      },
+      "model": "nebs:item/stone_mending"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.07
+      },
+      "model": "nebs:item/lumberjack"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.08
+      },
+      "model": "nebs:item/momentum"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.09
+      },
+      "model": "nebs:item/butchering"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.1
+      },
+      "model": "nebs:item/true_shot"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.11
+      },
+      "model": "nebs:item/quick_draw"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.12
+      },
+      "model": "nebs:item/floating"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.13
+      },
+      "model": "nebs:item/paralysis"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.14
+      },
+      "model": "nebs:item/detonation"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.15
+      },
+      "model": "nebs:item/combo"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.16
+      },
+      "model": "nebs:item/faster_attack"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.17
+      },
+      "model": "nebs:item/lifesteal"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.18
+      },
+      "model": "nebs:item/ice_aspect"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.01
+      },
+      "model": "nebs:item/wisdom"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.19
+      },
+      "model": "nebs:item/blazing_walker"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.2
+      },
+      "model": "nebs:item/step_assist"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.21
+      },
+      "model": "nebs:item/night_vision"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.22
+      },
+      "model": "nebs:item/multi_jump"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.23
+      },
+      "model": "nebs:item/soft_fall"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 29.24
+      },
+      "model": "nebs:item/timeless"
     }
   ]
 }
