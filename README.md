@@ -9,6 +9,6 @@ But how does it know which models to add? Since minecraft only uses floats for p
 
 After adding the correct enchantment name to the properties, we want to add the according texture file to ```resources/assets/nebs/textures/items```. We want to name this file exactly like the enchantment name, without the extra ```enchantment.modid``` part. The protection texture for example is just called ```protection.png```.
 
-And, that's it. The new texture is now successfully added. And don't worry: If the according texture cannot be found, it will just default to the vanila texture.
+And, that's it. The new texture is now successfully added. Don't worry: If the according texture cannot be found, it will just default to the vanila texture.
 
-Note: If you run this mod in your development environment, rememeber to always run ```runData```, when you changed the [properties.json](https://github.com/CGessinger/Nekos-Enchanted-Books/tree/master/src/main/resources/assets/nebs/models/properties.json), before doing ```runClient```.
+Note: If you run this mod in your development environment, remember to always run ```runData```, when you changed the [properties.json](https://github.com/CGessinger/Nekos-Enchanted-Books/tree/master/src/main/resources/assets/nebs/models/properties.json), before doing ```runClient```. It will automatically add all the required info to ```enchanted_book.json``` in addition to the nessecary json files.
