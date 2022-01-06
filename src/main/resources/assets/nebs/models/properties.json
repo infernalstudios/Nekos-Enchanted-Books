@@ -254,5 +254,16 @@
   "enchantment.maenchants.night_vision": 29.21,
   "enchantment.maenchants.multi_jump": 29.22,
   "enchantment.maenchants.soft_fall": 29.23,
-  "enchantment.maenchants.timeless": 29.24
+  "enchantment.maenchants.timeless": 29.24,
+
+  "enchantment.broomsmod.air_skills": 30.01,
+  "enchantment.broomsmod.land_skills": 30.02,
+  "enchantment.broomsmod.hovering": 30.03,
+  "enchantment.broomsmod.seabreeze": 30.04,
+
+  "enchantment.fins.fluked_edge": 31.01,
+  "enchantment.fins.uppercutting": 31.02,
+  "enchantment.fins.crabs_favor": 31.03,
+
+  "enchantment.supplementaries.stasis": 32.01
 }
