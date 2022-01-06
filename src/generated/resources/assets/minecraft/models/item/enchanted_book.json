@@ -1383,6 +1383,54 @@
         "nebs:enchant": 29.24
       },
       "model": "nebs:item/timeless"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 30.01
+      },
+      "model": "nebs:item/air_skills"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 30.02
+      },
+      "model": "nebs:item/land_skills"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 30.03
+      },
+      "model": "nebs:item/hovering"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 30.04
+      },
+      "model": "nebs:item/seabreeze"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 31.01
+      },
+      "model": "nebs:item/fluked_edge"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 31.02
+      },
+      "model": "nebs:item/uppercutting"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 31.03
+      },
+      "model": "nebs:item/crabs_favor"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 32.01
+      },
+      "model": "nebs:item/stasis"
     }
   ]
 }
