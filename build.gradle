@@ -87,9 +87,7 @@ jar {
                 'Specification-Version' : '1',
                 'Implementation-Title'  : config.TITLE,
                 'Implementation-Version': config.VERSION,
-                'Implementation-Vendor' : config.AUTHOR,
-                'MixinConfigs'          : 'infernal-expansion.mixins.json',
-                'MixinConnector'        : 'org.infernalstudios.infernalexp.mixin.MixinConnector'
+                'Implementation-Vendor' : config.AUTHOR
         ])
     }
 }
