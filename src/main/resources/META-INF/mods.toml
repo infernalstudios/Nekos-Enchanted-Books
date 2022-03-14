@@ -6,6 +6,7 @@ license="All rights reserved"
 modId="nebs" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Neko’s Enchanted Books" #mandatory
+updateJSONURL="https://infernalstudios.org/api/mods/nekosenchantedbooks/forge"
 authors="Nekomaster, CGessinger" #optional
 description='''A small mod that adds unique textures to every Enchanted Book in vanilla Minecraft, in addition to every book in the mods...
 - Ensorcellation
