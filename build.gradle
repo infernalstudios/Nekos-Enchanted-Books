@@ -1,38 +1,43 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://plugins.gradle.org/m2/' }
+
         jcenter()
         mavenCentral()
     }
+
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle',           name: 'ForgeGradle', version: '5.1+',          changing: true
+        classpath group: 'gradle.plugin.com.modrinth.minotaur', name: 'Minotaur',    version: '1.2.1'
+        classpath group: 'gradle.plugin.com.matthewprenger',    name: 'CurseGradle', version: '1.4.0'
     }
 }
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'com.matthewprenger.cursegradle'
 
-version = '1.6.0'
-group = 'com.cgessinger.nebs' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'NekosEnchantedBooks-1.16'
+// This initializes the config. Please try to modify the variables in the config file, if needed, add more if you see a reason to.
+ext.config = parseConfig(file('build.properties'))
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+version = config.VERSION
+group = "${config.GROUP}.${config.ARTIFACT}"
+archivesBaseName = "${config.ARCHIVES_BASE_NAME}-${config.MINECRAFT_VERSION}"
 
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
 minecraft {
-    mappings channel: 'snapshot', version: '20201028-1.16.3'
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
-    
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    mappings channel: config.MAPPINGS_CHANNEL, version: config.MAPPINGS_VERSION
+
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
         client {
             workingDirectory project.file('run')
-
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
             property 'forge.logging.console.level', 'debug'
-
             mods {
                 nebs {
                     source sourceSets.main
@@ -42,11 +47,8 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
             property 'forge.logging.console.level', 'debug'
-
             mods {
                 nebs {
                     source sourceSets.main
@@ -56,13 +58,9 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
             property 'forge.logging.console.level', 'debug'
-
             args '--mod', 'nebs', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-
             mods {
                 nebs {
                     source sourceSets.main
@@ -74,37 +72,121 @@ minecraft {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.3-34.1.42'
+    minecraft "net.minecraftforge:forge:${config.MINECRAFT_VERSION}-${config.FORGE_VERSION}"
 }
 
-// Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
         attributes([
-            'ModSide': 'CLIENT',
-            "Specification-Title": "nebs",
-            "Specification-Vendor": "examplemodsareus",
-            "Specification-Version": "1", // We are version 1 of ourselves
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"examplemodsareus",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                'Specification-Title'   : config.TITLE,
+                'Specification-Vendor'  : config.AUTHOR,
+                'Specification-Version' : '1',
+                'Implementation-Title'  : config.TITLE,
+                'Implementation-Version': config.VERSION,
+                'Implementation-Vendor' : config.AUTHOR
         ])
     }
 }
 
 jar.finalizedBy('reobfJar')
 
+task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from sourceSets.main.allJava
+}
+
+tasks.build.dependsOn sourcesJar
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
+            groupId = config.GROUP
+            artifactId = config.ARTIFACT
             artifact jar
+            artifact sourcesJar
+            version "${config.VERSION}-${config.MINECRAFT_VERSION}"
+
+            pom {
+                name = 'Infernal Expansion'
+                url = 'https://infernalstudios.org/secondchanceforge'
+                licenses {
+                    license {
+                        name = 'Apache License 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/infernalexp/Second-Chance-Forge.git'
+                    url = 'https://github.com/infernalexp/Second-Chance-Forge'
+                }
+            }
         }
     }
     repositories {
         maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
+            url 'https://maven.infernalstudios.org/releases'
+
+            credentials {
+                username = System.getenv('MAVEN_USER')
+                password = System.getenv('MAVEN_TOKEN')
+            }
+
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+}
+
+// Modrinth publishing
+import com.modrinth.minotaur.TaskModrinthUpload
+
+task publishModrinth (type: TaskModrinthUpload) {
+    onlyIf {
+        System.getenv('MODRINTH')
+    }
+
+    token = System.getenv('MODRINTH')
+    projectId = config.MODRINTH_ID
+    versionNumber = project.version
+    uploadFile = jar
+    addFile(sourcesJar)
+    addGameVersion(config.MINECRAFT_VERSION)
+    addLoader('forge')
+}
+
+// Curseforge publishing
+curseforge {
+  apiKey = System.getenv('CURSEFORGE') ?: 'If you\'re seeing this, you haven\'t set your "CURSEFORGE" environment variable'
+
+  project {
+    id = config.CURSEFORGE_ID
+    changelog = 'No changelog specified.'
+    releaseType = 'release'
+    addGameVersion config.MINECRAFT_VERSION
+    mainArtifact (jar) {
+      displayName = "Second Chance (Forge) Release ${project.version}"
+    }
+    addArtifact sourcesJar
+  }
+}
+
+
+// Config parse function
+def parseConfig(File config) {
+    config.withReader {
+        def prop = new Properties()
+        prop.load(it)
+        return (new ConfigSlurper().parse(prop))
+    }
+}
+
+if (System.getProperty("idea.sync.active") == "true") {
+    afterEvaluate {
+        tasks.withType(JavaCompile).all {
+            it.options.annotationProcessorPath = files()
         }
     }
 }

@@ -1,13 +1,14 @@
 modLoader="javafml" #mandatory
-loaderVersion="[34,)" #mandatory
+loaderVersion="[40,)" #mandatory
 license="All rights reserved"
 
 [[mods]] #mandatory
 modId="nebs" #mandatory
 version="${file.jarVersion}" #mandatory
-displayName="Neko’s Enchanted Books" #mandatory
+displayName="Neko's Enchanted Books" #mandatory
 updateJSONURL="https://infernalstudios.org/api/mods/nekosenchantedbooks/forge"
-authors="Nekomaster, CGessinger" #optional
+credits="Nekomaster, CGessinger" #optional
+authors="Infernal Studios"
 description='''A small mod that adds unique textures to every Enchanted Book in vanilla Minecraft, in addition to every book in the mods...
 - Ensorcellation
 - Veinmining
@@ -43,14 +44,14 @@ description='''A small mod that adds unique textures to every Enchanted Book in 
 [[dependencies.nebs]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[34,)" #mandatory
+    versionRange="[40,)" #mandatory
     ordering="NONE"
     side="CLIENT"
 
 [[dependencies.nebs]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.3,1.16.4,1.16.5]"
+    versionRange="[1.18.2,1.19)"
     ordering="NONE"
     side="BOTH"
 
