@@ -1,23 +1,19 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
-        maven { url = 'https://plugins.gradle.org/m2/' }
 
         jcenter()
         mavenCentral()
     }
 
     dependencies {
-        classpath group: 'net.minecraftforge.gradle',           name: 'ForgeGradle', version: '5.1+',          changing: true
-        classpath group: 'gradle.plugin.com.modrinth.minotaur', name: 'Minotaur',    version: '1.2.1'
-        classpath group: 'gradle.plugin.com.matthewprenger',    name: 'CurseGradle', version: '1.4.0'
+        classpath group: 'net.minecraftforge.gradle',           name: 'ForgeGradle', version: '5.1+', changing: true
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
-apply plugin: 'com.matthewprenger.cursegradle'
 
 // This initializes the config. Please try to modify the variables in the config file, if needed, add more if you see a reason to.
 ext.config = parseConfig(file('build.properties'))
@@ -98,81 +94,6 @@ task sourcesJar(type: Jar) {
 }
 
 tasks.build.dependsOn sourcesJar
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = config.GROUP
-            artifactId = config.ARTIFACT
-            artifact jar
-            artifact sourcesJar
-            version "${config.VERSION}-${config.MINECRAFT_VERSION}"
-
-            pom {
-                name = 'Infernal Expansion'
-                url = 'https://infernalstudios.org/secondchanceforge'
-                licenses {
-                    license {
-                        name = 'Apache License 2.0'
-                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:git://github.com/infernalexp/Second-Chance-Forge.git'
-                    url = 'https://github.com/infernalexp/Second-Chance-Forge'
-                }
-            }
-        }
-    }
-    repositories {
-        maven {
-            url 'https://maven.infernalstudios.org/releases'
-
-            credentials {
-                username = System.getenv('MAVEN_USER')
-                password = System.getenv('MAVEN_TOKEN')
-            }
-
-            authentication {
-                basic(BasicAuthentication)
-            }
-        }
-    }
-}
-
-// Modrinth publishing
-import com.modrinth.minotaur.TaskModrinthUpload
-
-task publishModrinth (type: TaskModrinthUpload) {
-    onlyIf {
-        System.getenv('MODRINTH')
-    }
-
-    token = System.getenv('MODRINTH')
-    projectId = config.MODRINTH_ID
-    versionNumber = project.version
-    uploadFile = jar
-    addFile(sourcesJar)
-    addGameVersion(config.MINECRAFT_VERSION)
-    addLoader('forge')
-}
-
-// Curseforge publishing
-curseforge {
-  apiKey = System.getenv('CURSEFORGE') ?: 'If you\'re seeing this, you haven\'t set your "CURSEFORGE" environment variable'
-
-  project {
-    id = config.CURSEFORGE_ID
-    changelog = 'No changelog specified.'
-    releaseType = 'release'
-    addGameVersion config.MINECRAFT_VERSION
-    mainArtifact (jar) {
-      displayName = "Second Chance (Forge) Release ${project.version}"
-    }
-    addArtifact sourcesJar
-  }
-}
-
 
 // Config parse function
 def parseConfig(File config) {

@@ -1,7 +1,8 @@
-name: Build JAR
+name: Build and publish
 on:
-  workflow_dispatch:
   push:
+    tags:
+      - '1.18/*'
     branches: [ '1.18' ]
     paths:
       - 'build.gradle'
@@ -11,6 +12,7 @@ on:
     paths:
       - 'src/**'
       - 'build.gradle'
+
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -34,5 +36,27 @@ jobs:
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: Generated JAR
+          name: build-artifacts
           path: build/libs/
+  
+  publish:
+    runs-on: ubuntu-20.04
+    if: ${{ success() && github.ref_type == 'tag' }}
+    needs: [ build ]
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+          path: build/libs/
+
+      - name: Publish build artifacts
+        uses: Kir-Antipov/mc-publish@v2.1
+        with:
+          modrinth-id: VZWuyRVr
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+          curseforge-id: 441114
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+
+          github-token: ${{ secrets.GITHUB_TOKEN }}
