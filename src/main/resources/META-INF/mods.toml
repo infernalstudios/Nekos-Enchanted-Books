@@ -1,5 +1,5 @@
 modLoader="javafml" #mandatory
-loaderVersion="[40,)" #mandatory
+loaderVersion="[38,)" #mandatory
 license="All rights reserved"
 
 [[mods]] #mandatory
@@ -44,14 +44,14 @@ description='''A small mod that adds unique textures to every Enchanted Book in 
 [[dependencies.nebs]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[40,)" #mandatory
+    versionRange="[38,)" #mandatory
     ordering="NONE"
     side="CLIENT"
 
 [[dependencies.nebs]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.2,1.19)"
+    versionRange="[1.18,1.19)"
     ordering="NONE"
     side="BOTH"
 
