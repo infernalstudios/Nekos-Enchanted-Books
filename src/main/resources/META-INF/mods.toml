@@ -39,6 +39,9 @@ description='''A small mod that adds unique textures to every Enchanted Book in 
 - Brooms
 - Fins and Tails
 - Supplementaries
+- Kobolds
+- Mythic Botany
+- Consecration
 '''
 
 [[dependencies.nebs]] #optional
