@@ -265,5 +265,46 @@
   "enchantment.fins.uppercutting": 31.02,
   "enchantment.fins.crabs_favor": 31.03,
 
-  "enchantment.supplementaries.stasis": 32.01
+  "enchantment.supplementaries.stasis": 32.01,
+
+  "enchantment.domesticationinnovation.health_boost": 33.01,
+  "enchantment.domesticationinnovation.fireproof": 33.02,
+  "enchantment.domesticationinnovation.immunity_frame": 33.03,
+  "enchantment.domesticationinnovation.deflection": 33.04,
+  "enchantment.domesticationinnovation.poison_resistance": 33.05,
+  "enchantment.domesticationinnovation.chain_lightning": 33.06,
+  "enchantment.domesticationinnovation.speedster": 33.07,
+  "enchantment.domesticationinnovation.frost_fang": 33.08,
+  "enchantment.domesticationinnovation.magnetic": 33.09,
+  "enchantment.domesticationinnovation.linked_inventory": 33.10,
+  "enchantment.domesticationinnovation.total_recall": 33.11,
+  "enchantment.domesticationinnovation.health_siphon": 33.12,
+  "enchantment.domesticationinnovation.bubbling": 33.13,
+  "enchantment.domesticationinnovation.herding": 33.14,
+  "enchantment.domesticationinnovation.amphibious": 33.15,
+  "enchantment.domesticationinnovation.vampire": 33.16,
+  "enchantment.domesticationinnovation.void_cloud": 33.17,
+  "enchantment.domesticationinnovation.charisma": 33.18,
+  "enchantment.domesticationinnovation.undead_curse": 33.19,
+  "enchantment.domesticationinnovation.infamy_curse": 33.20,
+  "enchantment.domesticationinnovation.shadow_hands": 33.21,
+  "enchantment.domesticationinnovation.disc_jockey": 33.22,
+  "enchantment.domesticationinnovation.defusal": 33.23,
+  "enchantment.domesticationinnovation.warping_bite": 33.24,
+  "enchantment.domesticationinnovation.ore_scenting": 33.25,
+  "enchantment.domesticationinnovation.gluttonous": 33.26,
+  "enchantment.domesticationinnovation.psychic_wall": 33.27,
+  "enchantment.domesticationinnovation.intimidation": 33.28,
+  "enchantment.domesticationinnovation.blight_curse": 33.29,
+
+  "enchantment.kobolds.artifact": 34.01,
+  "enchantment.kobolds.prospector": 34.02,
+
+  "enchantment.mythicbotany.hammer_mobility": 35.01,
+
+  "enchantment.consecration.shadow_protection": 36.01,
+
+  "enchantment.ars_nouveau.mana_boost": 37.01,
+  "enchantment.ars_nouveau.reactive": 37.02,
+  "enchantment.ars_nouveau.mana_regen": 37.03
 }
