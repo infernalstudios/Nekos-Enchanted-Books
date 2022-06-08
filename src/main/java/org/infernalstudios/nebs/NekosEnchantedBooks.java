@@ -67,7 +67,7 @@ public class NekosEnchantedBooks {
         DataGenerator gen = event.getGenerator();
 
         if (event.includeClient()) {
-            gen.addProvider(new ModItemModelProvider(gen, event.getExistingFileHelper()));
+            gen.addProvider(true, new ModItemModelProvider(gen, event.getExistingFileHelper()));
         }
     }
 }

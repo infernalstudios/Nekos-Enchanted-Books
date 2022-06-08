@@ -1,12 +1,10 @@
 name: Build
 on:
   push:
-    branches: [ '1.18' ]
     paths:
       - 'build.gradle'
       - 'build.properties'
   pull_request:
-    branches: [ '1.18' ]
     paths:
       - 'src/**'
       - 'build.gradle'
