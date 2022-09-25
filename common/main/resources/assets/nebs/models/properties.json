@@ -328,5 +328,7 @@
 
   "enchantment.ars_nouveau.mana_boost": 38.01,
   "enchantment.ars_nouveau.reactive": 38.02,
-  "enchantment.ars_nouveau.mana_regen": 38.03
+  "enchantment.ars_nouveau.mana_regen": 38.03,
+  
+  "enchantment.autosmelt.auto-smelt": 39.01
 }
