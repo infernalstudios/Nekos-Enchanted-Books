@@ -1779,6 +1779,12 @@
         "nebs:enchant": 38.03
       },
       "model": "nebs:item/mana_regen"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 39.01
+      },
+      "model": "nebs:item/auto-smelt"
     }
   ]
 }

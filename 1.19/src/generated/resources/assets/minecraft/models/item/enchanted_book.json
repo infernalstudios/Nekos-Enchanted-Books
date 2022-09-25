@@ -1776,6 +1776,12 @@
       "predicate": {
         "nebs:enchant": 38.03
       }
+    },
+    {
+      "model": "nebs:item/auto-smelt",
+      "predicate": {
+        "nebs:enchant": 39.01
+      }
     }
   ],
   "textures": {

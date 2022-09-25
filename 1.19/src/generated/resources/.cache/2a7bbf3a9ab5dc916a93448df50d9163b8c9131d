@@ -1,5 +1,5 @@
-// 1.19	2022-09-22T19:19:10.1622824	Item Models: nebs
-7d454e767cb462ddd11107bc8279536b452f51d5 assets/minecraft/models/item/enchanted_book.json
+// 1.19	2022-09-24T19:16:11.9187105	Item Models: nebs
+24de8664ec4ae82f8c914d8c9d067423716f49c6 assets/minecraft/models/item/enchanted_book.json
 77d69d7de389313f5e94745ee846429a159d1594 assets/nebs/models/item/absorber.json
 0ba02d8435962244334ed61d3bc2b0bbde154bfb assets/nebs/models/item/acquisition.json
 bbcbbd3a679657980215d5e00d4edf5be6b4ebbf assets/nebs/models/item/aerial_affinity.json
@@ -12,6 +12,7 @@ fb242824cb286971c586772eee002816f929ea14 assets/nebs/models/item/amphibious.json
 8a5f9b412d1a8915ddf4ff733c0561b0e79088cf assets/nebs/models/item/aqua_affinity.json
 f2d0731811cea38b9be504f60a6e67acfa912e91 assets/nebs/models/item/archmage.json
 f87cf912b3c4a3b36ff47ec7f024e9956f3fa4a7 assets/nebs/models/item/artifact.json
+ef082ebadec2aa4114dd81de3ce8f3425b0c1c2f assets/nebs/models/item/auto-smelt.json
 b4b7d513ec693c9017158218631d3d8d807f9ae0 assets/nebs/models/item/backstabbing.json
 f05ab5cd1201f081246b2eadcd2c7c9b8774159c assets/nebs/models/item/bane_of_arthropods.json
 c9066f4d5a959df7f761e5dd1c01e0dd4e2fc226 assets/nebs/models/item/bane_of_illagers.json

@@ -1,4 +1,4 @@
-33238c224e771eb54a35a805e8ffa178a7e7b72b assets/minecraft/models/item/enchanted_book.json
+43bf12da0f72f5dbb6bd82c5d227e03be47355d3 assets/minecraft/models/item/enchanted_book.json
 5fda09a9b7479079b8c47eb80d8bbe2d6bdd5819 assets/nebs/models/item/absorber.json
 0e5d66e937eb9e2ff2e1fc581969a1f020ac9b3c assets/nebs/models/item/acquisition.json
 aba819ee6509514be50130a1a6ef969a61737208 assets/nebs/models/item/aerial_affinity.json
@@ -11,6 +11,7 @@ f9b19cbd54bff23572aba730893704496fa9e2ce assets/nebs/models/item/alleviating.jso
 b3ad4d53a6fb052ecd0c02325fb91c5d44643952 assets/nebs/models/item/aqua_affinity.json
 b2da4f256634f719659a7efe5c3847fea425a310 assets/nebs/models/item/archmage.json
 6cd42877ad0d6782749b0ed154acb744c54070aa assets/nebs/models/item/artifact.json
+02d0a2421ae00b78d816d9a4b2f1644eee8b4651 assets/nebs/models/item/auto-smelt.json
 a3bfea5812d2f8cbf3a044f34c66630a4faf798b assets/nebs/models/item/backstabbing.json
 2181cfcd17857ea4e8d97185e42c20ae453138e9 assets/nebs/models/item/bane_of_arthropods.json
 8fc22e7cb6668f34917f8e3e52a1170c41571fcf assets/nebs/models/item/bane_of_illagers.json
