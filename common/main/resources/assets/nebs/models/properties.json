@@ -333,6 +333,6 @@
   "enchantment.spells_and_shields.magic_protection": 39.01,
   "enchantment.spells_and_shields.mana_blade": 39.02,
   "enchantment.spells_and_shields.mana_shield": 39.03,
-  "enchantment.spells_and_shields.mana_regen": 39.04,
+  "enchantment.spells_and_shields.mana_regeneration": 39.04,
   "enchantment.spells_and_shields.max_mana": 39.05
 }
