@@ -2,12 +2,6 @@
   "parent": "minecraft:item/generated",
   "overrides": [
     {
-      "model": "nebs:item/aqua_affinity",
-      "predicate": {
-        "nebs:enchant": 1.0
-      }
-    },
-    {
       "model": "nebs:item/bane_of_arthropods",
       "predicate": {
         "nebs:enchant": 1.01
@@ -236,9 +230,15 @@
       }
     },
     {
-      "model": "nebs:item/soulbound",
+      "model": "nebs:item/aqua_affinity",
       "predicate": {
-        "nebs:enchant": 2.0
+        "nebs:enchant": 1.39
+      }
+    },
+    {
+      "model": "nebs:item/swift_sneak",
+      "predicate": {
+        "nebs:enchant": 1.4
       }
     },
     {
@@ -434,15 +434,9 @@
       }
     },
     {
-      "model": "nebs:item/frost_walker",
+      "model": "nebs:item/soulbound",
       "predicate": {
         "nebs:enchant": 2.33
-      }
-    },
-    {
-      "model": "nebs:item/mending",
-      "predicate": {
-        "nebs:enchant": 2.34
       }
     },
     {
@@ -935,6 +929,42 @@
       "model": "nebs:item/fuse_cutter",
       "predicate": {
         "nebs:enchant": 10.29
+      }
+    },
+    {
+      "model": "nebs:item/breaking_curse",
+      "predicate": {
+        "nebs:enchant": 10.3
+      }
+    },
+    {
+      "model": "nebs:item/death_wish",
+      "predicate": {
+        "nebs:enchant": 10.31
+      }
+    },
+    {
+      "model": "nebs:item/gold_fuelled",
+      "predicate": {
+        "nebs:enchant": 10.32
+      }
+    },
+    {
+      "model": "nebs:item/guardian_angel",
+      "predicate": {
+        "nebs:enchant": 10.33
+      }
+    },
+    {
+      "model": "nebs:item/horse_swiftness",
+      "predicate": {
+        "nebs:enchant": 10.34
+      }
+    },
+    {
+      "model": "nebs:item/misanthropy",
+      "predicate": {
+        "nebs:enchant": 10.35
       }
     },
     {
@@ -1736,6 +1766,36 @@
       }
     },
     {
+      "model": "nebs:item/immaturity_curse",
+      "predicate": {
+        "nebs:enchant": 34.3
+      }
+    },
+    {
+      "model": "nebs:item/tethered_teleport",
+      "predicate": {
+        "nebs:enchant": 34.31
+      }
+    },
+    {
+      "model": "nebs:item/muffled",
+      "predicate": {
+        "nebs:enchant": 34.32
+      }
+    },
+    {
+      "model": "nebs:item/blazing_protection",
+      "predicate": {
+        "nebs:enchant": 34.33
+      }
+    },
+    {
+      "model": "nebs:item/healing_aura",
+      "predicate": {
+        "nebs:enchant": 34.34
+      }
+    },
+    {
       "model": "nebs:item/artifact",
       "predicate": {
         "nebs:enchant": 35.01
@@ -1775,6 +1835,132 @@
       "model": "nebs:item/mana_regen",
       "predicate": {
         "nebs:enchant": 38.03
+      }
+    },
+    {
+      "model": "nebs:item/sparkling",
+      "predicate": {
+        "nebs:enchant": 39.01
+      }
+    },
+    {
+      "model": "nebs:item/stormbreaker",
+      "predicate": {
+        "nebs:enchant": 39.01
+      }
+    },
+    {
+      "model": "nebs:item/auto-smelt",
+      "predicate": {
+        "nebs:enchant": 40.01
+      }
+    },
+    {
+      "model": "nebs:item/magic_protection",
+      "predicate": {
+        "nebs:enchant": 41.01
+      }
+    },
+    {
+      "model": "nebs:item/mana_blade",
+      "predicate": {
+        "nebs:enchant": 41.02
+      }
+    },
+    {
+      "model": "nebs:item/mana_shield",
+      "predicate": {
+        "nebs:enchant": 41.03
+      }
+    },
+    {
+      "model": "nebs:item/mana_regeneration",
+      "predicate": {
+        "nebs:enchant": 41.04
+      }
+    },
+    {
+      "model": "nebs:item/max_mana",
+      "predicate": {
+        "nebs:enchant": 41.05
+      }
+    },
+    {
+      "model": "nebs:item/excavating",
+      "predicate": {
+        "nebs:enchant": 42.01
+      }
+    },
+    {
+      "model": "nebs:item/swift_sneak",
+      "predicate": {
+        "nebs:enchant": 43.01
+      }
+    },
+    {
+      "model": "nebs:item/wallrunenchantment",
+      "predicate": {
+        "nebs:enchant": 44.01
+      }
+    },
+    {
+      "model": "nebs:item/doublejumpenchantment",
+      "predicate": {
+        "nebs:enchant": 44.02
+      }
+    },
+    {
+      "model": "nebs:item/slidingenchantment",
+      "predicate": {
+        "nebs:enchant": 44.03
+      }
+    },
+    {
+      "model": "nebs:item/deep_pockets",
+      "predicate": {
+        "nebs:enchant": 45.01
+      }
+    },
+    {
+      "model": "nebs:item/smokestack",
+      "predicate": {
+        "nebs:enchant": 46.01
+      }
+    },
+    {
+      "model": "nebs:item/cloudskipper",
+      "predicate": {
+        "nebs:enchant": 46.02
+      }
+    },
+    {
+      "model": "nebs:item/longfooted",
+      "predicate": {
+        "nebs:enchant": 47.01
+      }
+    },
+    {
+      "model": "nebs:item/acrobat_chest",
+      "predicate": {
+        "nebs:enchant": 47.02
+      }
+    },
+    {
+      "model": "nebs:item/acrobat_legs",
+      "predicate": {
+        "nebs:enchant": 47.03
+      }
+    },
+    {
+      "model": "nebs:item/multi_roll",
+      "predicate": {
+        "nebs:enchant": 47.04
+      }
+    },
+    {
+      "model": "nebs:item/water_protection",
+      "predicate": {
+        "nebs:enchant": 48.01
       }
     }
   ],

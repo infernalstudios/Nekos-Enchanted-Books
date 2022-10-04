@@ -1,5 +1,4 @@
 {
-  "enchantment.minecraft.aqua_affinity": 1,
   "enchantment.minecraft.bane_of_arthropods": 1.01,
   "enchantment.minecraft.blast_protection": 1.02,
   "enchantment.minecraft.channeling": 1.03,
@@ -38,8 +37,9 @@
   "enchantment.minecraft.thorns": 1.36,
   "enchantment.minecraft.unbreaking": 1.37,
   "enchantment.minecraft.fire_protection": 1.38,
+  "enchantment.minecraft.aqua_affinity": 1.39,
+  "enchantment.minecraft.swift_sneak": 1.40,
 
-  "enchantment.ensorcellation.soulbound": 2,
   "enchantment.ensorcellation.magic_protection": 2.01,
   "enchantment.ensorcellation.displacement": 2.02,
   "enchantment.ensorcellation.fire_rebuke": 2.03,
@@ -72,8 +72,7 @@
   "enchantment.ensorcellation.phalanx": 2.3,
   "enchantment.ensorcellation.curse_fool": 2.31,
   "enchantment.ensorcellation.curse_mercy": 2.32,
-  "enchantment.ensorcellation.frost_walker": 2.33,
-  "enchantment.ensorcellation.mending": 2.34,
+  "enchantment.ensorcellation.soulbound": 2.33,
 
   "enchantment.walljump.walljump": 3.01,
   "enchantment.walljump.doublejump": 3.02,
@@ -164,6 +163,13 @@
   "enchantment.majruszsenchantments.mithridatism": 10.28,
   "enchantment.majruszsenchantments.fuse_cutter": 10.29,
 
+  "enchantment.majruszsenchantments.breaking_curse": 10.30,
+  "enchantment.majruszsenchantments.death_wish": 10.31,
+  "enchantment.majruszsenchantments.gold_fuelled": 10.32,
+  "enchantment.majruszsenchantments.guardian_angel": 10.33,
+  "enchantment.majruszsenchantments.horse_swiftness": 10.34,
+  "enchantment.majruszsenchantments.misanthropy": 10.35,
+
   "enchantment.vanillatweaks.nimble": 11.01,
   "enchantment.vanillatweaks.hops": 11.02,
   "enchantment.vanillatweaks.vigor": 11.03,
@@ -188,16 +194,16 @@
   "enchantment.betterdefaultbiomes.guard": 15.1,
   "enchantment.betterdefaultbiomes.floating": 15.11,
 
-  "enchantment.aoa3.control": 16.009999999999998,
+  "enchantment.aoa3.control": 16.01,
   "enchantment.aoa3.sever": 16.02,
   "enchantment.aoa3.brace": 16.03,
   "enchantment.aoa3.intervention": 16.04,
   "enchantment.aoa3.form": 16.05,
-  "enchantment.aoa3.recharge": 16.060000000000002,
+  "enchantment.aoa3.recharge": 16.06,
   "enchantment.aoa3.greed": 16.07,
   "enchantment.aoa3.shell": 16.08,
   "enchantment.aoa3.crush": 16.09,
-  "enchantment.aoa3.archmage": 16.1,
+  "enchantment.aoa3.archmage": 16.10,
 
   "enchantment.alexsmobs.board_return": 17.01,
   "enchantment.alexsmobs.lavawax": 17.02,
@@ -318,6 +324,11 @@
   "enchantment.domesticationinnovation.psychic_wall": 34.27,
   "enchantment.domesticationinnovation.intimidation": 34.28,
   "enchantment.domesticationinnovation.blight_curse": 34.29,
+  "enchantment.domesticationinnovation.immaturity_curse": 34.30,
+  "enchantment.domesticationinnovation.tethered_teleport": 34.31,
+  "enchantment.domesticationinnovation.muffled": 34.32,
+  "enchantment.domesticationinnovation.blazing_protection": 34.33,
+  "enchantment.domesticationinnovation.healing_aura": 34.34,
 
   "enchantment.kobolds.artifact": 35.01,
   "enchantment.kobolds.prospector": 35.02,
@@ -328,5 +339,36 @@
 
   "enchantment.ars_nouveau.mana_boost": 38.01,
   "enchantment.ars_nouveau.reactive": 38.02,
-  "enchantment.ars_nouveau.mana_regen": 38.03
+  "enchantment.ars_nouveau.mana_regen": 38.03,
+
+  "enchantment.copperoverhaul.sparkling": 39.01,
+  "enchantment.copperoverhaul.stormbreaker": 39.01,
+
+  "enchantment.autosmelt.auto-smelt": 40.01,
+
+  "enchantment.spells_and_shields.magic_protection": 41.01,
+  "enchantment.spells_and_shields.mana_blade": 41.02,
+  "enchantment.spells_and_shields.mana_shield": 41.03,
+  "enchantment.spells_and_shields.mana_regeneration": 41.04,
+  "enchantment.spells_and_shields.max_mana": 41.05,
+
+  "enchantment.blockswapper.excavating": 42.01,
+
+  "enchantment.wildbackport.swift_sneak": 43.01,
+
+  "enchantment.grapplemod.wallrunenchantment": 44.01,
+  "enchantment.grapplemod.doublejumpenchantment": 44.02,
+  "enchantment.grapplemod.slidingenchantment": 44.03,
+
+  "enchantment.inventorio.deep_pockets": 45.01,
+
+  "enchantment.aileron.smokestack": 46.01,
+  "enchantment.aileron.cloudskipper": 46.02,
+
+  "enchantment.combatroll.longfooted": 47.01,
+  "enchantment.combatroll.acrobat_chest": 47.02,
+  "enchantment.combatroll.acrobat_legs": 47.03,
+  "enchantment.combatroll.multi_roll": 47.04,
+
+  "enchantment.origins.water_protection": 48.01
 }
