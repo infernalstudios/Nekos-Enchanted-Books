@@ -370,5 +370,11 @@
   "enchantment.combatroll.acrobat_legs": 47.03,
   "enchantment.combatroll.multi_roll": 47.04,
 
-  "enchantment.origins.water_protection": 48.01
+  "enchantment.origins.water_protection": 48.01,
+  
+  "enchantment.parry.rebound": 49.01,
+
+  "enchantment.twilightforest.chill_aura": 50.01,
+  "enchantment.twilightforest.destruction": 50.02,
+  "enchantment.twilightforest.fire_react": 50.03
 }
