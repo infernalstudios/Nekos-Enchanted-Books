@@ -1962,6 +1962,30 @@
       "predicate": {
         "nebs:enchant": 48.01
       }
+    },
+    {
+      "model": "nebs:item/rebound",
+      "predicate": {
+        "nebs:enchant": 49.01
+      }
+    },
+    {
+      "model": "nebs:item/chill_aura",
+      "predicate": {
+        "nebs:enchant": 50.01
+      }
+    },
+    {
+      "model": "nebs:item/destruction",
+      "predicate": {
+        "nebs:enchant": 50.02
+      }
+    },
+    {
+      "model": "nebs:item/fire_react",
+      "predicate": {
+        "nebs:enchant": 50.03
+      }
     }
   ],
   "textures": {

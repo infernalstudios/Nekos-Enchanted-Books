@@ -1,4 +1,4 @@
-ddd6a0e3918beea0bd4eeedb43bdcb96ae78dd04 assets/minecraft/models/item/enchanted_book.json
+c0747bc5146bf85a149047ec6e767edcd16ecfcc assets/minecraft/models/item/enchanted_book.json
 5fda09a9b7479079b8c47eb80d8bbe2d6bdd5819 assets/nebs/models/item/absorber.json
 0e5d66e937eb9e2ff2e1fc581969a1f020ac9b3c assets/nebs/models/item/acquisition.json
 db22b2d3fba7aa409c0be1663fe6be6c625b959f assets/nebs/models/item/acrobat_chest.json
@@ -37,6 +37,7 @@ af51b04ad958687cdd633c433948602c5c4a76dd assets/nebs/models/item/cavalier.json
 0ac75133053884ad1d6ae9d8f650392ef8897902 assets/nebs/models/item/chain_lightning.json
 b2ff87ba35f1e10764cbbfd71ce2ce7b038654b8 assets/nebs/models/item/channeling.json
 16b903c6c3f7d5f24e7ba95e658977c7d998afa7 assets/nebs/models/item/charisma.json
+8e35cd417b02e5db7570eeef86e732bd556862ff assets/nebs/models/item/chill_aura.json
 33b3c2edc35e99ffabfb8b75977e46bdb461eb52 assets/nebs/models/item/cleaving.json
 916a099b547b8b13c9e3b8b6d107e84b8fb3b277 assets/nebs/models/item/cloudskipper.json
 14e9166f18313a7f93c975ba45a051cf547bed04 assets/nebs/models/item/combo.json
@@ -62,6 +63,7 @@ c2ae993f08a6e8ee132ccfd1d625f171eeb3d034 assets/nebs/models/item/deep_pockets.js
 6906337f5cb0cc66232d23d2fc73c0360deff05e assets/nebs/models/item/defusal.json
 95ecb9f0ce4aa6787fff9694fc429d284896c8e3 assets/nebs/models/item/depth_miner.json
 b6c4dd661333639743c20fb919ede9fb20bc5f91 assets/nebs/models/item/depth_strider.json
+ce16b1db061d3911e1428c9239415fad1230ba12 assets/nebs/models/item/destruction.json
 519c89c56cb6bb434fcd3c21c95447d96562069b assets/nebs/models/item/detonation.json
 76f85fa7c194e9e162a80b6256870c61a3b7bcc5 assets/nebs/models/item/disc_jockey.json
 b7b28418804aeca6d454bf79e8465653a542f109 assets/nebs/models/item/displacement.json
@@ -79,6 +81,7 @@ aa49fc973d43d815b9516b4267b2229300771ff9 assets/nebs/models/item/fatigue_curse.j
 dcd4b9d3d6847eaaac7cd4ea5ca4740b893be482 assets/nebs/models/item/feather_falling.json
 db66b4993a39c0e0f8e716758637bdcc5abb9f04 assets/nebs/models/item/fire_aspect.json
 3e985a2f53e8a2e8313ba9ed31f19362772eefcf assets/nebs/models/item/fire_protection.json
+6d7b83fd9a2a088782f3056a1dbc7628a6d35675 assets/nebs/models/item/fire_react.json
 8b0c80c958591ff986c1fa44ad4d884a4a468439 assets/nebs/models/item/fire_rebuke.json
 f9b0c7240218ee4b676b2f69f6826606946dfefb assets/nebs/models/item/fireproof.json
 fd3fbe06010c01d82202772be98176d6e0593cda assets/nebs/models/item/fishing_fanatic.json
@@ -197,6 +200,7 @@ cd05d727f6ce19dd695e4c424ee6c2e89b4c9dcc assets/nebs/models/item/punch.json
 691454368678657240f61e5e7edbe3075e3004eb assets/nebs/models/item/quick_draw.json
 a364a391bcb986902c9bd09ac524c5761cf7e2cc assets/nebs/models/item/reach.json
 83d973bd34f7704405baa90f1f46b234c3454b06 assets/nebs/models/item/reactive.json
+2f587022201ed08643fe063b17d31f7bd65387fe assets/nebs/models/item/rebound.json
 026c42b3af254c4a7514027f0f144c4946a0f0b6 assets/nebs/models/item/rebounding.json
 7bf2424aeb01213c809cdfc32b29200a2446b23e assets/nebs/models/item/recharge.json
 63d58d688ca5fe576d5d5feba2aa0eb9231b6556 assets/nebs/models/item/reeling.json
