@@ -1,4 +1,4 @@
-c0747bc5146bf85a149047ec6e767edcd16ecfcc assets/minecraft/models/item/enchanted_book.json
+594080a408a7f4240e9dd937fe4119c34aa0920a assets/minecraft/models/item/enchanted_book.json
 5fda09a9b7479079b8c47eb80d8bbe2d6bdd5819 assets/nebs/models/item/absorber.json
 0e5d66e937eb9e2ff2e1fc581969a1f020ac9b3c assets/nebs/models/item/acquisition.json
 db22b2d3fba7aa409c0be1663fe6be6c625b959f assets/nebs/models/item/acrobat_chest.json
@@ -25,6 +25,11 @@ ea88d21aa0a215b2caa3e776f49371b7cf623453 assets/nebs/models/item/binding_curse.j
 5dce5e7be24cf9901ed1774074bbc1be0d544afb assets/nebs/models/item/blazing_protection.json
 e759c1ee1a38d6608535f4f0fc2bc2dd329c52fa assets/nebs/models/item/blazing_walker.json
 675f21b8fcae86d043838ecf72ed4d5b524ad339 assets/nebs/models/item/blight_curse.json
+f4c08a7f9f9e550b2a7cc1086c3671783bdda6b6 assets/nebs/models/item/block_blind_enchant.json
+f4c08a7f9f9e550b2a7cc1086c3671783bdda6b6 assets/nebs/models/item/block_damage_enchant.json
+f4c08a7f9f9e550b2a7cc1086c3671783bdda6b6 assets/nebs/models/item/block_knock_back_enchant.json
+f4c08a7f9f9e550b2a7cc1086c3671783bdda6b6 assets/nebs/models/item/block_last_resort_enchant.json
+f4c08a7f9f9e550b2a7cc1086c3671783bdda6b6 assets/nebs/models/item/block_slowness_enchant.json
 ab76f31b6dd15efb65e3c90ee0af7480f838fda9 assets/nebs/models/item/board_return.json
 6a0bf000a8edd00d7c782ce92c327f90c5c67d8b assets/nebs/models/item/brace.json
 8ec2bea14eca4683a1a364f2e7106749624fcb91 assets/nebs/models/item/breaking_curse.json
@@ -70,6 +75,7 @@ b7b28418804aeca6d454bf79e8465653a542f109 assets/nebs/models/item/displacement.js
 228ebdb1b3f78315251bdc068197d7ad08c76b10 assets/nebs/models/item/dodge.json
 14e717cd0642eaaae48313195a994522a4ddedf7 assets/nebs/models/item/doublejump.json
 26f782259b2c79627c7d6e6a9f3fe89c29af2f57 assets/nebs/models/item/doublejumpenchantment.json
+8fcbe815a7049ac4cedca719b457bfac96cbd82f assets/nebs/models/item/echoed_bane.json
 86c4c9cc27da65560c257e24e9d28cd8fce5a194 assets/nebs/models/item/efficiency.json
 0a52d2343c2f259067caee5b59e458f830cd8ee6 assets/nebs/models/item/elder_guardian_favor.json
 8a0958a0925f7bcb0d350cf1637ce1cb5d063b90 assets/nebs/models/item/end_veil.json
@@ -228,7 +234,9 @@ e99c6467d6231ae1700d4024dcbcb35f2f44bbd3 assets/nebs/models/item/shocking.json
 37c2beed93a1b85c5ddb87a1ac6f15c897e2dbb9 assets/nebs/models/item/siphon.json
 12ff47134ce2a69f925cedbd976be464436e182b assets/nebs/models/item/sixth_sense.json
 fb4336a528ee5e55f822f810c0481ac6c47f8bb6 assets/nebs/models/item/slidingenchantment.json
+776c552e2ba740fe6dfad68c1be0eceff29b61ca assets/nebs/models/item/slight.json
 38a83e9c0805c1ebfa506cff0a3041ef2eaffaf2 assets/nebs/models/item/slowness_curse.json
+03c4469d80ee18358f0ebe3a323e0d4d39151c59 assets/nebs/models/item/smash.json
 8a7ad81a33415daef65b364fd9356abd35e98d52 assets/nebs/models/item/smelter.json
 44343d6a7ce7894f12bfd3ab4a57d0086babf1fc assets/nebs/models/item/smelting.json
 8bb81f178ac5a79c9905530248cc089caf86641f assets/nebs/models/item/smelting_touch.json

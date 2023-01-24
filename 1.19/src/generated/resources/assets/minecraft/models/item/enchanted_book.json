@@ -1986,6 +1986,54 @@
       "predicate": {
         "nebs:enchant": 50.03
       }
+    },
+    {
+      "model": "nebs:item/block_blind_enchant",
+      "predicate": {
+        "nebs:enchant": 51.01
+      }
+    },
+    {
+      "model": "nebs:item/block_damage_enchant",
+      "predicate": {
+        "nebs:enchant": 51.02
+      }
+    },
+    {
+      "model": "nebs:item/block_knock_back_enchant",
+      "predicate": {
+        "nebs:enchant": 51.03
+      }
+    },
+    {
+      "model": "nebs:item/block_last_resort_enchant",
+      "predicate": {
+        "nebs:enchant": 51.04
+      }
+    },
+    {
+      "model": "nebs:item/block_slowness_enchant",
+      "predicate": {
+        "nebs:enchant": 51.05
+      }
+    },
+    {
+      "model": "nebs:item/echoed_bane",
+      "predicate": {
+        "nebs:enchant": 52.01
+      }
+    },
+    {
+      "model": "nebs:item/smash",
+      "predicate": {
+        "nebs:enchant": 53.01
+      }
+    },
+    {
+      "model": "nebs:item/slight",
+      "predicate": {
+        "nebs:enchant": 53.02
+      }
     }
   ],
   "textures": {
