@@ -1,4 +1,4 @@
-// 1.19	2023-01-24T18:28:12.6793518	Item Models: nebs
+// 1.19	2023-01-24T19:15:57.094627	Item Models: nebs
 2953db85ae046700fa902e40cd1ccb92f19130a7 assets/minecraft/models/item/enchanted_book.json
 77d69d7de389313f5e94745ee846429a159d1594 assets/nebs/models/item/absorber.json
 0ba02d8435962244334ed61d3bc2b0bbde154bfb assets/nebs/models/item/acquisition.json
@@ -26,11 +26,11 @@ c9066f4d5a959df7f761e5dd1c01e0dd4e2fc226 assets/nebs/models/item/bane_of_illager
 74937b15a973506402cc189cfc86a6b9218bb3fd assets/nebs/models/item/blazing_protection.json
 bc06d6abd4e7abf73e2f2f4517c49bf9230b193c assets/nebs/models/item/blazing_walker.json
 cd1f156a12175115ba699c1c08a025018c9449ec assets/nebs/models/item/blight_curse.json
-5eb9254a356375ad1384a2a7d2c14f125b9769ae assets/nebs/models/item/block_blind_enchant.json
-5eb9254a356375ad1384a2a7d2c14f125b9769ae assets/nebs/models/item/block_damage_enchant.json
-5eb9254a356375ad1384a2a7d2c14f125b9769ae assets/nebs/models/item/block_knock_back_enchant.json
-5eb9254a356375ad1384a2a7d2c14f125b9769ae assets/nebs/models/item/block_last_resort_enchant.json
-5eb9254a356375ad1384a2a7d2c14f125b9769ae assets/nebs/models/item/block_slowness_enchant.json
+36033888d159dcb1f73ffa6c839312df5f60957f assets/nebs/models/item/block_blind_enchant.json
+2b55bc6902d13f6b97999e0d5c4a6e8d1a98d1a6 assets/nebs/models/item/block_damage_enchant.json
+c0b247dca55bb70b7da6bd6300f6c355d0d696c9 assets/nebs/models/item/block_knock_back_enchant.json
+2d2d2a0a67b1628d9a8476920c0e0acc4b1eccf0 assets/nebs/models/item/block_last_resort_enchant.json
+bd58e51a8f5b0e7733abe7162eff0ea4a2ec241e assets/nebs/models/item/block_slowness_enchant.json
 b7413f93cd4d76c40df025af414e8f240286d5f3 assets/nebs/models/item/board_return.json
 0f45765bf40ff51fa2075fdb3b97efa96a728da2 assets/nebs/models/item/brace.json
 871b604a6a38576b79b2f25752887dacbe40f5a6 assets/nebs/models/item/breaking_curse.json
