@@ -1,33 +1,36 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://repo.spongepowered.org/maven/' }
 
         jcenter()
         mavenCentral()
     }
 
     dependencies {
-        classpath group: 'net.minecraftforge.gradle',           name: 'ForgeGradle', version: '5.1+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1+', changing: true
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
 
-// This initializes the config. Please try to modify the variables in the config file, if needed, add more if you see a reason to.
-ext.config = parseConfig(file('build.properties'))
+ext.config = parseConfig(file('../build.properties'))
+ext.customConfig = parseConfig(file('build.properties'))
+ext.config.MINECRAFT_VERSION = customConfig.MINECRAFT_VERSION
+ext.config.FORGE_VERSION = customConfig.FORGE_VERSION
+ext.config.MAPPINGS_CHANNEL = customConfig.MAPPINGS_CHANNEL
+ext.config.MAPPINGS_VERSION = customConfig.MAPPINGS_VERSION
+ext.config.JAVA_LANG_VERSION = customConfig.JAVA_LANG_VERSION
 
-version = config.VERSION
-group = "${config.GROUP}.${config.ARTIFACT}"
-archivesBaseName = "${config.ARCHIVES_BASE_NAME}-${config.MINECRAFT_VERSION}"
+project.version = config.VERSION
+project.group = "${config.GROUP}.${config.ARTIFACT}"
+project.archivesBaseName = "${config.ARCHIVES_BASE_NAME}-${config.MINECRAFT_VERSION}"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+java.toolchain.languageVersion = JavaLanguageVersion.of(config.JAVA_LANG_VERSION)
 
 minecraft {
     mappings channel: config.MAPPINGS_CHANNEL, version: config.MAPPINGS_VERSION
-
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
         client {
@@ -53,10 +56,11 @@ minecraft {
         }
 
         data {
+            forceExit false
             workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-            property 'forge.logging.console.level', 'debug'
-            args '--mod', 'nebs', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            // property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'info'
+            args '--mod', 'nebs', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing', file('../common/main/resources/')
             mods {
                 nebs {
                     source sourceSets.main
@@ -66,27 +70,47 @@ minecraft {
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/resources", "src/generated/resources", "../common/main/resources"]
+        }
+    }
+}
 
 dependencies {
     minecraft "net.minecraftforge:forge:${config.MINECRAFT_VERSION}-${config.FORGE_VERSION}"
 }
 
 jar {
+    finalizedBy 'reobfJar'
+
     manifest {
         attributes([
-                'Specification-Title'   : config.TITLE,
-                'Specification-Vendor'  : config.AUTHOR,
-                'Specification-Version' : '1',
-                'Implementation-Title'  : config.TITLE,
-                'Implementation-Version': config.VERSION,
-                'Implementation-Vendor' : config.AUTHOR
+            'Specification-Title'   : config.TITLE,
+            'Specification-Vendor'  : config.AUTHOR,
+            'Specification-Version' : '1',
+            'Implementation-Title'  : config.TITLE,
+            'Implementation-Version': config.VERSION,
+            'Implementation-Vendor' : config.AUTHOR
         ])
     }
 }
 
-jar.finalizedBy('reobfJar')
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+processResources {
+    doLast {
+        fileTree(dir: outputs.files.asPath, include: ['**/*.json', '**/*.mcmeta']).each {
+            try {
+                it.text = JsonOutput.toJson(new JsonSlurper().parse(it))
+            } catch (Exception e) {
+                project.logger.error("Failed to minify file '${it.path}'.")
+                throw e
+            }
+        }
+    }
+}
 
 task sourcesJar(type: Jar) {
     archiveClassifier.set('sources')
@@ -95,19 +119,10 @@ task sourcesJar(type: Jar) {
 
 tasks.build.dependsOn sourcesJar
 
-// Config parse function
 def parseConfig(File config) {
     config.withReader {
         def prop = new Properties()
         prop.load(it)
         return (new ConfigSlurper().parse(prop))
-    }
-}
-
-if (System.getProperty("idea.sync.active") == "true") {
-    afterEvaluate {
-        tasks.withType(JavaCompile).all {
-            it.options.annotationProcessorPath = files()
-        }
     }
 }
