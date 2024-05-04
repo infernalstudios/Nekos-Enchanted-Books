@@ -370,5 +370,22 @@
   "enchantment.combatroll.acrobat_legs": 47.03,
   "enchantment.combatroll.multi_roll": 47.04,
 
-  "enchantment.origins.water_protection": 48.01
+  "enchantment.origins.water_protection": 48.01,
+  
+  "enchantment.parry.rebound": 49.01,
+
+  "enchantment.twilightforest.chill_aura": 50.01,
+  "enchantment.twilightforest.destruction": 50.02,
+  "enchantment.twilightforest.fire_react": 50.03,
+
+  "enchantment.shieldmechanics.block_blind_enchant": 51.01,
+  "enchantment.shieldmechanics.block_damage_enchant": 51.02,
+  "enchantment.shieldmechanics.block_knock_back_enchant": 51.03,
+  "enchantment.shieldmechanics.block_last_resort_enchant": 51.04,
+  "enchantment.shieldmechanics.block_slowness_enchant": 51.05,
+
+  "enchantment.sculked.echoed_bane": 52.01,
+
+  "enchantment.armor_weight.smash": 53.01,
+  "enchantment.armor_weight.slight": 53.02
 }
