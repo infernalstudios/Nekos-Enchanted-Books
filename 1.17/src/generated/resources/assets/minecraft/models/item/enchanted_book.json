@@ -444,6 +444,12 @@
     },
     {
       "predicate": {
+        "nebs:enchant": 2.34
+      },
+      "model": "nebs:item/xp_boost"
+    },
+    {
+      "predicate": {
         "nebs:enchant": 3.01
       },
       "model": "nebs:item/walljump"
@@ -492,13 +498,13 @@
     },
     {
       "predicate": {
-        "nebs:enchant": 8.01
+        "nebs:enchant": 7.01
       },
       "model": "nebs:item/agility"
     },
     {
       "predicate": {
-        "nebs:enchant": 8.02
+        "nebs:enchant": 7.02
       },
       "model": "nebs:item/plundering"
     },
@@ -627,6 +633,60 @@
         "nebs:enchant": 8.21
       },
       "model": "nebs:item/true_infinity"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.22
+      },
+      "model": "nebs:item/beserkers_fury"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.23
+      },
+      "model": "nebs:item/boon_of_the_earth"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.24
+      },
+      "model": "nebs:item/chainsaw"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.25
+      },
+      "model": "nebs:item/chromatic_aberration"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.26
+      },
+      "model": "nebs:item/miners_fervor"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.27
+      },
+      "model": "nebs:item/endless_quiver"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.28
+      },
+      "model": "nebs:item/growth_serum"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.29
+      },
+      "model": "nebs:item/spear_fishing"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 8.3
+      },
+      "model": "nebs:item/worker_exploitation"
     },
     {
       "predicate": {
@@ -1230,6 +1290,30 @@
     },
     {
       "predicate": {
+        "nebs:enchant": 19.07
+      },
+      "model": "nebs:item/spread_of_ailments"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 19.08
+      },
+      "model": "nebs:item/ascension_curse"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 19.09
+      },
+      "model": "nebs:item/fleeting_curse"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 19.1
+      },
+      "model": "nebs:item/obedience"
+    },
+    {
+      "predicate": {
         "nebs:enchant": 20.01
       },
       "model": "nebs:item/momentum"
@@ -1800,6 +1884,12 @@
     },
     {
       "predicate": {
+        "nebs:enchant": 34.35
+      },
+      "model": "nebs:item/rejuvenation"
+    },
+    {
+      "predicate": {
         "nebs:enchant": 35.01
       },
       "model": "nebs:item/artifact"
@@ -1958,13 +2048,223 @@
       "predicate": {
         "nebs:enchant": 47.04
       },
+      "model": "nebs:item/acrobat"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 47.05
+      },
       "model": "nebs:item/multi_roll"
     },
     {
       "predicate": {
         "nebs:enchant": 48.01
       },
+      "model": "nebs:item/inertia"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 49.01
+      },
       "model": "nebs:item/water_protection"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 50.01
+      },
+      "model": "nebs:item/potency"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 50.02
+      },
+      "model": "nebs:item/stability"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 50.03
+      },
+      "model": "nebs:item/chaining"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 50.04
+      },
+      "model": "nebs:item/wisdom"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 50.05
+      },
+      "model": "nebs:item/push"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 50.06
+      },
+      "model": "nebs:item/pull"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 50.07
+      },
+      "model": "nebs:item/brazier"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 50.08
+      },
+      "model": "nebs:item/blizzard"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 50.09
+      },
+      "model": "nebs:item/blast"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 50.1
+      },
+      "model": "nebs:item/blitz"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 50.11
+      },
+      "model": "nebs:item/ignorance_curse"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 50.12
+      },
+      "model": "nebs:item/magic_protection"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 50.13
+      },
+      "model": "nebs:item/arcane"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 50.14
+      },
+      "model": "nebs:item/soulbound"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 51.01
+      },
+      "model": "nebs:item/void_floating"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 52.01
+      },
+      "model": "nebs:item/catalysis"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 52.02
+      },
+      "model": "nebs:item/sculk_smite"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 53.01
+      },
+      "model": "nebs:item/air_hop"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 54.01
+      },
+      "model": "nebs:item/disabled"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 54.02
+      },
+      "model": "nebs:item/holding"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 55.01
+      },
+      "model": "nebs:item/widening"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 56.01
+      },
+      "model": "nebs:item/permafrost"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 56.02
+      },
+      "model": "nebs:item/indestructible"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 57.01
+      },
+      "model": "nebs:item/amethyst_touch"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 58.01
+      },
+      "model": "nebs:item/penetrating_strike"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 58.02
+      },
+      "model": "nebs:item/seas_bounty"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 58.03
+      },
+      "model": "nebs:item/soaring_winds"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 58.04
+      },
+      "model": "nebs:item/tunneling"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 59.01
+      },
+      "model": "nebs:item/range"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 59.02
+      },
+      "model": "nebs:item/teleportation"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 60.01
+      },
+      "model": "nebs:item/enfeeble"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 60.02
+      },
+      "model": "nebs:item/rupture"
+    },
+    {
+      "predicate": {
+        "nebs:enchant": 60.03
+      },
+      "model": "nebs:item/sustain"
     }
   ]
 }

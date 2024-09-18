@@ -73,6 +73,7 @@
   "enchantment.ensorcellation.curse_fool": 2.31,
   "enchantment.ensorcellation.curse_mercy": 2.32,
   "enchantment.ensorcellation.soulbound": 2.33,
+  "enchantment.ensorcellation.xp_boost": 2.34,
 
   "enchantment.walljump.walljump": 3.01,
   "enchantment.walljump.doublejump": 3.02,
@@ -86,8 +87,9 @@
 
   "enchantment.farmersdelight.backstabbing": 6.01,
 
-  "enchantment.jellyfishing.agility": 8.01,
-  "enchantment.jellyfishing.plundering": 8.02,
+  "enchantment.jellyfishing.agility": 7.01,
+  "enchantment.jellyfishing.plundering": 7.02,
+
   "enchantment.apotheosis.bane_of_illagers": 8.01,
   "enchantment.apotheosis.berserk": 8.02,
   "enchantment.apotheosis.hell_infusion": 8.03,
@@ -109,6 +111,16 @@
   "enchantment.apotheosis.splitting": 8.19,
   "enchantment.apotheosis.capturing": 8.2,
   "enchantment.apotheosis.true_infinity": 8.21,
+
+  "enchantment.apotheosis.beserkers_fury": 8.22,
+  "enchantment.apotheosis.boon_of_the_earth": 8.23,
+  "enchantment.apotheosis.chainsaw": 8.24,
+  "enchantment.apotheosis.chromatic_aberration": 8.25,
+  "enchantment.apotheosis.miners_fervor": 8.26,
+  "enchantment.apotheosis.endless_quiver": 8.27,
+  "enchantment.apotheosis.growth_serum": 8.28,
+  "enchantment.apotheosis.spear_fishing": 8.29,
+  "enchantment.apotheosis.worker_exploitation": 8.30,
 
   "enchantment.wonderful_enchantments.fishing_fanatic": 9.01,
   "enchantment.wonderful_enchantments.human_slayer": 9.02,
@@ -219,6 +231,10 @@
   "enchantment.allurement.shockwave": 19.04,
   "enchantment.allurement.vengeance": 19.05,
   "enchantment.allurement.launch": 19.06,
+  "enchantment.allurement.spread_of_ailments": 19.07,
+  "enchantment.allurement.ascension_curse": 19.08,
+  "enchantment.allurement.fleeting_curse": 19.09,
+  "enchantment.allurement.obedience": 19.10,
 
   "enchantment.momentum.momentum": 20.01,
 
@@ -329,6 +345,7 @@
   "enchantment.domesticationinnovation.muffled": 34.32,
   "enchantment.domesticationinnovation.blazing_protection": 34.33,
   "enchantment.domesticationinnovation.healing_aura": 34.34,
+  "enchantment.domesticationinnovation.rejuvenation": 34.35,
 
   "enchantment.kobolds.artifact": 35.01,
   "enchantment.kobolds.prospector": 35.02,
@@ -368,7 +385,54 @@
   "enchantment.combatroll.longfooted": 47.01,
   "enchantment.combatroll.acrobat_chest": 47.02,
   "enchantment.combatroll.acrobat_legs": 47.03,
-  "enchantment.combatroll.multi_roll": 47.04,
+  "enchantment.combatroll.acrobat": 47.04,
+  "enchantment.combatroll.multi_roll": 47.05,
 
-  "enchantment.origins.water_protection": 48.01
+  "enchantment.combat_bash.inertia": 48.01,
+
+  "enchantment.origins.water_protection": 49.01,
+
+  "enchantment.sortilege.potency": 50.01,
+  "enchantment.sortilege.stability": 50.02,
+  "enchantment.sortilege.chaining": 50.03,
+  "enchantment.sortilege.wisdom": 50.04,
+  "enchantment.sortilege.push": 50.05,
+  "enchantment.sortilege.pull": 50.06,
+  "enchantment.sortilege.brazier": 50.07,
+  "enchantment.sortilege.blizzard": 50.08,
+  "enchantment.sortilege.blast": 50.09,
+  "enchantment.sortilege.blitz": 50.10,
+  "enchantment.sortilege.ignorance_curse": 50.11,
+  "enchantment.sortilege.magic_protection": 50.12,
+  "enchantment.sortilege.arcane": 50.13,
+  "enchantment.sortilege.soulbound": 50.14,
+
+  "enchantment.enderitemod.void_floating": 51.01,
+
+  "enchantment.deeperdarker.catalysis": 52.01,
+  "enchantment.deeperdarker.sculk_smite": 52.02,
+
+  "enchantment.airhop.air_hop": 53.01,
+
+  "enchantment.cofh_core.disabled": 54.01,
+  "enchantment.cofh_core.holding": 54.02,
+
+  "enchantment.betterbridging.widening": 55.01,
+
+  "enchantment.forbidden_arcanus.permafrost": 56.01,
+  "enchantment.forbidden_arcanus.indestructible": 56.02,
+
+  "enchantment.amethysttouch.amethyst_touch": 57.01,
+
+  "enchantment.betterarcheology.penetrating_strike": 58.01,
+  "enchantment.betterarcheology.seas_bounty": 58.02,
+  "enchantment.betterarcheology.soaring_winds": 58.03,
+  "enchantment.betterarcheology.tunneling": 58.04,
+
+  "enchantment.travelanchors.range": 59.01,
+  "enchantment.travelanchors.teleportation": 59.02,
+
+  "enchantment.galosphere.enfeeble": 60.01,
+  "enchantment.galosphere.rupture": 60.02,
+  "enchantment.galosphere.sustain": 60.03
 }
