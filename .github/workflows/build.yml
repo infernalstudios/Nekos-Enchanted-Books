@@ -2,6 +2,9 @@ name: Build
 on:
   push:
     paths:
+      - '.github/workflows/build.yml'
+      - 'build.gradle'
+      - 'build.properties'
       - '*/build.gradle'
       - '*/build.properties'
   pull_request:
