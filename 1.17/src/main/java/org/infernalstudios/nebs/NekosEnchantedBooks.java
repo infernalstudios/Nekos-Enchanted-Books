@@ -52,14 +52,17 @@ public class NekosEnchantedBooks {
         Type type = new TypeToken<Map<String, Float>>(){}.getType();
         enchantmentMap = new Gson().fromJson(new BufferedReader(input), type);
 
-        ItemProperties.register(Items.ENCHANTED_BOOK, new ResourceLocation("nebs:enchant"), (stack, world, entity, i) -> {
-            Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack);
-            if (map.isEmpty() || enchantmentMap == null) {
-                return 0.0F;
-            }
+        // enqueue this part so we don't concurrently modify the client item properties
+        event.enqueueWork(() -> {
+            ItemProperties.register(Items.ENCHANTED_BOOK, new ResourceLocation("nebs:enchant"), (stack, world, entity, i) -> {
+                Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack);
+                if (map.isEmpty() || enchantmentMap == null) {
+                    return 0.0F;
+                }
 
-            String key = map.entrySet().iterator().next().getKey().getDescriptionId();
-            return enchantmentMap.getOrDefault(key, 0.0F);
+                String key = map.entrySet().iterator().next().getKey().getDescriptionId();
+                return enchantmentMap.getOrDefault(key, 0.0F);
+            });
         });
     }
 
