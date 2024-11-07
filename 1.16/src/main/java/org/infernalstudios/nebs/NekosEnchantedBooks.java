@@ -7,6 +7,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Objects;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,10 +42,14 @@ public class NekosEnchantedBooks {
     public NekosEnchantedBooks() {
         ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST,
                 () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        bus.addListener(this::doClientStuff);
-        bus.addListener(this::gatherData);
-        MinecraftForge.EVENT_BUS.register(this);
+
+        // Only load the mod on the client side
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+            bus.addListener(this::doClientStuff);
+            bus.addListener(this::gatherData);
+            MinecraftForge.EVENT_BUS.register(this);
+        });
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
