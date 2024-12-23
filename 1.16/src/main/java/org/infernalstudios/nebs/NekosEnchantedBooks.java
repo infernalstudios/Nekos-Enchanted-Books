@@ -67,7 +67,7 @@ public class NekosEnchantedBooks {
                     return 0.0F;
                 }
 
-                String key = map.entrySet().iterator().next().getKey().getDescriptionId();
+                String key = map.keySet().iterator().next().getDescriptionId();
                 return enchantmentMap.getOrDefault(key, 0.0F);
             });
         });
