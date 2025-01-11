@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/faster_attack"
+    "layer0": "nebs:item/faster_attack"
   }
 }

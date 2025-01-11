@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/air_hop"
+    "layer0": "nebs:item/air_hop"
   }
 }

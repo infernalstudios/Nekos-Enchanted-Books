@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/health_siphon"
+    "layer0": "nebs:item/health_siphon"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/swift_sneak"
+    "layer0": "nebs:item/swift_sneak"
   }
 }

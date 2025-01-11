@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/herding"
+    "layer0": "nebs:item/herding"
   }
 }

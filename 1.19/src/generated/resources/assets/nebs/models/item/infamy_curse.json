@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/infamy_curse"
+    "layer0": "nebs:item/infamy_curse"
   }
 }

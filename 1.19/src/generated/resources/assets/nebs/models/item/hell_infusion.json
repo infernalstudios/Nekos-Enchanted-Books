@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/hell_infusion"
+    "layer0": "nebs:item/hell_infusion"
   }
 }

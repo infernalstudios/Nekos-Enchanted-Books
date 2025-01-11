@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/reinforced_tip"
+    "layer0": "nebs:item/reinforced_tip"
   }
 }

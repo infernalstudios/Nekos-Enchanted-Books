@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/stonebreaker"
+    "layer0": "nebs:item/stonebreaker"
   }
 }

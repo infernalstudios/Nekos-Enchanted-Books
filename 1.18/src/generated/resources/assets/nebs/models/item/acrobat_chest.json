@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/acrobat_chest"
+    "layer0": "nebs:item/acrobat_chest"
   }
 }

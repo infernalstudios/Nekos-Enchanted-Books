@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/chain_lightning"
+    "layer0": "nebs:item/chain_lightning"
   }
 }

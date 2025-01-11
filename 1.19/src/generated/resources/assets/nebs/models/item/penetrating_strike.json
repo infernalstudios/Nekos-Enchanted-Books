@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/penetrating_strike"
+    "layer0": "nebs:item/penetrating_strike"
   }
 }

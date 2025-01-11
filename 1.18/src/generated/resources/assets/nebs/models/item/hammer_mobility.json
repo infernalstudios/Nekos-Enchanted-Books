@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/hammer_mobility"
+    "layer0": "nebs:item/hammer_mobility"
   }
 }

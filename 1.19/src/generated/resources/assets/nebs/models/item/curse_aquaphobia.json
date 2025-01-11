@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/curse_aquaphobia"
+    "layer0": "nebs:item/curse_aquaphobia"
   }
 }

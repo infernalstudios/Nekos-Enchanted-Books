@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/step_assist"
+    "layer0": "nebs:item/step_assist"
   }
 }

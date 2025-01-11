@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/gold_fuelled"
+    "layer0": "nebs:item/gold_fuelled"
   }
 }

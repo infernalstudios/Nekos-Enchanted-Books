@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/silk_touch"
+    "layer0": "nebs:item/silk_touch"
   }
 }

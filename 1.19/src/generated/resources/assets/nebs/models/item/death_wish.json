@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/death_wish"
+    "layer0": "nebs:item/death_wish"
   }
 }

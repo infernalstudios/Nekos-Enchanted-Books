@@ -22,7 +22,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     public ModelFile generateModel(String name) {
-        ResourceLocation location = modLoc("items/" + name);
+        ResourceLocation location = modLoc("item/" + name);
         if (!existingFileHelper.exists(location, PackType.CLIENT_RESOURCES, ".png", "textures")) {
             NekosEnchantedBooks.LOGGER.debug(name + " book texture not found, defaulting...");
             location = mcLoc("item/enchanted_book");

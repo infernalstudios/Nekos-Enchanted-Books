@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/blitz"
+    "layer0": "nebs:item/blitz"
   }
 }

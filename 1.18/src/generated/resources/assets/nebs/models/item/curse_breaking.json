@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/curse_breaking"
+    "layer0": "nebs:item/curse_breaking"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/immunity_frame"
+    "layer0": "nebs:item/immunity_frame"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/spear_fishing"
+    "layer0": "nebs:item/spear_fishing"
   }
 }

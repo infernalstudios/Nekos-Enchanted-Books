@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/linked_inventory"
+    "layer0": "nebs:item/linked_inventory"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/exp_boost"
+    "layer0": "nebs:item/exp_boost"
   }
 }

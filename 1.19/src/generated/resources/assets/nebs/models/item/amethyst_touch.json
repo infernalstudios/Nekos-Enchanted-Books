@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/amethyst_touch"
+    "layer0": "nebs:item/amethyst_touch"
   }
 }

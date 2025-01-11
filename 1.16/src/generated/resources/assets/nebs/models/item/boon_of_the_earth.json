@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/boon_of_the_earth"
+    "layer0": "nebs:item/boon_of_the_earth"
   }
 }

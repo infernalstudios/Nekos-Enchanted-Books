@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nebs:items/water_protection"
+    "layer0": "nebs:item/water_protection"
   }
 }
