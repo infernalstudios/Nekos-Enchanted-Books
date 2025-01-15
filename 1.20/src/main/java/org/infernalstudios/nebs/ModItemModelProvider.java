@@ -17,6 +17,9 @@ import java.util.Collections;
 import java.util.stream.Stream;
 
 public class ModItemModelProvider extends ItemModelProvider {
+    private static final ModelFile ENCHANTED_BOOK_MODEL = new ModelFile.UncheckedModelFile("item/enchanted_book");
+    private static final String ENCHANTED_BOOK_TEXTURE_KEY = "layer0";
+
     public ModItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator.getPackOutput(), NekosEnchantedBooks.MOD_ID, existingFileHelper);
     }
@@ -27,7 +30,9 @@ public class ModItemModelProvider extends ItemModelProvider {
             throw new IllegalStateException(name + " book texture not found, yet it was found as a resource earlier...");
         }
 
-        this.getBuilder(this.folder + "/nebs/" + name).parent(new ModelFile.UncheckedModelFile("item/enchanted_book")).texture("layer0", location);
+        this.getBuilder(name.replace("/", "_"))
+            .parent(ENCHANTED_BOOK_MODEL)
+            .texture(ENCHANTED_BOOK_TEXTURE_KEY, location);
     }
 
     @Override
