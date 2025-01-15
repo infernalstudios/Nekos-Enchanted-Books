@@ -12,8 +12,15 @@ buildscript {
     }
 }
 
+plugins {
+    // This should be below the net.minecraftforge.gradle plugin
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+' apply false
+}
+
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 
 ext.config = parseConfig(file('../build.properties'))
 ext.customConfig = parseConfig(file('build.properties'))
@@ -126,3 +133,5 @@ def parseConfig(File config) {
         return (new ConfigSlurper().parse(prop))
     }
 }
+
+idea.module { downloadJavadoc = downloadSources = true }
