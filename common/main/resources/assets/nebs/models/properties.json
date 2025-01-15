@@ -434,5 +434,15 @@
 
   "enchantment.galosphere.enfeeble": 60.01,
   "enchantment.galosphere.rupture": 60.02,
-  "enchantment.galosphere.sustain": 60.03
+  "enchantment.galosphere.sustain": 60.03,
+
+  "enchantment.archeryexp.scouting": 61.01,
+  "enchantment.archeryexp.baby_face": 61.02,
+  "enchantment.archeryexp.follow_through": 61.03,
+  "enchantment.archeryexp.grit": 61.04,
+  "enchantment.archeryexp.shattering": 61.05,
+  "enchantment.archeryexp.trajectory": 61.06,
+  "enchantment.archeryexp.headshot": 61.07,
+  "enchantment.archeryexp.fragility": 61.08,
+  "enchantment.archeryexp.pincushioning": 61.09
 }
