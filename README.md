@@ -21,7 +21,7 @@ If you are interested in learning more about how our custom item model system wo
 
 To add native compatibility for a mod in NEBs itself, the process is mostly the same. Make sure the texture exists in the correct path in `assets/nebs/textures/item`, run the data generator with `runData`, and the accompanying model files should now exist.
 
-> [!NOTE]
+> [!IMPORTANT]
 > If you run this mod in your development environment, remember to always run `runData` if you have added, moved, or deleted any texture files before doing `runClient`. If you don't, the model files won't exist and your textures will not load into the game.
 
 ## Technical Details for Nerds
