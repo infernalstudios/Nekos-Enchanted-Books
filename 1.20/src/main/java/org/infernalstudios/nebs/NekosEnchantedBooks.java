@@ -2,6 +2,7 @@ package org.infernalstudios.nebs;
 
 import net.minecraft.DetectedVersion;
 import net.minecraft.SharedConstants;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.data.metadata.PackMetadataGenerator;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackType;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.network.NetworkConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
@@ -57,7 +59,7 @@ public class NekosEnchantedBooks {
      * @param event The event to add our generator to
      */
     private void gatherData(GatherDataEvent event) {
-        var generator = event.getGenerator();
+        DataGenerator generator = event.getGenerator();
 
         // native enchanted book models
         generator.addProvider(event.includeClient(), new EnchantedBookModelProvider(generator.getPackOutput(), NekosEnchantedBooks.MOD_ID, event.getExistingFileHelper()));
@@ -66,9 +68,9 @@ public class NekosEnchantedBooks {
         generator.addProvider(true, new PackMetadataGenerator(generator.getPackOutput()) {
             {
                 // gets the pack versions
-                var resourcePackFormat = SharedConstants.getCurrentVersion().getPackVersion(PackType.CLIENT_RESOURCES);
-                var dataPackFormat = SharedConstants.getCurrentVersion().getPackVersion(PackType.SERVER_DATA);
-                var packTypes = Map.of(
+                int resourcePackFormat = SharedConstants.getCurrentVersion().getPackVersion(PackType.CLIENT_RESOURCES);
+                int dataPackFormat = SharedConstants.getCurrentVersion().getPackVersion(PackType.SERVER_DATA);
+                Map<@NotNull PackType, @NotNull Integer> packTypes = Map.of(
                     PackType.CLIENT_RESOURCES, resourcePackFormat,
                     PackType.SERVER_DATA, dataPackFormat
                 );

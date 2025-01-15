@@ -1,6 +1,7 @@
 package org.infernalstudios.nebs;
 
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -8,6 +9,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -65,7 +67,7 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
     }
 
     private void generateModel(String name) {
-        final var location = EnchantedBookOverrides.getEnchantedBookModel(name);
+        ResourceLocation location = EnchantedBookOverrides.getEnchantedBookModel(name);
         if (!existingFileHelper.exists(location, PackType.CLIENT_RESOURCES, ".png", "textures")) {
             throw new IllegalStateException(name + " book texture not found, yet it was found as a resource earlier...");
         }
@@ -86,15 +88,15 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
      * @see #registerModels()
      */
     @SuppressWarnings("resource") // the walkers cannot be closed because we need to read the files in registerModels()
-    private Stream<Path> listResources(final String path) {
+    private Stream<Path> listResources(String path) {
         try {
             // make sure the path exists in the first place
-            var resourceUrl = this.getClass().getClassLoader().getResource(path);
+            URL resourceUrl = this.getClass().getClassLoader().getResource(path);
             if (resourceUrl == null) {
                 throw new FileSystemNotFoundException("No resources found in \"%s\"".formatted(path));
             }
 
-            var resourcePath = Paths.get(resourceUrl.toURI());
+            Path resourcePath = Paths.get(resourceUrl.toURI());
             if (Files.isDirectory(resourcePath)) {
                 // we are in dev environment, so walk the directory
                 return Files.walk(resourcePath).filter(Files::isRegularFile);

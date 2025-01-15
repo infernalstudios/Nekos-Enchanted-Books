@@ -19,6 +19,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -109,9 +110,9 @@ public final class EnchantedBookOverrides extends ItemOverrides {
         super(baker, enchantedBook, existing, spriteGetter);
 
         // bake overrides
-        final var enchantments = ForgeRegistries.ENCHANTMENTS;
-        final int expected = enchantments.getKeys().size();
-        final var result = bakeOverrides(baker, spriteGetter, enchantments, expected);
+        IForgeRegistry<Enchantment> enchantments = ForgeRegistries.ENCHANTMENTS;
+        int expected = enchantments.getKeys().size();
+        BakeResult result = bakeOverrides(baker, spriteGetter, enchantments, expected);
 
         this.overrides = result.overrides;
         if (!result.missing.isEmpty()) {
@@ -131,16 +132,16 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * @return The map of enchantment IDs to their respective baked models
      */
     private static BakeResult bakeOverrides(ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter, Iterable<Enchantment> enchantments, int expected) {
-        var overrides = ImmutableMap.<String, BakedModel>builderWithExpectedSize(expected);
-        var missing = ImmutableSet.<Enchantment>builderWithExpectedSize(expected);
+        ImmutableMap.Builder<String, BakedModel> overrides = ImmutableMap.<String, BakedModel>builderWithExpectedSize(expected);
+        ImmutableSet.Builder<Enchantment> missing = ImmutableSet.<Enchantment>builderWithExpectedSize(expected);
         enchantments.forEach(enchantment -> {
-            final var model = getEnchantedBookModel(enchantment);
+            ResourceLocation model = getEnchantedBookModel(enchantment);
 
             // We need access to the model bakery before it is finished so we can check if the model exists.
             // ObfuscationReflectionHelper allows us to grab the synthetic field "this$0" from the ModelBakerImpl.
             // To not take any chances, both ModelBakerImpl and the synthetic field are access transformed to public.
             // See the accesstransformer.cfg file for more details on this.
-            final var bakery = ObfuscationReflectionHelper.<ModelBakery, ModelBakery.ModelBakerImpl>getPrivateValue(ModelBakery.ModelBakerImpl.class, (ModelBakery.ModelBakerImpl) baker, "f_243927_");
+            ModelBakery bakery = ObfuscationReflectionHelper.<ModelBakery, ModelBakery.ModelBakerImpl>getPrivateValue(ModelBakery.ModelBakerImpl.class, (ModelBakery.ModelBakerImpl) baker, "f_243927_");
             if (!bakery.modelResources.containsKey(ModelBakery.MODEL_LISTER.idToFile(model))) {
                 missing.add(enchantment);
                 return;
@@ -187,9 +188,9 @@ public final class EnchantedBookOverrides extends ItemOverrides {
     @Override
     public BakedModel resolve(BakedModel model, ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
         // TODO Replace with getting the resource location? See PR #61 for discussion.
-        final var enchantment = getEnchantment(stack);
+        Enchantment enchantment = getEnchantment(stack);
         if (enchantment != null) {
-            var key = enchantment.getDescriptionId();
+            String key = enchantment.getDescriptionId();
             if (this.overrides.containsKey(key)) {
                 return this.overrides.get(key);
             }
@@ -206,7 +207,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * @return The enchantment of the stack, or {@code null} if it does not have any
      */
     private static @Nullable Enchantment getEnchantment(ItemStack stack) {
-        final var enchantments = EnchantmentHelper.getEnchantments(stack);
+        Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(stack);
         return !enchantments.isEmpty() ? enchantments.keySet().iterator().next() : null;
     }
 }
