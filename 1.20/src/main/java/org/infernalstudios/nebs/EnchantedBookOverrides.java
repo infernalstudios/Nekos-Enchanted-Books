@@ -31,7 +31,11 @@ public class EnchantedBookOverrides extends ItemOverrides {
     public static final String ENCHANTED_BOOK_UNBAKED_MODEL_NAME = "minecraft:item/enchanted_book";
 
     public static ResourceLocation getEnchantedBookModel(Enchantment enchantment) {
-        return new ResourceLocation(NekosEnchantedBooks.MOD_ID, "item/" + enchantment.getDescriptionId().replace(".", "_"));
+        return getEnchantedBookModel(enchantment.getDescriptionId());
+    }
+
+    static ResourceLocation getEnchantedBookModel(String enchantment) {
+        return new ResourceLocation(NekosEnchantedBooks.MOD_ID, "item/" + enchantment.replace(".", "/"));
     }
 
     private final Map<String, BakedModel> overrides;

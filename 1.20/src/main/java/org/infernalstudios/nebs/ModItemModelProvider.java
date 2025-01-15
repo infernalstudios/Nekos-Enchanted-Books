@@ -25,21 +25,21 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     private void generateModel(String name) {
-        final var location = modLoc("item/nebs/" + name);
+        final var location = EnchantedBookOverrides.getEnchantedBookModel(name);
         if (!existingFileHelper.exists(location, PackType.CLIENT_RESOURCES, ".png", "textures")) {
             throw new IllegalStateException(name + " book texture not found, yet it was found as a resource earlier...");
         }
 
-        this.getBuilder(name.replace("/", "_"))
+        this.getBuilder(location.getPath())
             .parent(ENCHANTED_BOOK_MODEL)
             .texture(ENCHANTED_BOOK_TEXTURE_KEY, location);
     }
 
     @Override
     protected void registerModels() {
-        this.listResources("assets/nebs/textures/item/nebs")
+        this.listResources("assets/nebs/textures/item/enchantment")
             .map(Path::toString).filter(s -> s.endsWith(".png"))
-            .map(s -> s.substring("assets/nebs/textures/item/nebs/".length(), s.length() - ".png".length()))
+            .map(s -> s.substring("assets/nebs/textures/item/".length(), s.length() - ".png".length()))
             .forEach(this::generateModel);
     }
 

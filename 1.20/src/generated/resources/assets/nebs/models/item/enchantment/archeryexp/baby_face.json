@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/enchanted_book",
+  "textures": {
+    "layer0": "nebs:item/enchantment/archeryexp/baby_face"
+  }
+}
