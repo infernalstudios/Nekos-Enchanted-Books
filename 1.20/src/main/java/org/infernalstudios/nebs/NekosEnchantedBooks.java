@@ -1,18 +1,25 @@
 package org.infernalstudios.nebs;
 
+import net.minecraft.DetectedVersion;
+import net.minecraft.SharedConstants;
+import net.minecraft.data.metadata.PackMetadataGenerator;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.network.NetworkConstants;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Map;
+
 /**
  * <h1>Neko's Enchanted Books</h1>
- *
+ * <p>
  * This is the main class for the Neko's Enchanted Books (shortened to NEBs) mod, loaded by Forge. The mod itself does
  * not interface much with Forge itself, but rather uses
  * {@link org.infernalstudios.nebs.mixin.BlockModelMixin BlockModelMixin} to inject the custom item overrides for the
@@ -38,19 +45,44 @@ public class NekosEnchantedBooks {
     public NekosEnchantedBooks() {
         // Newer Forge versions make this simpler, but here the old way is used for backwards compatibility with older Forge versions
         ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class,
-                () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+            () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::gatherData);
     }
 
     /**
-     * Adds our data generator, {@link EnchantedBookModelProvider}, to the {@link GatherDataEvent} event. This is used to
-     * generate the item models for the enchanted books that NEBs natively supports.
+     * Adds our data generator, {@link EnchantedBookModelProvider}, to the {@link GatherDataEvent} event. This is used
+     * to generate the item models for the enchanted books that NEBs natively supports.
      *
      * @param event The event to add our generator to
      */
     private void gatherData(GatherDataEvent event) {
         var generator = event.getGenerator();
+
+        // native enchanted book models
         generator.addProvider(event.includeClient(), new EnchantedBookModelProvider(generator.getPackOutput(), NekosEnchantedBooks.MOD_ID, event.getExistingFileHelper()));
+
+        // pack.mcmeta
+        generator.addProvider(true, new PackMetadataGenerator(generator.getPackOutput()) {
+            {
+                // gets the pack versions
+                var resourcePackFormat = SharedConstants.getCurrentVersion().getPackVersion(PackType.CLIENT_RESOURCES);
+                var dataPackFormat = SharedConstants.getCurrentVersion().getPackVersion(PackType.SERVER_DATA);
+                var packTypes = Map.of(
+                    PackType.CLIENT_RESOURCES, resourcePackFormat,
+                    PackType.SERVER_DATA, dataPackFormat
+                );
+
+                // adds to the generator with the correct info
+                this.add(
+                    PackMetadataSection.TYPE,
+                    new PackMetadataSection(
+                        Component.translatable("pack.nebs.description"),
+                        SharedConstants.getCurrentVersion().getPackVersion(PackType.CLIENT_RESOURCES),
+                        packTypes
+                    )
+                );
+            }
+        });
     }
 }
