@@ -1,4 +1,4 @@
-// 1.20.1	2025-01-15T01:15:46.434910947	Item Models: nebs
+// 1.20.1	2025-01-15T12:53:43.639263501	Item Models: nebs
 31eadf998be7c6c4072f6dd4d42c678274421219 assets/nebs/models/item/enchantment/aileron/cloudskipper.json
 f0f6107d4680065c78527947c3e9f37d9b01e790 assets/nebs/models/item/enchantment/aileron/smokestack.json
 7cdfc51d34d2b42deb58aaca872aa202c1542d68 assets/nebs/models/item/enchantment/airhop/air_hop.json
@@ -43,6 +43,7 @@ bae1066cfe7e50f710bc2e7190ed8aecc8d5824e assets/nebs/models/item/enchantment/apo
 dfb34931e00ff2eea9de6dc10c622c7ff51d841f assets/nebs/models/item/enchantment/apotheosis/icy_thorns.json
 6b12a6ea102815e464a43269710a6cb6add665bf assets/nebs/models/item/enchantment/apotheosis/knowledge.json
 258e79eea0580b22d2bb20c0a5601aaa0dc75c3c assets/nebs/models/item/enchantment/apotheosis/life_mending.json
+9e2f359ae5316d44a083414a967c2858d3b970e5 assets/nebs/models/item/enchantment/apotheosis/magic_protection.json
 6cb48d6655684317e6f4edaec98ae932c0d4b955 assets/nebs/models/item/enchantment/apotheosis/miners_fervor.json
 86fc079874b3b8814259417630e0017afe8d46d5 assets/nebs/models/item/enchantment/apotheosis/natures_blessing.json
 071efa06b0aef6fdd4b27f9f3b16889e65c682da assets/nebs/models/item/enchantment/apotheosis/obliteration.json
@@ -83,6 +84,7 @@ d3d479bf65b94ab863c5c42bf88555e584096499 assets/nebs/models/item/enchantment/bet
 9f2bc0b96d4f3d0297124785c26477394d5d8106 assets/nebs/models/item/enchantment/betterdefaultbiomes/horse_feather_falling.json
 cbbe54f810267dae399a2bbb918aba92b1433d7f assets/nebs/models/item/enchantment/betterdefaultbiomes/horse_fire_protection.json
 8b5ffaeb7926b92fc74f091be07beee797c6b4c0 assets/nebs/models/item/enchantment/betterdefaultbiomes/horse_projectile_protection.json
+156fb3929d3f1192c5a5d42964bb0bf3a245e680 assets/nebs/models/item/enchantment/betterdefaultbiomes/horse_protection.json
 a17532bff0ddb53d016cd9f482a6c54e59cfbbbe assets/nebs/models/item/enchantment/betterdefaultbiomes/hunting.json
 7fbc0f6094685178fa582bfb55db07d149d1ebe8 assets/nebs/models/item/enchantment/betterdefaultbiomes/scout.json
 98712a041fe993a8d17055dba1b51e2b8f7ce333 assets/nebs/models/item/enchantment/betterdefaultbiomes/smelting_touch.json
@@ -90,6 +92,7 @@ dcc93ae8156e74a7ab0230d221e8ddcf826463d8 assets/nebs/models/item/enchantment/bet
 0063906a024608c70313d972491d240f77c54d16 assets/nebs/models/item/enchantment/betterendforge/end_veil.json
 9bc2fdbbcdf0038e89651ce4e113686123781bef assets/nebs/models/item/enchantment/bigbrain/bang.json
 6dd25e3291bb494ee684c72c10352877dacfb628 assets/nebs/models/item/enchantment/bigbrain/turning.json
+ebcf90e19745808d899e77eb96ac0f9ab6b2d838 assets/nebs/models/item/enchantment/blockswapper/excavating.json
 bffc2ab717b79c78d0437d514fe925fe37691493 assets/nebs/models/item/enchantment/broomsmod/air_skills.json
 347ba731c2f9f6620ceea2141b90d7d6c95d0cca assets/nebs/models/item/enchantment/broomsmod/hovering.json
 246fb870bd2bc2781adfda14f2d3a3ba7d4cec2f assets/nebs/models/item/enchantment/broomsmod/land_skills.json
@@ -176,7 +179,6 @@ c127bd0d3e8d7f13f135c137e79c7cb67f2f8715 assets/nebs/models/item/enchantment/ens
 2712c075593c265f797bce22ca925edc1d4e019a assets/nebs/models/item/enchantment/ensorcellation/phalanx.json
 11eff299e16117eed0d9d6416f49af3fae85177a assets/nebs/models/item/enchantment/ensorcellation/pilfering.json
 4ca6dc30a65dfd2fc076be22982247e22fa029cf assets/nebs/models/item/enchantment/ensorcellation/quick_draw.json
-e41cc18dca8180b59f0cedafccdab0e096b64b3e assets/nebs/models/item/enchantment/ensorcellation/quick_shot.json
 6815a2aa929455be4d6ad6691f45e7dc60e1799e assets/nebs/models/item/enchantment/ensorcellation/reach.json
 743a31a2697debc28fae3d0c8bf17ee5dcc5b8ba assets/nebs/models/item/enchantment/ensorcellation/soulbound.json
 4a7ae907e37c80a0a2ca75a5565bdab8c91e0720 assets/nebs/models/item/enchantment/ensorcellation/tilling.json
@@ -217,12 +219,15 @@ da50b48aa877228362d58b74817ad3412a504c58 assets/nebs/models/item/enchantment/ma-
 08617939226e6e3f90d96c11daf01eed3631e485 assets/nebs/models/item/enchantment/ma-enchants/curse_death.json
 5b220ce79cbcfb8dc516a085d450f332c71c3dc0 assets/nebs/models/item/enchantment/ma-enchants/detonation.json
 8e29e3ef56fecce9228d08630e26b9950b8f1c75 assets/nebs/models/item/enchantment/ma-enchants/faster_attack.json
+dc95526772086f0f58de005b3414fdfc3f0d1dd5 assets/nebs/models/item/enchantment/ma-enchants/floating.json
 08bb1cbc73a4f0b5203a92aabd2d4b1c0ffa4a1d assets/nebs/models/item/enchantment/ma-enchants/ice_aspect.json
 69cbd87baa313fc097542b2a80fdcf25ff8a65a5 assets/nebs/models/item/enchantment/ma-enchants/lifesteal.json
 dfdc085d59365a2fd9cd59c5910d8a7ff957aabd assets/nebs/models/item/enchantment/ma-enchants/lumberjack.json
+1d8157f1b7910205413eed3ecca141e1d387e4db assets/nebs/models/item/enchantment/ma-enchants/momentum.json
 7aa6228b047b1015a5f01c37609028de3c9f81bc assets/nebs/models/item/enchantment/ma-enchants/multi_jump.json
 668d90252b8479a20f7139369e6bf021ba49e095 assets/nebs/models/item/enchantment/ma-enchants/night_vision.json
 aca05bd1b6d9ee53d29b0b86cbf1b94bb498ddfb assets/nebs/models/item/enchantment/ma-enchants/paralysis.json
+36238d513edd4c6c309c506180027bf44c922a6e assets/nebs/models/item/enchantment/ma-enchants/quick_draw.json
 76654b7888a780ea40224e0f915a96274654f438 assets/nebs/models/item/enchantment/ma-enchants/reinforced_tip.json
 e7c671d48608bc6303300c2f8ccba274d7241e2d assets/nebs/models/item/enchantment/ma-enchants/soft_fall.json
 49fdace733d56294a1a7d5cb237ab0e04fcdd4e9 assets/nebs/models/item/enchantment/ma-enchants/step_assist.json
@@ -230,12 +235,34 @@ b1073c137da8a79ec7ff925711be60e61190dc40 assets/nebs/models/item/enchantment/ma-
 a77d267d9f70fdafc827dab64e7de27d259d3617 assets/nebs/models/item/enchantment/ma-enchants/timeless.json
 c8e58fbd4cd227e1556b68b58421be13deaa5119 assets/nebs/models/item/enchantment/ma-enchants/true_shot.json
 2259a48dc688f991d3181c5b0daca307f318e3df assets/nebs/models/item/enchantment/ma-enchants/wisdom.json
+559dd58e5ac7e41144a21c3f548955ebfb85808b assets/nebs/models/item/enchantment/majruszsenchantments/absorber.json
 361aee98682563cd0f152e8ceb20623e2fa72d2c assets/nebs/models/item/enchantment/majruszsenchantments/breaking_curse.json
+458420321b2de66d8694d7d7c55650e22cea3bd8 assets/nebs/models/item/enchantment/majruszsenchantments/corrosion_curse.json
 a61c31903fe22c4e8cf73288521be627b9640562 assets/nebs/models/item/enchantment/majruszsenchantments/death_wish.json
+bc554525cb221efe021ecf4656ea59227b2d7d66 assets/nebs/models/item/enchantment/majruszsenchantments/dodge.json
+01d9b10574185a2545cdb3d7b9a7dead14d79269 assets/nebs/models/item/enchantment/majruszsenchantments/elder_guardian_favor.json
+e26e71a0da54ae8bcd87781cff86050c03e4e73c assets/nebs/models/item/enchantment/majruszsenchantments/enlightenment.json
+ecfc800f4f655299733d9702e0190d68ca1d28b0 assets/nebs/models/item/enchantment/majruszsenchantments/fatigue_curse.json
+815ebb048a46d092a6eaf451984637555562d741 assets/nebs/models/item/enchantment/majruszsenchantments/fishing_fanatic.json
+aa88548445e1c7c87555dd06a6c049eca6780768 assets/nebs/models/item/enchantment/majruszsenchantments/fuse_cutter.json
 60c7065242320d6d558c0779bfe876d001f7c341 assets/nebs/models/item/enchantment/majruszsenchantments/gold_fuelled.json
 aac280193adbdb35bc286e9bf142577065afe60a assets/nebs/models/item/enchantment/majruszsenchantments/guardian_angel.json
+05161ad321aec037ae7f7bbe49b924b19848ae84 assets/nebs/models/item/enchantment/majruszsenchantments/harvester.json
+1e7463cc9b3afb94be8b419b947d993bd2076395 assets/nebs/models/item/enchantment/majruszsenchantments/horse_frost_walker.json
+5c9d5d12920774613df193f9432aef31f35ab2f4 assets/nebs/models/item/enchantment/majruszsenchantments/horse_protection.json
 2d4a10c4b23aad381c456ab943d86746a0d7065d assets/nebs/models/item/enchantment/majruszsenchantments/horse_swiftness.json
+c15b48b7995b01186906997fa778432002880c6b assets/nebs/models/item/enchantment/majruszsenchantments/hunter.json
+e828d57ee901149c2ac3fe3bebc97484fb1fed6b assets/nebs/models/item/enchantment/majruszsenchantments/immortality.json
+b1f142c9312cec7f6a65c2bc0e81c873f8e48360 assets/nebs/models/item/enchantment/majruszsenchantments/incompatibility_curse.json
+772456f81798eda93d7e0b1eb8aa445e6cceef5a assets/nebs/models/item/enchantment/majruszsenchantments/leech.json
+ab287aeabee8836d060a1ffb2942330c06e1d3e3 assets/nebs/models/item/enchantment/majruszsenchantments/magic_protection.json
 b8533c7785e057f5bf1c2e3536a48fd44f895d37 assets/nebs/models/item/enchantment/majruszsenchantments/misanthropy.json
+0907d7a1bf39490938959df52d4d14179f05e74a assets/nebs/models/item/enchantment/majruszsenchantments/mithridatism.json
+e7a2d5c837f0cc3eaaca85008d8ba8481e48b7be assets/nebs/models/item/enchantment/majruszsenchantments/sixth_sense.json
+f5f930caf24a2b379bb4e8e673088d3f0744f510 assets/nebs/models/item/enchantment/majruszsenchantments/smelter.json
+702e08f4e4fe4b680a145ea702d106ce699297e7 assets/nebs/models/item/enchantment/majruszsenchantments/telekinesis.json
+83a4d4574e4da5a8200ccc51d7abe08ba9304579 assets/nebs/models/item/enchantment/majruszsenchantments/vampirism_curse.json
+b961d87d2d8a0c8aa6f163a746e8ff960bee578b assets/nebs/models/item/enchantment/majruszsenchantments/vitality.json
 85b795870001ab661320855cacae77e5734e9126 assets/nebs/models/item/enchantment/minecraft/aqua_affinity.json
 ea9dfc682a9d5fbfaff90167f551dcb016321273 assets/nebs/models/item/enchantment/minecraft/bane_of_arthropods.json
 5dd1e8703da44334b844ecf436fc97af7088212f assets/nebs/models/item/enchantment/minecraft/binding_curse.json
@@ -281,6 +308,7 @@ c8bb01decbba7b056bb3f911865a61bf92fdb7fe assets/nebs/models/item/enchantment/min
 0b89ca368a2a0b2be7ec606cf7ab9cc2b0969b82 assets/nebs/models/item/enchantment/miningmaster/grace.json
 a8d48335643468f0b5cafbdeb1c36f9f628bb4ff assets/nebs/models/item/enchantment/miningmaster/heartfelt.json
 8fbb76125a6164cf20e1d4fa399e1a494b2017dd assets/nebs/models/item/enchantment/miningmaster/knight_jump.json
+ec301298067e9646c25b6bb2cb3075e852a6b598 assets/nebs/models/item/enchantment/miningmaster/leeching.json
 61bde0963df10be7e71fae6fbe73fea6eb3b998a assets/nebs/models/item/enchantment/miningmaster/runner.json
 6da3b3682e5abdb707d177d1e58ea23586fb76ae assets/nebs/models/item/enchantment/miningmaster/smelting.json
 b5d715dffae4894f641588a32d40957959b95543 assets/nebs/models/item/enchantment/miningmaster/snowpiercer.json
@@ -295,6 +323,7 @@ ab904e03b33d9dabafcca8937b41cfacac4f01b3 assets/nebs/models/item/enchantment/see
 483c561f4e5d62a501e69d6c0497c3bd48efec43 assets/nebs/models/item/enchantment/seeker_compass/voodoo.json
 06f7db4c785ffc79b3f2deb8c4a59186c5da9ef6 assets/nebs/models/item/enchantment/seeker_compass/warping.json
 4e4dad437c9901584b34d45690b8f2e3c96a03e1 assets/nebs/models/item/enchantment/shulker_enchantments/refill.json
+5f8d86ca0729099938012fe769a9a19c91ecb2c5 assets/nebs/models/item/enchantment/shulker_enchantments/siphon.json
 593bbac5a90daa70438a9c54e6ffdb246bc6c8a8 assets/nebs/models/item/enchantment/sortilege/arcane.json
 1a2a65dcfe01707c5624eefdfc12f9c1bf68b68d assets/nebs/models/item/enchantment/sortilege/blast.json
 8a80aa670d65cbf80edc356f5409674285a9c344 assets/nebs/models/item/enchantment/sortilege/blitz.json
@@ -302,10 +331,14 @@ ab904e03b33d9dabafcca8937b41cfacac4f01b3 assets/nebs/models/item/enchantment/see
 2d0b4ab4d15bc6a358802e96586e95a95cfbbc6e assets/nebs/models/item/enchantment/sortilege/brazier.json
 e876e8dde8fab60ea25e71606adeb3176a83bdfc assets/nebs/models/item/enchantment/sortilege/chaining.json
 d8db167447958a4cc50686b7ce863cfb610d131f assets/nebs/models/item/enchantment/sortilege/ignorance_curse.json
+339a95cc64b74e8943893e15a5396bd5fbb7b3cf assets/nebs/models/item/enchantment/sortilege/magic_protection.json
 abfdecbdd737303ae3d9412e52c54ad82bfbd413 assets/nebs/models/item/enchantment/sortilege/potency.json
 2e54bf1d9b5f2e9c01a60feec35b5e264e2add7d assets/nebs/models/item/enchantment/sortilege/pull.json
 60411ff7780939fb76dda7dbf4f395c98ddb448c assets/nebs/models/item/enchantment/sortilege/push.json
+248146807114eb0e997a41f2c5fb4e38a60df5d4 assets/nebs/models/item/enchantment/sortilege/soulbound.json
 053d1722ccab6cefef36e819cbc0b62491d8b39f assets/nebs/models/item/enchantment/sortilege/stability.json
+48ec236bed6d6fe8d522769ed333d87e4ed94ba0 assets/nebs/models/item/enchantment/sortilege/wisdom.json
+bc6404ed976cf4adeed22cf7c6cc1fde1166e173 assets/nebs/models/item/enchantment/spells_and_shields/magic_protection.json
 698a59bc7074f36fcebf68a8143bbca3bf38af17 assets/nebs/models/item/enchantment/spells_and_shields/mana_blade.json
 5078f3feb6ec9715dccf5281b8ad4eff78423ec2 assets/nebs/models/item/enchantment/spells_and_shields/mana_max.json
 4e8b4d1ffb6e889916c3b986ae4bca7171f354b5 assets/nebs/models/item/enchantment/spells_and_shields/mana_regeneration.json
@@ -326,6 +359,7 @@ e3a2f32467214b0f7d0eb385f6eaea90ca9d9f84 assets/nebs/models/item/enchantment/van
 c1361e64ce7c164b329c5cdae050951a9c3f4ecc assets/nebs/models/item/enchantment/walljump/doublejump.json
 be9c7e7186a8797b49a45404811c9b48cc7d7330 assets/nebs/models/item/enchantment/walljump/speedboost.json
 2361a7ad32aeaf571483b186ebf25b9efb4786d4 assets/nebs/models/item/enchantment/walljump/walljump.json
+dd9149ce0a4ab4d64bca7baf2f09298a3136e128 assets/nebs/models/item/enchantment/wildbackport/swift_sneak.json
 9203266d3cdff07b18dd5634f1b7d8f6fbfebb1e assets/nebs/models/item/enchantment/wonderful_enchantments/absorber.json
 e9729bef10b3175ff7d8e7529a15173099e3d7c7 assets/nebs/models/item/enchantment/wonderful_enchantments/corrosion_curse.json
 885fe1da1ccc245ddf698fc11cabf1900e9ea667 assets/nebs/models/item/enchantment/wonderful_enchantments/dodge.json
@@ -339,9 +373,12 @@ e9729bef10b3175ff7d8e7529a15173099e3d7c7 assets/nebs/models/item/enchantment/won
 01bd4ae819fba6984b0b364e83903be21d5e426f assets/nebs/models/item/enchantment/wonderful_enchantments/horse_frost_walker.json
 afe85c261a5eddd1a3aa8efcb35d0f9e1d01a0c1 assets/nebs/models/item/enchantment/wonderful_enchantments/horse_protection.json
 1f12c7d2e5996a020b479217808238492973836a assets/nebs/models/item/enchantment/wonderful_enchantments/human_slayer.json
+8e8c49aba6f659bfb3f74355ecdfbaaffe2ecb18 assets/nebs/models/item/enchantment/wonderful_enchantments/hunter.json
 45a810a48008ae4eee27bdf2743f87deea911de4 assets/nebs/models/item/enchantment/wonderful_enchantments/immortality.json
 fe354d74ec1ebd41ee0ff9c0c88704ed376b80f7 assets/nebs/models/item/enchantment/wonderful_enchantments/incompatibility_curse.json
+898b8ae83d9988b25741761611e520ce618c46ae assets/nebs/models/item/enchantment/wonderful_enchantments/leech.json
 2ad3bea4eceb81a28957fb4a79debd673a1924bf assets/nebs/models/item/enchantment/wonderful_enchantments/leeching.json
+1f86a85547fa5831ccfd4e3a6e3c2f40de172761 assets/nebs/models/item/enchantment/wonderful_enchantments/magic_protection.json
 499ec49dbc6dcbaeaa8fe9a918a4dd2b7cb4614a assets/nebs/models/item/enchantment/wonderful_enchantments/mithridatism.json
 826d3d9fbf12130b0b2466c86347437df90d101d assets/nebs/models/item/enchantment/wonderful_enchantments/phoenix_dive.json
 10ea863e2151f8d6dde449f7e72fc3b822b1ff4e assets/nebs/models/item/enchantment/wonderful_enchantments/pufferfish_vengeance.json
@@ -351,3 +388,4 @@ f213d1754ace17063dc43962a7fb709cf80872a8 assets/nebs/models/item/enchantment/won
 092f9733f1361d4a1f5a23c98842be31dbb0ebe6 assets/nebs/models/item/enchantment/wonderful_enchantments/swiftness.json
 ca49b824f67233643977e8517c1f1a4c00c4deb8 assets/nebs/models/item/enchantment/wonderful_enchantments/telekinesis.json
 cf326732375276c013ceccf54f609d8e84e76bc8 assets/nebs/models/item/enchantment/wonderful_enchantments/vampirism_curse.json
+010461c60f61a8634f8997396f9e975a6b2f96a5 assets/nebs/models/item/enchantment/wonderful_enchantments/vitality.json
