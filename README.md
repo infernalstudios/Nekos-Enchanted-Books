@@ -21,6 +21,9 @@ If you are interested in learning more about how our custom item model system wo
 
 To add native compatibility for a mod in NEBs itself, the process is mostly the same. Make sure the texture exists in the correct path in `assets/nebs/textures/item`, run the data generator with `runData`, and the accompanying model files should now exist.
 
+> [!NOTE]
+> If you run this mod in your development environment, remember to always run `runData` if you have added, moved, or deleted any texture files before doing `runClient`. If you don't, the model files won't exist and your textures will not load into the game.
+
 ## Technical Details for Nerds
 
 This mod uses a special extension of `ItemOverrides` that gives us complete control over what baked models are sent to the renderer. What normally happens in `ItemOverrides` is the item property functions are run through and a baked model for the specified override is given back to the player. However, since the overrides instance already has access to the item stack, and property functions usually query the item stack to begin with to get their desired value, we can easily override this functionality to allow us to work with the enchantment directly and load whatever model we want as a result.
