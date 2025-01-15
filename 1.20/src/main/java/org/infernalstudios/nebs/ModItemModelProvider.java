@@ -1,54 +1,61 @@
 package org.infernalstudios.nebs;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-import java.io.*;
-import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
-import java.util.Map;
-import java.util.Objects;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.FileSystemNotFoundException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.stream.Stream;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator.getPackOutput(), NekosEnchantedBooks.MOD_ID, existingFileHelper);
     }
 
-    public ModelFile generateModel(String name) {
-        ResourceLocation location = modLoc("item/" + name);
+    private void generateModel(String name) {
+        final var location = modLoc("item/nebs/" + name);
         if (!existingFileHelper.exists(location, PackType.CLIENT_RESOURCES, ".png", "textures")) {
-            NekosEnchantedBooks.LOGGER.debug(name + " book texture not found, defaulting...");
-            location = mcLoc("item/enchanted_book");
+            throw new IllegalStateException(name + " book texture not found, yet it was found as a resource earlier...");
         }
 
-        return getBuilder(name).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", location);
+        this.getBuilder(this.folder + "/nebs/" + name).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", location);
     }
 
     @Override
     protected void registerModels() {
-        if (NekosEnchantedBooks.enchantmentMap == null) {
-            InputStreamReader input = new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("assets/nebs/models/properties.json")), StandardCharsets.UTF_8);
-            Type type = new TypeToken<Map<String, Float>>(){}.getType();
-            NekosEnchantedBooks.enchantmentMap = new Gson().fromJson(new BufferedReader(input), type);
-        }
+        this.listResources("assets/nebs/textures/item/nebs")
+            .map(Path::toString).filter(s -> s.endsWith(".png"))
+            .map(s -> s.substring("assets/nebs/textures/item/nebs/".length(), s.length() - ".png".length()))
+            .forEach(this::generateModel);
+    }
 
-        ItemModelBuilder enchanted_book = getBuilder("minecraft:item/enchanted_book")
-                .parent(new ModelFile.UncheckedModelFile("item/generated"))
-                .texture("layer0", mcLoc("item/enchanted_book"));
+    @SuppressWarnings("resource") // the walkers cannot be closed because we need to read the files in registerModels()
+    private Stream<Path> listResources(String path) {
+        try {
+            var resourceUrl = this.getClass().getClassLoader().getResource(path);
+            if (resourceUrl == null) {
+                throw new FileSystemNotFoundException("No resources found in \"%s\"".formatted(path));
+            }
 
-        for (Map.Entry<String, Float> entry : NekosEnchantedBooks.enchantmentMap.entrySet()) {
-            ModelFile file = generateModel(entry.getKey().split("\\.")[2]);
-            enchanted_book.override()
-                    .predicate(modLoc("enchant"), entry.getValue())
-                    .model(file)
-                    .end();
+            var resourcePath = Paths.get(resourceUrl.toURI());
+            if (Files.isDirectory(resourcePath)) {
+                return Files.walk(resourcePath).filter(Files::isRegularFile);
+            } else if (resourceUrl.getProtocol().equals("jar")) {
+                return Files.walk(FileSystems.newFileSystem(resourceUrl.toURI(), Collections.emptyMap()).getPath(path)).filter(Files::isRegularFile);
+            } else {
+                throw new IOException("Unsupported resource protocol \"%s\"".formatted(resourceUrl.getProtocol()));
+            }
+        } catch (FileSystemNotFoundException | URISyntaxException | IOException e) {
+            throw new RuntimeException("Failed to get resources in \"%s\"".formatted(path), e);
         }
     }
 }

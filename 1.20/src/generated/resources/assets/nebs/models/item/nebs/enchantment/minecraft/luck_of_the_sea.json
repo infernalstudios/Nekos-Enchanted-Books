@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nebs:item/nebs/enchantment/minecraft/luck_of_the_sea"
+  }
+}
