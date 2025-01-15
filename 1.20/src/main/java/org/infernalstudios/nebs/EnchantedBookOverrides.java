@@ -115,7 +115,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
 
         this.overrides = result.overrides;
         if (!result.missing.isEmpty()) {
-            NekosEnchantedBooks.LOGGER.error("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", result.missing.stream().map(Enchantment::getDescriptionId).toList()));
+            NekosEnchantedBooks.LOGGER.error("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", result.missing.stream().<CharSequence>map(Enchantment::getDescriptionId)::iterator));
         } else {
             NekosEnchantedBooks.LOGGER.info("Successfully loaded enchanted book models for all available enchantments");
         }
