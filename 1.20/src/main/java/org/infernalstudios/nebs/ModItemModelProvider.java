@@ -27,7 +27,7 @@ public class ModItemModelProvider extends ItemModelProvider {
             throw new IllegalStateException(name + " book texture not found, yet it was found as a resource earlier...");
         }
 
-        this.getBuilder(this.folder + "/nebs/" + name).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", location);
+        this.getBuilder(this.folder + "/nebs/" + name).parent(new ModelFile.UncheckedModelFile("item/enchanted_book")).texture("layer0", location);
     }
 
     @Override
