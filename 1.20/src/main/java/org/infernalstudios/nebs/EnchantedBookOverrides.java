@@ -139,6 +139,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
             // We need access to the model bakery before it is finished so we can check if the model exists.
             // ObfuscationReflectionHelper allows us to grab the synthetic field "this$0" from the ModelBakerImpl.
             // To not take any chances, both ModelBakerImpl and the synthetic field are access transformed to public.
+            // See the accesstransformer.cfg file for more details on this.
             final var bakery = ObfuscationReflectionHelper.<ModelBakery, ModelBakery.ModelBakerImpl>getPrivateValue(ModelBakery.ModelBakerImpl.class, (ModelBakery.ModelBakerImpl) baker, "f_243927_");
             if (!bakery.modelResources.containsKey(ModelBakery.MODEL_LISTER.idToFile(model))) {
                 missing.add(enchantment);
