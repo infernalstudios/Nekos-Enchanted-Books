@@ -59,7 +59,8 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
     protected final void registerModels() {
         this.listResources(EXPECTED_PATH)
             .map(Path::toString).filter(s -> s.endsWith(".png"))
-            .map(s -> s.substring(EXPECTED_PATH.concat("/").length(), s.length() - ".png".length()))
+            .map(s -> s.substring((EXPECTED_PATH + "/").length(), s.length() - ".png".length()))
+
             .forEach(this::generateModel);
     }
 
