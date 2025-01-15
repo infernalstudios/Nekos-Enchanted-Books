@@ -1,7 +1,6 @@
 package org.infernalstudios.nebs;
 
 import net.minecraft.Util;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.block.model.ItemOverride;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
@@ -11,7 +10,6 @@ import net.minecraft.client.resources.model.BlockModelRotation;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.ModelBaker;
 import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -42,12 +40,15 @@ public class EnchantedBookOverrides extends ItemOverrides {
 
     public EnchantedBookOverrides(ModelBaker baker, UnbakedModel enchantedBook, List<ItemOverride> existing, Function<Material, TextureAtlasSprite> spriteGetter) {
         super(baker, enchantedBook, existing, spriteGetter);
+
+        final var enchantments = ForgeRegistries.ENCHANTMENTS;
+        final int expected = enchantments.getKeys().size();
         this.overrides = Util.make(new HashMap<>(), map -> {
             ForgeRegistries.ENCHANTMENTS.forEach(e -> {
                 final var bakery = ObfuscationReflectionHelper.<ModelBakery, ModelBakery.ModelBakerImpl>getPrivateValue(ModelBakery.ModelBakerImpl.class, (ModelBakery.ModelBakerImpl) baker, "f_243927_");
                 final var model = getEnchantedBookModel(e);
                 if (!bakery.modelResources.containsKey(ModelBakery.MODEL_LISTER.idToFile(model))) {
-                    NekosEnchantedBooks.LOGGER.warn("Enchanted book model for enchantment {} not found", e.getDescriptionId());
+                    NekosEnchantedBooks.LOGGER.warn("Enchanted book model not found for enchantment: {}", e.getDescriptionId());
                     return;
                 }
 
@@ -56,14 +57,19 @@ public class EnchantedBookOverrides extends ItemOverrides {
             });
         });
 
-        NekosEnchantedBooks.LOGGER.info("Enchanted book overrides loaded for {} enchantments", overrides.size());
+        final int missing = expected - this.overrides.size();
+        if (missing > 0) {
+            NekosEnchantedBooks.LOGGER.error("Missing enchanted book models for {} enchantments", missing);
+        } else {
+            NekosEnchantedBooks.LOGGER.info("Successfully loaded enchanted book models for all available enchantments");
+        }
     }
 
     @Override
     public BakedModel resolve(BakedModel model, ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
-        var enchantments = EnchantmentHelper.getEnchantments(stack);
+        final var enchantments = EnchantmentHelper.getEnchantments(stack);
         if (!enchantments.isEmpty()) {
-            String key = enchantments.keySet().iterator().next().getDescriptionId();
+            var key = enchantments.keySet().iterator().next().getDescriptionId();
             if (this.overrides.containsKey(key)) {
                 return this.overrides.get(key);
             }

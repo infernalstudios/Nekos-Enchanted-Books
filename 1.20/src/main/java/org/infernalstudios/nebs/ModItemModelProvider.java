@@ -1,6 +1,6 @@
 package org.infernalstudios.nebs;
 
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.server.packs.PackType;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -20,8 +20,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     private static final ModelFile ENCHANTED_BOOK_MODEL = new ModelFile.UncheckedModelFile("item/enchanted_book");
     private static final String ENCHANTED_BOOK_TEXTURE_KEY = "layer0";
 
-    public ModItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator.getPackOutput(), NekosEnchantedBooks.MOD_ID, existingFileHelper);
+    public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+        super(output, NekosEnchantedBooks.MOD_ID, existingFileHelper);
     }
 
     private void generateModel(String name) {

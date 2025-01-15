@@ -23,7 +23,7 @@ public class BlockModelMixin {
 
     @Inject(
         method = "getOverrides(Lnet/minecraft/client/resources/model/ModelBaker;Lnet/minecraft/client/renderer/block/model/BlockModel;Ljava/util/function/Function;)Lnet/minecraft/client/renderer/block/model/ItemOverrides;",
-        remap = false,
+        remap = false, // this method was patched in by Forge
         at = @At("HEAD"),
         cancellable = true
     )
