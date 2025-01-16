@@ -1,4 +1,4 @@
-// 1.20.1	2025-01-15T12:53:43.639263501	Item Models: nebs
+// 1.20.1	2025-01-15T22:39:13.098889148	Item Models: nebs
 31eadf998be7c6c4072f6dd4d42c678274421219 assets/nebs/models/item/enchantment/aileron/cloudskipper.json
 f0f6107d4680065c78527947c3e9f37d9b01e790 assets/nebs/models/item/enchantment/aileron/smokestack.json
 7cdfc51d34d2b42deb58aaca872aa202c1542d68 assets/nebs/models/item/enchantment/airhop/air_hop.json
@@ -235,6 +235,9 @@ b1073c137da8a79ec7ff925711be60e61190dc40 assets/nebs/models/item/enchantment/ma-
 a77d267d9f70fdafc827dab64e7de27d259d3617 assets/nebs/models/item/enchantment/ma-enchants/timeless.json
 c8e58fbd4cd227e1556b68b58421be13deaa5119 assets/nebs/models/item/enchantment/ma-enchants/true_shot.json
 2259a48dc688f991d3181c5b0daca307f318e3df assets/nebs/models/item/enchantment/ma-enchants/wisdom.json
+27c1ce70f17435431a897bca1827d0022a1284f1 assets/nebs/models/item/enchantment/mace_backport/breach.json
+df3ba6fc898a08ccae2214e104b5593f4e1f5122 assets/nebs/models/item/enchantment/mace_backport/density.json
+9dba3c1c389d4965673c22f9da1c381615ec4c07 assets/nebs/models/item/enchantment/mace_backport/wind_burst.json
 559dd58e5ac7e41144a21c3f548955ebfb85808b assets/nebs/models/item/enchantment/majruszsenchantments/absorber.json
 361aee98682563cd0f152e8ceb20623e2fa72d2c assets/nebs/models/item/enchantment/majruszsenchantments/breaking_curse.json
 458420321b2de66d8694d7d7c55650e22cea3bd8 assets/nebs/models/item/enchantment/majruszsenchantments/corrosion_curse.json
@@ -267,8 +270,10 @@ b961d87d2d8a0c8aa6f163a746e8ff960bee578b assets/nebs/models/item/enchantment/maj
 ea9dfc682a9d5fbfaff90167f551dcb016321273 assets/nebs/models/item/enchantment/minecraft/bane_of_arthropods.json
 5dd1e8703da44334b844ecf436fc97af7088212f assets/nebs/models/item/enchantment/minecraft/binding_curse.json
 66f05214b63334a7000b1022a7b6d146636cb83b assets/nebs/models/item/enchantment/minecraft/blast_protection.json
+61db64175ffea744f7be39854f7340717fb957ba assets/nebs/models/item/enchantment/minecraft/breach.json
 69d3dcfedda9d3fa21fd2027b2d4cb1ddc9ed7c6 assets/nebs/models/item/enchantment/minecraft/channeling.json
 ba189693826ac88885354d4f50561d3eb98e01d5 assets/nebs/models/item/enchantment/minecraft/cleaving.json
+0cea465875e1752c1a8f513e2200183d7335e61a assets/nebs/models/item/enchantment/minecraft/density.json
 41f3b11ad78e74c5f211439aa998f81677bf3676 assets/nebs/models/item/enchantment/minecraft/depth_strider.json
 ec4874ef97e49d5f677758068e338793ace9040f assets/nebs/models/item/enchantment/minecraft/efficiency.json
 90f8d2611184babe7c3e87387bf3e56017a1b9cc assets/nebs/models/item/enchantment/minecraft/feather_falling.json
@@ -303,6 +308,7 @@ f73cbad423cb91303bfdf0e7fa2dfe937b0703f0 assets/nebs/models/item/enchantment/min
 2f12bb150e0cf2859c01a8ba958d2ea2e32e4ef2 assets/nebs/models/item/enchantment/minecraft/thorns.json
 ee70a7b9d6bc364fd0cd679389edd0e014d6edcb assets/nebs/models/item/enchantment/minecraft/unbreaking.json
 1f55b25b74d864d0dfcac41c7ea91f87c377d279 assets/nebs/models/item/enchantment/minecraft/vanishing_curse.json
+67bb0462235632e5c3c1d37af1c27a70a8592707 assets/nebs/models/item/enchantment/minecraft/wind_burst.json
 b97847552b841947b97c95d6d6913dac1f62d4ad assets/nebs/models/item/enchantment/miningmaster/floatation.json
 c8bb01decbba7b056bb3f911865a61bf92fdb7fe assets/nebs/models/item/enchantment/miningmaster/freezing.json
 0b89ca368a2a0b2be7ec606cf7ab9cc2b0969b82 assets/nebs/models/item/enchantment/miningmaster/grace.json
