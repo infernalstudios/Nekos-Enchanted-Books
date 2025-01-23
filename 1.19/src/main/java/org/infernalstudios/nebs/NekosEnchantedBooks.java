@@ -18,11 +18,9 @@ import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.network.NetworkConstants;
 
-import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -51,9 +49,6 @@ public class NekosEnchantedBooks {
             bus.addListener(this::gatherData);
             MinecraftForge.EVENT_BUS.register(this);
         });
-
-        // TODO: REMOVE
-        FMLJavaModLoadingContext.get().getModEventBus().<FMLLoadCompleteEvent>addListener(event -> event.enqueueWork(this::dumpEnchantments));
     }
 
     private void doClientStuff (final FMLClientSetupEvent event) {
@@ -83,13 +78,5 @@ public class NekosEnchantedBooks {
         if (event.includeClient()) {
             gen.addProvider(true, new ModItemModelProvider(gen, event.getExistingFileHelper()));
         }
-    }
-
-    private void dumpEnchantments() {
-        var log = new StringBuilder();
-        log.append("\n\nALL ENCHANTMENTS DUMPED!\n\n");
-        ForgeRegistries.ENCHANTMENTS.getEntries().forEach(entry -> log.append("%s\t\t-> %s%n".formatted(entry.getKey().location(), entry.getValue().getDescriptionId())));
-        log.append("\nALL ENCHANTMENTS DUMPED!\n\n");
-        LOGGER.info(log.toString());
     }
 }
