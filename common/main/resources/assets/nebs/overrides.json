@@ -1,7 +1,11 @@
 {
   "minecraft.breach": [
-    "mace_backport.breach",
-    "mace_backport.density",
+    "mace_backport.breach"
+  ],
+  "minecraft.density": [
+    "mace_backport.density"
+  ],
+  "minecraft.wind_burst": [
     "mace_backport.wind_burst"
   ]
 }

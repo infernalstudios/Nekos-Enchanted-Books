@@ -1,4 +1,4 @@
-// 1.20.1	2025-01-23T17:57:03.046613453	Item Models: nebs
+// 1.20.1	2025-01-23T18:02:04.277083771	Item Models: nebs
 a4ad5299d9c1b648feb0e01d827514b0939094d2 assets/nebs/models/item/aileron/cloudskipper.json
 84a8f94268dc92acd2177178047391b76f1ef6da assets/nebs/models/item/aileron/smokestack.json
 88cd33cc2dafc818d788b81838d6ce10a849d616 assets/nebs/models/item/airhop/air_hop.json
@@ -235,6 +235,9 @@ fccfd641d6bf51997e805b85ca957b2adffd4102 assets/nebs/models/item/ma-enchants/sto
 c128759a94903c8e82dc075db96965c0d9b02474 assets/nebs/models/item/ma-enchants/timeless.json
 e0860c08f67d1a6fc0eb9f6442117ded91bb3792 assets/nebs/models/item/ma-enchants/true_shot.json
 625e2776a58646df9e375e851b7989376c0e4b43 assets/nebs/models/item/ma-enchants/wisdom.json
+d4904fb6e2e4757aa8dae935da193b99a678ffbf assets/nebs/models/item/mace_backport/breach.json
+4ccbc996788b735a03044c9c4a44426626ab7653 assets/nebs/models/item/mace_backport/density.json
+9bc8991153463c483cdf4019743399bd556cdae7 assets/nebs/models/item/mace_backport/wind_burst.json
 e3271bf841517150e7397a72d24555cd4f9340bd assets/nebs/models/item/majruszsenchantments/absorber.json
 d8cbb1b85039991e58e7850fd8e32a6bbc066b38 assets/nebs/models/item/majruszsenchantments/breaking_curse.json
 1e6a8fd392faf1fdd83716ad2ebf56dcf918d678 assets/nebs/models/item/majruszsenchantments/corrosion_curse.json
