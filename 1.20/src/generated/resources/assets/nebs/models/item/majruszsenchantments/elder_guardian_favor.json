@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/enchanted_book",
   "textures": {
-    "layer0": "nebs:item/majruszsenchantments/elder_guardian_favor"
+    "layer0": "nebs:item/wonderful_enchantments/elder_guardian_favor"
   }
 }

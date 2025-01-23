@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/enchanted_book",
   "textures": {
-    "layer0": "nebs:item/blockswapper/excavating"
+    "layer0": "nebs:item/ensorcellation/excavating"
   }
 }

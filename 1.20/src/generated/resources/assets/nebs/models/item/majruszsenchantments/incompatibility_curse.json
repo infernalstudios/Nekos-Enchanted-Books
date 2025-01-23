@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/enchanted_book",
   "textures": {
-    "layer0": "nebs:item/majruszsenchantments/incompatibility_curse"
+    "layer0": "nebs:item/wonderful_enchantments/incompatibility_curse"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/enchanted_book",
   "textures": {
-    "layer0": "nebs:item/shulker_enchantments/siphon"
+    "layer0": "nebs:item/vanillatweaks/siphon"
   }
 }
