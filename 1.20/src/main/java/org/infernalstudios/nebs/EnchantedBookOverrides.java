@@ -37,8 +37,8 @@ import java.util.function.Function;
  * enchantments or the enchantments of other mods (in the case of modpackers):
  * <ul>
  *     <li>All models are automatically loaded from the root folder {@code assets/nebs/models/item}. Each model is
- *     organized into the {@link Enchantment#getDescriptionId() enchantment's description ID} where each point is a
- *     folder separation.</li>
+ *     organized into the {@linkplain NekosEnchantedBooks#getIdOf(Enchantment) enchantment's NEBs ID} where each point
+ *     is a folder separation.</li>
  *     <ul>
  *         <li>For example, if you want to load a model for your enchantment of key
  *         {@code enchantment.mymod.overpowered}, your model must exist in
@@ -79,7 +79,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * @return The expected model location
      */
     public static ResourceLocation getEnchantedBookModel(Enchantment enchantment) {
-        return getEnchantedBookModel(enchantment.getDescriptionId());
+        return getEnchantedBookModel(NekosEnchantedBooks.getIdOf(enchantment));
     }
 
     static ResourceLocation getEnchantedBookModel(String enchantment) {
@@ -116,7 +116,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
 
         this.overrides = result.overrides;
         if (!result.missing.isEmpty()) {
-            NekosEnchantedBooks.LOGGER.error("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", result.missing.stream().<CharSequence>map(Enchantment::getDescriptionId)::iterator));
+            NekosEnchantedBooks.LOGGER.error("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", result.missing.stream().<CharSequence>map(NekosEnchantedBooks::getIdOf)::iterator));
         } else {
             NekosEnchantedBooks.LOGGER.info("Successfully loaded enchanted book models for all available enchantments");
         }
@@ -132,8 +132,8 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * @return The map of enchantment IDs to their respective baked models
      */
     private static BakeResult bakeOverrides(ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter, Iterable<Enchantment> enchantments, int expected) {
-        ImmutableMap.Builder<String, BakedModel> overrides = ImmutableMap.<String, BakedModel>builderWithExpectedSize(expected);
-        ImmutableSet.Builder<Enchantment> missing = ImmutableSet.<Enchantment>builderWithExpectedSize(expected);
+        ImmutableMap.Builder<String, BakedModel> overrides = ImmutableMap.builderWithExpectedSize(expected);
+        ImmutableSet.Builder<Enchantment> missing = ImmutableSet.builderWithExpectedSize(expected);
         enchantments.forEach(enchantment -> {
             ResourceLocation model = getEnchantedBookModel(enchantment);
 
@@ -141,7 +141,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
             // ObfuscationReflectionHelper allows us to grab the synthetic field "this$0" from the ModelBakerImpl.
             // To not take any chances, both ModelBakerImpl and the synthetic field are access transformed to public.
             // See the accesstransformer.cfg file for more details on this.
-            ModelBakery bakery = ObfuscationReflectionHelper.<ModelBakery, ModelBakery.ModelBakerImpl>getPrivateValue(ModelBakery.ModelBakerImpl.class, (ModelBakery.ModelBakerImpl) baker, "f_243927_");
+            ModelBakery bakery = ObfuscationReflectionHelper.getPrivateValue(ModelBakery.ModelBakerImpl.class, (ModelBakery.ModelBakerImpl) baker, "f_243927_");
             if (!bakery.modelResources.containsKey(ModelBakery.MODEL_LISTER.idToFile(model))) {
                 missing.add(enchantment);
                 return;

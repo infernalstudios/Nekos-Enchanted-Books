@@ -1,21 +1,30 @@
 package org.infernalstudios.nebs;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.Nullable;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 /**
@@ -35,10 +44,13 @@ import java.util.stream.Stream;
  * significantly less complex. The constructor is set to protected to reflect this.
  */
 public class EnchantedBookModelProvider extends ItemModelProvider {
+    private static final String OVERRIDES_PATH = "assets/nebs/overrides.json";
     private static final String EXPECTED_PATH = "assets/nebs/textures/item";
 
     private static final ModelFile ENCHANTED_BOOK_MODEL = new ModelFile.UncheckedModelFile(EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME);
     private static final String ENCHANTED_BOOK_TEXTURE_KEY = "layer0";
+
+    private Map<String, List<String>> overrides = Collections.emptyMap();
 
     /**
      * Creates a new provider for the given output, mod ID, and existing file helper.
@@ -59,22 +71,45 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
      */
     @Override
     protected final void registerModels() {
+        this.loadOverrides();
         this.listResources(EXPECTED_PATH)
             .map(Path::toString).filter(s -> s.endsWith(".png"))
             .map(s -> s.substring((EXPECTED_PATH + "/").length(), s.length() - ".png".length()))
-
             .forEach(this::generateModel);
     }
 
     private void generateModel(String name) {
-        ResourceLocation location = EnchantedBookOverrides.getEnchantedBookModel(name);
-        if (!existingFileHelper.exists(location, PackType.CLIENT_RESOURCES, ".png", "textures")) {
-            throw new IllegalStateException(name + " book texture not found, yet it was found as a resource earlier...");
+        this.generateModel(name, name);
+        for (var override : this.overrides.getOrDefault(name, Collections.emptyList())) {
+            this.generateModel(name, override);
+        }
+    }
+
+    private void generateModel(String texture, String destination) {
+        ResourceLocation textureLoc = EnchantedBookOverrides.getEnchantedBookModel(texture);
+        ResourceLocation destLoc = EnchantedBookOverrides.getEnchantedBookModel(destination);
+        if (!existingFileHelper.exists(textureLoc, PackType.CLIENT_RESOURCES, ".png", "textures")) {
+            throw new IllegalStateException(texture + " book texture not found, yet it was found as a resource earlier...");
         }
 
-        this.getBuilder(location.getPath())
+        this.getBuilder(destLoc.getPath())
             .parent(ENCHANTED_BOOK_MODEL)
-            .texture(ENCHANTED_BOOK_TEXTURE_KEY, location);
+            .texture(ENCHANTED_BOOK_TEXTURE_KEY, textureLoc);
+    }
+
+    private void loadOverrides() {
+        try (InputStream file = this.getClass().getClassLoader().getResourceAsStream(OVERRIDES_PATH)) {
+            if (file == null) return;
+
+            try (InputStreamReader input = new InputStreamReader(file, StandardCharsets.UTF_8)) {
+                this.overrides = new Gson().fromJson(
+                    new BufferedReader(input),
+                    new TypeToken<Map<String, List<String>>>() { }.getType()
+                );
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

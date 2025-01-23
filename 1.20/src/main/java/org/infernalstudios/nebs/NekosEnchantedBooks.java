@@ -1,12 +1,12 @@
 package org.infernalstudios.nebs;
 
-import net.minecraft.DetectedVersion;
 import net.minecraft.SharedConstants;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.metadata.PackMetadataGenerator;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -50,6 +50,18 @@ public class NekosEnchantedBooks {
             () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::gatherData);
+    }
+
+    /**
+     * Gets the NEBs ID of the given enchantment, which is the base {@link Enchantment#getDescriptionId()} while
+     * removing the {@code enchantment.} prefix if it exists.
+     *
+     * @param enchantment The enchantment to get the ID of
+     * @return The NEBs ID of the enchantment
+     */
+    static String getIdOf(Enchantment enchantment) {
+        String id = enchantment.getDescriptionId();
+        return id.startsWith("enchantment.") ? id.substring("enchantment.".length()) : id;
     }
 
     /**

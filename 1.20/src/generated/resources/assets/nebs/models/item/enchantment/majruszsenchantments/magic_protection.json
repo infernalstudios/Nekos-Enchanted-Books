@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/enchanted_book",
-  "textures": {
-    "layer0": "nebs:item/enchantment/majruszsenchantments/magic_protection"
-  }
-}
