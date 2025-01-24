@@ -187,7 +187,6 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      */
     @Override
     public BakedModel resolve(BakedModel model, ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
-        // TODO Replace with getting the resource location? See PR #61 for discussion.
         Enchantment enchantment = getEnchantment(stack);
         if (enchantment != null) {
             String key = enchantment.getDescriptionId();

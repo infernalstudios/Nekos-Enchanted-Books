@@ -137,7 +137,7 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
         enchantments.forEach(enchantment -> {
             ResourceLocation model = getEnchantedBookModel(enchantment);
 
-            if (bakery.resourceManager.getResource(new ResourceLocation(model.getNamespace(), "models/" + model.getPath() + ".json")).isEmpty()) {
+            if (!bakery.resourceManager.hasResource(new ResourceLocation(model.getNamespace(), "models/" + model.getPath() + ".json"))) {
                 missing.add(enchantment);
                 return;
             }
@@ -193,7 +193,6 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      */
     @Override
     public IBakedModel resolve(IBakedModel model, ItemStack stack, @Nullable ClientWorld level, @Nullable LivingEntity entity) {
-        // TODO Replace with getting the resource location? See PR #61 for discussion.
         Enchantment enchantment = getEnchantment(stack);
         if (enchantment != null) {
             String key = enchantment.getDescriptionId();
