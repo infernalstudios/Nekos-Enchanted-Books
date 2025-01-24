@@ -2,13 +2,12 @@ package org.infernalstudios.nebs;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.PackType;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourcePackType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -55,13 +54,13 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
     /**
      * Creates a new provider for the given output, mod ID, and existing file helper.
      *
-     * @param output             The output to write the generated data to
+     * @param generator          The data generator
      * @param modId              The mod ID to generate the data for (does not effect the model location)
      * @param existingFileHelper The existing file helper to use for this provider
      * @implNote Modders, see {@link EnchantedBookModelProvider} for implementation details.
      */
-    protected EnchantedBookModelProvider(PackOutput output, String modId, ExistingFileHelper existingFileHelper) {
-        super(output, modId, existingFileHelper);
+    protected EnchantedBookModelProvider(DataGenerator generator, String modId, ExistingFileHelper existingFileHelper) {
+        super(generator, modId, existingFileHelper);
     }
 
     /**
@@ -88,7 +87,7 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
     private void generateModel(String texture, String destination) {
         ResourceLocation textureLoc = EnchantedBookOverrides.getEnchantedBookModel(texture);
         ResourceLocation destLoc = EnchantedBookOverrides.getEnchantedBookModel(destination);
-        if (!existingFileHelper.exists(textureLoc, PackType.CLIENT_RESOURCES, ".png", "textures")) {
+        if (!existingFileHelper.exists(textureLoc, ResourcePackType.CLIENT_RESOURCES, ".png", "textures")) {
             throw new IllegalStateException(texture + " book texture not found, yet it was found as a resource earlier...");
         }
 
@@ -128,7 +127,7 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
             // make sure the path exists in the first place
             URL resourceUrl = this.getClass().getClassLoader().getResource(path);
             if (resourceUrl == null) {
-                throw new FileSystemNotFoundException("No resources found in \"%s\"".formatted(path));
+                throw new FileSystemNotFoundException(String.format("No resources found in \"%s\"", path));
             }
 
             Path resourcePath = Paths.get(resourceUrl.toURI());
@@ -138,10 +137,10 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
             } else if (resourceUrl.getProtocol().equals("jar")) {
                 return Files.walk(FileSystems.newFileSystem(resourceUrl.toURI(), Collections.emptyMap()).getPath(path)).filter(Files::isRegularFile);
             } else {
-                throw new IOException("Unsupported resource protocol \"%s\"".formatted(resourceUrl.getProtocol()));
+                throw new IOException(String.format("Unsupported resource protocol \"%s\"", resourceUrl.getProtocol()));
             }
         } catch (FileSystemNotFoundException | URISyntaxException | IOException e) {
-            throw new RuntimeException("Failed to get resources in \"%s\"".formatted(path), e);
+            throw new RuntimeException(String.format("Failed to get resources in \"%s\"", path), e);
         }
     }
 }

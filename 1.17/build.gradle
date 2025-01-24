@@ -13,12 +13,13 @@ buildscript {
 }
 
 plugins {
-    // This should be below the net.minecraftforge.gradle plugin
+    id 'org.spongepowered.mixin' version '[0.7,0.8)' apply false
     id 'org.parchmentmc.librarian.forgegradle' version '1.+' apply false
 }
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
+apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
@@ -29,6 +30,7 @@ ext.config.FORGE_VERSION = customConfig.FORGE_VERSION
 ext.config.MAPPINGS_CHANNEL = customConfig.MAPPINGS_CHANNEL
 ext.config.MAPPINGS_VERSION = customConfig.MAPPINGS_VERSION
 ext.config.JAVA_LANG_VERSION = customConfig.JAVA_LANG_VERSION
+ext.config.MIXIN_VERSION = customConfig.MIXIN_VERSION
 
 project.version = config.VERSION
 project.group = "${config.GROUP}.${config.ARTIFACT}"
@@ -39,10 +41,12 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(config.JAVA_LANG_VERSION
 minecraft {
     mappings channel: config.MAPPINGS_CHANNEL, version: config.MAPPINGS_VERSION
 
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
     runs {
         client {
             workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            // property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
             mods {
                 nebs {
@@ -53,7 +57,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            // property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
             mods {
                 nebs {
@@ -87,6 +91,15 @@ sourceSets {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${config.MINECRAFT_VERSION}-${config.FORGE_VERSION}"
+
+    annotationProcessor "org.spongepowered:mixin:${config.MIXIN_VERSION}:processor"
+}
+
+mixin {
+    add sourceSets.main, "META-INF/mixin/nebs.refmap.json"
+    config 'META-INF/mixin/nebs.mixins.json'
+
+    debug.export = true
 }
 
 jar {

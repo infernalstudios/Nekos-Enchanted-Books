@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8.4",
+  "package": "org.infernalstudios.nebs.mixin",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "mixins": [
+    "BlockModelMixin"
+  ]
+}

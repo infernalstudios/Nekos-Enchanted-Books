@@ -2,13 +2,12 @@ package org.infernalstudios.nebs;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import net.minecraft.data.PackOutput;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -55,13 +54,13 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
     /**
      * Creates a new provider for the given output, mod ID, and existing file helper.
      *
-     * @param output             The output to write the generated data to
+     * @param generator          The data generator
      * @param modId              The mod ID to generate the data for (does not effect the model location)
      * @param existingFileHelper The existing file helper to use for this provider
      * @implNote Modders, see {@link EnchantedBookModelProvider} for implementation details.
      */
-    protected EnchantedBookModelProvider(PackOutput output, String modId, ExistingFileHelper existingFileHelper) {
-        super(output, modId, existingFileHelper);
+    protected EnchantedBookModelProvider(DataGenerator generator, String modId, ExistingFileHelper existingFileHelper) {
+        super(generator, modId, existingFileHelper);
     }
 
     /**
