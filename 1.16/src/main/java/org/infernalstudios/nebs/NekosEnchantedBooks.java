@@ -48,6 +48,7 @@ public class NekosEnchantedBooks {
             () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
 
         // The rest is client-only stuff
+        // DistExecutor instead of checking FMLEnvironment.dist because of a Java 8 issue
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
             modBus.addListener(this::gatherData);

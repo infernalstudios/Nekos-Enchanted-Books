@@ -69,6 +69,7 @@ public class BlockModelMixin {
         at = @At("HEAD"),
         cancellable = true
     )
+    @SuppressWarnings("deprecation")
     private void getOverrides(ModelBakery bakery, BlockModel model, CallbackInfoReturnable<ItemOverrides> callback) {
         if (EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(model.name))
             callback.setReturnValue(new EnchantedBookOverrides(bakery, model, bakery::getModel, this.overrides));

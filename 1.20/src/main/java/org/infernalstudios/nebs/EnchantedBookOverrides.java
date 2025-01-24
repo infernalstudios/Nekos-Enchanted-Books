@@ -93,10 +93,11 @@ public final class EnchantedBookOverrides extends ItemOverrides {
 
     /**
      * This constructor follows up on the initialization done in its super method,
-     * {@link ItemOverrides#ItemOverrides(ModelBaker, UnbakedModel, List, Function)}. Here, all of the registered
-     * enchantments are grabbed from the {@link ForgeRegistries#ENCHANTMENTS Enchantments registry} and are queried for
-     * automatic model loading. The process of taking advantage of automatic model loading was described in the
-     * documentation for the class in {@link EnchantedBookOverrides}.
+     * {@link ItemOverrides#ItemOverrides(ModelBaker, UnbakedModel, List, Function)}. It calls the
+     * {@link #setup(ModelBaker, Function)} method, where all the registered enchantments are grabbed from the
+     * {@linkplain ForgeRegistries#ENCHANTMENTS Enchantments registry} and are queried for automatic model loading. The
+     * process of taking advantage of automatic model loading was described in the documentation for the class in
+     * {@link EnchantedBookOverrides}.
      * <p>
      * Also note that this class respects any existing overrides that might have been added to the base enchanted book
      * model. However, this is only the case if an enchanted book has an enchantment that is not saved in our own
@@ -108,12 +109,24 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * @param existing      Any existing item overrides that exist in the base enchanted book model
      * @param spriteGetter  The sprite getter for model baking
      * @see #resolve(BakedModel, ItemStack, ClientLevel, LivingEntity, int)
+     * @see EnchantedBookOverrides
      */
     public EnchantedBookOverrides(ModelBaker baker, UnbakedModel enchantedBook, List<ItemOverride> existing, Function<Material, TextureAtlasSprite> spriteGetter) {
         super(baker, enchantedBook, existing, spriteGetter);
         this.overrides = this.setup(baker, spriteGetter);
     }
 
+    /**
+     * The setup as described in
+     * {@link EnchantedBookOverrides#EnchantedBookOverrides(ModelBaker, UnbakedModel, List, Function)}. Use this to
+     * assign {@link #overrides}.
+     *
+     * @param baker        The model baker
+     * @param spriteGetter The sprite getter for model baking
+     * @return The map of enchantment IDs to their respective baked models
+     *
+     * @see EnchantedBookOverrides#EnchantedBookOverrides(ModelBaker, UnbakedModel, List, Function)
+     */
     private Map<String, BakedModel> setup(ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter) {
         // bake overrides
         IForgeRegistry<Enchantment> enchantments = ForgeRegistries.ENCHANTMENTS;
@@ -160,6 +173,13 @@ public final class EnchantedBookOverrides extends ItemOverrides {
         return new BakeResult(overrides, missing);
     }
 
+    /**
+     * Prepares all custom models to be used by NEBs. By registering them through the
+     * {@link ModelEvent.RegisterAdditional} event, we can save the trouble of needing to manually resolve and bake them
+     * and their parents ourselves.
+     *
+     * @param event The event to register the models to
+     */
     static void prepare(ModelEvent.RegisterAdditional event) {
         ForgeRegistries.ENCHANTMENTS.forEach(enchantment -> {
             ResourceLocation model = getEnchantedBookModel(enchantment);
