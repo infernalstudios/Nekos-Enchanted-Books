@@ -38,7 +38,7 @@ public class BlockModelMixin {
      * longer add overrides to the base model, so this way we can guarantee that even if no resource packs add any
      * overrides, our custom ones can still be used.
      *
-     * @param baker        The model baker (typically of type {@link net.minecraft.client.resources.model.ModelBakery.ModelBakerImpl})
+     * @param baker        The model baker
      * @param model        The unbaked model to get overrides for
      * @param spriteGetter The sprite getter for model baking
      * @param callback     The callback for Mixin, which is used if we are cancelling the original method

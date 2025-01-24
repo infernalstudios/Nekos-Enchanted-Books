@@ -2,6 +2,7 @@ package org.infernalstudios.nebs;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.block.model.ItemOverride;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
@@ -10,18 +11,18 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.BlockModelRotation;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.ModelBaker;
-import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -86,6 +87,8 @@ public final class EnchantedBookOverrides extends ItemOverrides {
         return new ResourceLocation(NekosEnchantedBooks.MOD_ID, "item/" + enchantment.replace(".", "/"));
     }
 
+    private static final Set<ResourceLocation> PREPARED_MODELS = new HashSet<>();
+
     private final Map<String, BakedModel> overrides;
 
     /**
@@ -99,7 +102,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * model. However, this is only the case if an enchanted book has an enchantment that is not saved in our own
      * overrides.
      *
-     * @param baker         The model baker (typically of type {@link ModelBakery.ModelBakerImpl})
+     * @param baker         The model baker
      * @param enchantedBook The vanilla enchanted book unbaked model (ensured by
      *                      {@link org.infernalstudios.nebs.mixin.BlockModelMixin BlockModelMixin})
      * @param existing      Any existing item overrides that exist in the base enchanted book model
@@ -108,18 +111,22 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      */
     public EnchantedBookOverrides(ModelBaker baker, UnbakedModel enchantedBook, List<ItemOverride> existing, Function<Material, TextureAtlasSprite> spriteGetter) {
         super(baker, enchantedBook, existing, spriteGetter);
+        this.overrides = this.setup(baker, spriteGetter);
+    }
 
+    private Map<String, BakedModel> setup(ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter) {
         // bake overrides
         IForgeRegistry<Enchantment> enchantments = ForgeRegistries.ENCHANTMENTS;
-        int expected = enchantments.getKeys().size();
-        BakeResult result = bakeOverrides(baker, spriteGetter, enchantments, expected);
+        BakeResult result = bakeOverrides(baker, spriteGetter, enchantments, enchantments.getKeys().size());
 
-        this.overrides = result.overrides;
+        // log missing models
         if (!result.missing.isEmpty()) {
-            NekosEnchantedBooks.LOGGER.error("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", result.missing.stream().<CharSequence>map(NekosEnchantedBooks::getIdOf)::iterator));
+            NekosEnchantedBooks.LOGGER.warn("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", result.missing.stream().<CharSequence>map(NekosEnchantedBooks::getIdOf)::iterator));
         } else {
             NekosEnchantedBooks.LOGGER.info("Successfully loaded enchanted book models for all available enchantments");
         }
+
+        return result.overrides;
     }
 
     /**
@@ -136,25 +143,33 @@ public final class EnchantedBookOverrides extends ItemOverrides {
         ImmutableSet.Builder<Enchantment> missing = ImmutableSet.builderWithExpectedSize(expected);
         enchantments.forEach(enchantment -> {
             ResourceLocation model = getEnchantedBookModel(enchantment);
-
-            // We need access to the model bakery before it is finished so we can check if the model exists.
-            // ObfuscationReflectionHelper allows us to grab the synthetic field "this$0" from the ModelBakerImpl.
-            // To not take any chances, both ModelBakerImpl and the synthetic field are access transformed to public.
-            // See the accesstransformer.cfg file for more details on this.
-            ModelBakery bakery = ObfuscationReflectionHelper.getPrivateValue(ModelBakery.ModelBakerImpl.class, (ModelBakery.ModelBakerImpl) baker, "f_243927_");
-            if (!bakery.modelResources.containsKey(ModelBakery.MODEL_LISTER.idToFile(model))) {
+            if (!PREPARED_MODELS.contains(model)) {
                 missing.add(enchantment);
                 return;
             }
 
-            // Typically when a model is loaded in BlockModel, it is resolved with its parents.
-            // We are effectively creating a model from scratch so we need to do that here.
-            baker.getModel(model).resolveParents(baker::getModel);
-
             // Now we are ready to bake the custom model and add it to our own overrides.
-            overrides.put(enchantment.getDescriptionId(), baker.bake(model, BlockModelRotation.X0_Y0, spriteGetter));
+            BakedModel baked = baker.bake(model, BlockModelRotation.X0_Y0, spriteGetter);
+            if (baked == null) {
+                missing.add(enchantment);
+                return;
+            }
+
+            overrides.put(enchantment.getDescriptionId(), baked);
         });
         return new BakeResult(overrides, missing);
+    }
+
+    static void prepare(ModelEvent.RegisterAdditional event) {
+        ForgeRegistries.ENCHANTMENTS.forEach(enchantment -> {
+            ResourceLocation model = getEnchantedBookModel(enchantment);
+            if (Minecraft.getInstance().getResourceManager().getResource(new ResourceLocation(model.getNamespace(), "models/" + model.getPath() + ".json")).isEmpty()) {
+                return;
+            }
+
+            PREPARED_MODELS.add(model);
+            event.register(model);
+        });
     }
 
     /**

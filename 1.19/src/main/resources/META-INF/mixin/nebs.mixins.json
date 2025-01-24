@@ -9,7 +9,7 @@
   "overwrites": {
     "requireAnnotations": true
   },
-  "mixins": [
+  "client": [
     "BlockModelMixin"
   ]
 }

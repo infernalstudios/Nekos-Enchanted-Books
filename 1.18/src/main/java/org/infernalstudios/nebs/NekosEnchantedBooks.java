@@ -2,10 +2,14 @@ package org.infernalstudios.nebs;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.network.NetworkConstants;
 import org.apache.logging.log4j.LogManager;
@@ -42,7 +46,12 @@ public class NekosEnchantedBooks {
         ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class,
             () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
 
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::gatherData);
+        // The rest is client-only stuff
+        if (FMLEnvironment.dist != Dist.CLIENT) return;
+
+        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modBus.addListener(this::gatherData);
+        modBus.<ModelRegistryEvent>addListener(event -> EnchantedBookOverrides.prepare());
     }
 
     /**

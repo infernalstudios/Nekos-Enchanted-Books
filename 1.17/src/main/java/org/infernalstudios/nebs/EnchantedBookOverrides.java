@@ -2,8 +2,9 @@ package org.infernalstudios.nebs;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.renderer.block.model.ItemOverride;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -11,17 +12,20 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.BlockModelRotation;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.infernalstudios.nebs.mixin.BlockModelMixin;
 
 import javax.annotation.Nullable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -86,7 +90,15 @@ public final class EnchantedBookOverrides extends ItemOverrides {
         return new ResourceLocation(NekosEnchantedBooks.MOD_ID, "item/" + enchantment.replace(".", "/"));
     }
 
+    private static final Set<ResourceLocation> PREPARED_MODELS = new HashSet<>();
+
     private final Map<String, BakedModel> overrides;
+
+    @SuppressWarnings("deprecation")
+    public EnchantedBookOverrides(ModelBakery bakery, BlockModel model, Function<ResourceLocation, UnbakedModel> modelGetter, List<ItemOverride> existing) {
+        super(bakery, model, modelGetter, existing);
+        this.overrides = setup(bakery, ModelBaker.of());
+    }
 
     /**
      * This constructor follows up on the initialization done in its super method,
@@ -108,44 +120,45 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      */
     public EnchantedBookOverrides(ModelBakery bakery, UnbakedModel enchantedBook, Function<ResourceLocation, UnbakedModel> modelGetter, Function<Material, TextureAtlasSprite> spriteGetter, List<ItemOverride> existing) {
         super(bakery, enchantedBook, modelGetter, spriteGetter, existing);
+        this.overrides = this.setup(bakery, ModelBaker.of());
+    }
 
+    private Map<String, BakedModel> setup(ModelBakery bakery, ModelBaker baker) {
         // bake overrides
         IForgeRegistry<Enchantment> enchantments = ForgeRegistries.ENCHANTMENTS;
-        int expected = enchantments.getKeys().size();
-        BakeResult result = bakeOverrides(bakery, modelGetter, spriteGetter, enchantments, expected);
+        BakeResult result = bakeOverrides(bakery, baker, enchantments);
 
-        this.overrides = result.overrides;
+        // log missing models
         if (!result.missing.isEmpty()) {
-            NekosEnchantedBooks.LOGGER.error("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", result.missing.stream().<CharSequence>map(NekosEnchantedBooks::getIdOf)::iterator));
+            NekosEnchantedBooks.LOGGER.warn("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", result.missing.stream().<CharSequence>map(NekosEnchantedBooks::getIdOf)::iterator));
         } else {
             NekosEnchantedBooks.LOGGER.info("Successfully loaded enchanted book models for all available enchantments");
         }
+
+        return result.overrides;
     }
 
     /**
      * Bakes the custom overrides used for the enchanted books.
      *
      * @param bakery       The model bakery
-     * @param spriteGetter The sprite getter for model baking
+     * @param modelBaker   The model baker to use with the bakery
      * @param enchantments The enchantments to automatically load models for
      * @param expected     The expected number of enchantments to load models for
      * @return The map of enchantment IDs to their respective baked models
      */
-    private static BakeResult bakeOverrides(ModelBakery bakery, Function<ResourceLocation, UnbakedModel> modelGetter, Function<Material, TextureAtlasSprite> spriteGetter, Iterable<Enchantment> enchantments, int expected) {
+    private static BakeResult bakeOverrides(ModelBakery bakery, ModelBaker modelBaker, Iterable<Enchantment> enchantments) {
         ImmutableMap.Builder<String, BakedModel> overrides = ImmutableMap.builder();
         ImmutableSet.Builder<Enchantment> missing = ImmutableSet.builder();
         enchantments.forEach(enchantment -> {
             ResourceLocation model = getEnchantedBookModel(enchantment);
-
-            if (!bakery.resourceManager.hasResource(new ResourceLocation(model.getNamespace(), "models/" + model.getPath() + ".json"))) {
+            if (!PREPARED_MODELS.contains(model)) {
                 missing.add(enchantment);
                 return;
             }
 
-            bakery.getModel(model).getMaterials(modelGetter, Sets.newLinkedHashSet());
-
             // Now we are ready to bake the custom model and add it to our own overrides.
-            BakedModel baked = bakery.bake(model, BlockModelRotation.X0_Y0, spriteGetter);
+            BakedModel baked = modelBaker.bake(bakery, model, BlockModelRotation.X0_Y0);
             if (baked == null) {
                 missing.add(enchantment);
                 return;
@@ -156,9 +169,35 @@ public final class EnchantedBookOverrides extends ItemOverrides {
         return new BakeResult(overrides, missing);
     }
 
+    static void prepare() {
+        ForgeRegistries.ENCHANTMENTS.forEach(enchantment -> {
+            ResourceLocation model = getEnchantedBookModel(enchantment);
+            if (!Minecraft.getInstance().getResourceManager().hasResource(new ResourceLocation(model.getNamespace(), "models/" + model.getPath() + ".json"))) {
+                return;
+            }
+
+            PREPARED_MODELS.add(model);
+            ModelLoader.addSpecialModel(model);
+        });
+    }
+
+    @FunctionalInterface
+    private interface ModelBaker {
+        @SuppressWarnings("deprecation")
+        static ModelBaker of() {
+            return ModelBakery::bake;
+        }
+
+        static ModelBaker of(Function<Material, TextureAtlasSprite> spriteGetter) {
+            return (b, n, r) -> b.bake(n, r, spriteGetter);
+        }
+
+        BakedModel bake(ModelBakery bakery, ResourceLocation model, ModelState state);
+    }
+
     /**
      * Holds the result of the model baking done in
-     * {@link #bakeOverrides(ModelBakery, Function, Function, Iterable, int)}.
+     * {@link #bakeOverrides(ModelBakery, ModelBaker, Iterable)}.
      *
      * @param overrides The baked overrides to be used by {@link EnchantedBookOverrides}
      * @param missing   The enchantments that are missing models
