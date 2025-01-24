@@ -21,6 +21,6 @@ description='''A small mod that enables adding unique textures for Enchanted Boo
 [[dependencies.nebs]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16,1.17)"
+    versionRange="[1.16.1,1.17)"
     ordering="NONE"
     side="BOTH"

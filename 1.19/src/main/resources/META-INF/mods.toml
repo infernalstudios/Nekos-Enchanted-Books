@@ -16,11 +16,11 @@ description='''A small mod that enables adding unique textures for Enchanted Boo
     mandatory=true
     versionRange="[41.0.94,)" # GatherDataEvent was moved
     ordering="NONE"
-    side="CLIENT"
+    side="BOTH"
 
 [[dependencies.nebs]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19,1.20)"
+    versionRange="[1.19,1.19.3)"
     ordering="NONE"
     side="BOTH"
