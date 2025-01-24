@@ -1,5 +1,5 @@
 modLoader="javafml" #mandatory
-loaderVersion="[47,)" #mandatory
+loaderVersion="[46,)" #mandatory
 license="All rights reserved"
 
 [[mods]] #mandatory
@@ -14,13 +14,13 @@ description='''A small mod that enables adding unique textures for Enchanted Boo
 [[dependencies.nebs]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[47,)" #mandatory
+    versionRange="[46,)" #mandatory
     ordering="NONE"
     side="CLIENT"
 
 [[dependencies.nebs]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.20.1,)"
+    versionRange="[1.20,)"
     ordering="NONE"
     side="BOTH"
