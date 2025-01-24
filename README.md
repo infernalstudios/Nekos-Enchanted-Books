@@ -8,8 +8,8 @@ Neko's Enchanted Books is a small mod that enables adding unique textures for En
 
 Since 2.0, Neko's Enchanted Books now features an automatic model loading system, where models are loaded automatically from a specific path for the enchantment you want to add. Here is a detailed description of how this system works and how you can use it yourself:
 
-- All models are automatically loaded from the root folder `assets/nebs/models/item`. Each model is rganized into the enchantment's description ID (`Enchantment.getDescriptionId()`) where each point is a folder separation.
-  - For example, if you want to load a model for your enchantment of key `enchantment.mymod.overpowered`, your model must exist in `assets/nebs/models/item/enchantment/mymod/overpowered.json`. **It is strongly recommended** that your model parents off of `minecraft:item/enchanted_book` instead of `minecraft:item/generated`, so any custom additions made to the base model are reflected in yours.
+- All models are automatically loaded from the root folder `assets/nebs/models/item`. Each model is organized into the enchantment's description ID (`Enchantment.getDescriptionId()`) where each point is a folder separation. The prefix `enchantment.` is automatically removed from this ID if it exists.
+  - For example, if you want to load a model for your enchantment of key `enchantment.mymod.overpowered`, your model must exist in `assets/nebs/models/item/mymod/overpowered.json`. **It is strongly recommended** that your model parents off of `minecraft:item/enchanted_book` instead of `minecraft:item/generated`, so any custom additions made to the base model are reflected in yours.
 - The placement of the texture you would like to use does not matter, as long as it is properly referenced in your model file. If you look at any of NEBs's own models as an example, you will see that the `layer0` texture simply points to a texture image that is in the same structure as the model files are. This makes it easy for NEBs to generate its own models, but is not a requirement for you.
   - If you are a modder and are interested in a data generator for your textures, you should read the documentation found in `EnchantedBookModelProvider`.
 - If a model does not exist for a registered enchantment when models are baked, then your enchantment is simply ignored and the base `minecraft:item/enchanted_book` is used instead. There is no override or fake model, the vanilla model is used directly.
@@ -20,6 +20,8 @@ If you are interested in learning more about how our custom item model system wo
 ## Adding Native Compatibility
 
 To add native compatibility for a mod in NEBs itself, the process is mostly the same. Make sure the texture exists in the correct path in `assets/nebs/textures/item`, run the data generator with `runData`, and the accompanying model files should now exist.
+
+If you want to re-use an existing texture for other enchantments, you should add to the `overrides.json` file located in `assets/nebs`.
 
 > [!IMPORTANT]
 > If you run this mod in your development environment, remember to always run `runData` if you have added, moved, or deleted any texture files before doing `runClient`. If you don't, the model files won't exist and your textures will not load into the game.
