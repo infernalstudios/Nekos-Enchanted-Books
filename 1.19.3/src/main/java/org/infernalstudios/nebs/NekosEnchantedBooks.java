@@ -1,5 +1,6 @@
 package org.infernalstudios.nebs;
 
+import net.minecraft.DetectedVersion;
 import net.minecraft.SharedConstants;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.metadata.PackMetadataGenerator;
@@ -83,28 +84,5 @@ public class NekosEnchantedBooks {
 
         // native enchanted book models
         generator.addProvider(event.includeClient(), new EnchantedBookModelProvider(generator.getPackOutput(), NekosEnchantedBooks.MOD_ID, event.getExistingFileHelper()));
-
-        // pack.mcmeta
-        generator.addProvider(true, new PackMetadataGenerator(generator.getPackOutput()) {
-            {
-                // gets the pack versions
-                int resourcePackFormat = SharedConstants.getCurrentVersion().getPackVersion(PackType.CLIENT_RESOURCES);
-                int dataPackFormat = SharedConstants.getCurrentVersion().getPackVersion(PackType.SERVER_DATA);
-                Map<@NotNull PackType, @NotNull Integer> packTypes = Map.of(
-                    PackType.CLIENT_RESOURCES, resourcePackFormat,
-                    PackType.SERVER_DATA, dataPackFormat
-                );
-
-                // adds to the generator with the correct info
-                this.add(
-                    PackMetadataSection.TYPE,
-                    new PackMetadataSection(
-                        Component.translatable("pack.nebs.description"),
-                        SharedConstants.getCurrentVersion().getPackVersion(PackType.CLIENT_RESOURCES),
-                        packTypes
-                    )
-                );
-            }
-        });
     }
 }
