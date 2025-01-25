@@ -1,4 +1,4 @@
-// 1.20.1	2025-01-23T18:28:07.082486495	Item Models: nebs
+// 1.19.3	2025-01-25T18:21:42.47244913	Item Models: nebs
 a4ad5299d9c1b648feb0e01d827514b0939094d2 assets/nebs/models/item/aileron/cloudskipper.json
 84a8f94268dc92acd2177178047391b76f1ef6da assets/nebs/models/item/aileron/smokestack.json
 88cd33cc2dafc818d788b81838d6ce10a849d616 assets/nebs/models/item/airhop/air_hop.json
@@ -304,6 +304,7 @@ f222e6ab55593d47579863085680b80f9282ca95 assets/nebs/models/item/minecraft/sharp
 b5c787e42bc9f2958a0979fbc9c1ff4cfa3573ff assets/nebs/models/item/minecraft/smite.json
 5450fe86b0c3ad7c7bd7710acebba39bb645d369 assets/nebs/models/item/minecraft/soul_speed.json
 5c18c7c2331fe1c6f14e1d7a273746a32689344a assets/nebs/models/item/minecraft/sweeping.json
+5c18c7c2331fe1c6f14e1d7a273746a32689344a assets/nebs/models/item/minecraft/sweeping_edge.json
 06c22744974bde8cc13f9c31f059c5d0d8f77fa3 assets/nebs/models/item/minecraft/swift_sneak.json
 7ee3cdee231cfa9efc1dbdf78557b4e3fc401de6 assets/nebs/models/item/minecraft/thorns.json
 da8c187bc0e53d4eeb03626bcb33162f44c7f2cb assets/nebs/models/item/minecraft/unbreaking.json

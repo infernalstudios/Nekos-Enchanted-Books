@@ -11,6 +11,9 @@
   "minecraft.wind_burst": [
     "mace_backport.wind_burst"
   ],
+  "minecraft.sweeping": [
+    "minecraft.sweeping_edge"
+  ],
 
   "miningmaster.leeching": [
     "wonderful_enchantments.leeching"
