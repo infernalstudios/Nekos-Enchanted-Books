@@ -1,0 +1,129 @@
+{
+  "minecraft.breach": [
+    "mace_backport.breach"
+  ],
+  "minecraft.density": [
+    "mace_backport.density"
+  ],
+  "minecraft.swift_sneak": [
+    "wildbackport.swift_sneak"
+  ],
+  "minecraft.wind_burst": [
+    "mace_backport.wind_burst"
+  ],
+  "minecraft.sweeping": [
+    "minecraft.sweeping_edge"
+  ],
+
+  "miningmaster.leeching": [
+    "wonderful_enchantments.leeching"
+  ],
+
+  "ensorcellation.excavating": [
+    "blockswapper.excavating"
+  ],
+  "ensorcellation.exp_boost": [
+    "ensorcellation.xp_boost"
+  ],
+  "ensorcellation.hunter": [
+    "wonderful_enchantments.hunter",
+    "majruszsenchantments.hunter"
+  ],
+  "ensorcellation.leech": [
+    "wonderful_enchantments.leech",
+    "majruszsenchantments.leech"
+  ],
+  "ensorcellation.magic_protection": [
+    "sortilege.magic_protection",
+    "apotheosis.magic_protection",
+    "wonderful_enchantments.magic_protection",
+    "majruszsenchantments.magic_protection",
+    "spells_and_shields.magic_protection"
+  ],
+  "ensorcellation.quick_draw": [
+    "ma-enchants.quick_draw"
+  ],
+  "ensorcellation.vitality": [
+    "wonderful_enchantments.vitality",
+    "majruszsenchantments.vitality"
+  ],
+
+  "apotheosis.berserkers_fury": [
+    "apotheosis.beserkers_fury"
+  ],
+
+  "wonderful_enchantments.absorber": [
+    "majruszsenchantments.absorber"
+  ],
+  "wonderful_enchantments.corrosion_curse": [
+    "majruszsenchantments.corrosion_curse"
+  ],
+  "wonderful_enchantments.dodge": [
+    "majruszsenchantments.dodge"
+  ],
+  "wonderful_enchantments.elder_guardian_favor": [
+    "majruszsenchantments.elder_guardian_favor"
+  ],
+  "wonderful_enchantments.enlightenment": [
+    "majruszsenchantments.enlightenment"
+  ],
+  "wonderful_enchantments.fatigue_curse": [
+    "majruszsenchantments.fatigue_curse"
+  ],
+  "wonderful_enchantments.fishing_fanatic": [
+    "majruszsenchantments.fishing_fanatic"
+  ],
+  "wonderful_enchantments.fuse_cutter": [
+    "majruszsenchantments.fuse_cutter"
+  ],
+  "wonderful_enchantments.harvester": [
+    "majruszsenchantments.harvester"
+  ],
+  "wonderful_enchantments.horse_frost_walker": [
+    "majruszsenchantments.horse_frost_walker"
+  ],
+  "wonderful_enchantments.horse_protection": [
+    "majruszsenchantments.horse_protection",
+    "betterdefaultbiomes.horse_protection"
+  ],
+  "wonderful_enchantments.immortality": [
+    "majruszsenchantments.immortality"
+  ],
+  "wonderful_enchantments.incompatibility_curse": [
+    "majruszsenchantments.incompatibility_curse"
+  ],
+  "wonderful_enchantments.mithridatism": [
+    "majruszsenchantments.mithridatism"
+  ],
+  "wonderful_enchantments.sixth_sense": [
+    "majruszsenchantments.sixth_sense"
+  ],
+  "wonderful_enchantments.smelter": [
+    "majruszsenchantments.smelter"
+  ],
+  "wonderful_enchantments.telekinesis": [
+    "majruszsenchantments.telekinesis"
+  ],
+  "wonderful_enchantments.vampirism_curse": [
+    "majruszsenchantments.vampirism_curse"
+  ],
+
+  "ma-enchants.floating": [
+    "betterdefaultbiomes.floating"
+  ],
+  "ma-enchants.momentum": [
+    "momentum.momentum"
+  ],
+
+  "vanillatweaks.siphon": [
+    "shulker_enchantments.siphon"
+  ],
+
+  "betterarcheology.tunneling": [
+    "betterarcheology.tunelling"
+  ],
+
+  "spells_and_shields.mana_max": [
+    "spells_and_shields.max_mana"
+  ]
+}

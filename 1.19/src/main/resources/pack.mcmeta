@@ -1,6 +1,9 @@
 {
     "pack": {
-        "description": "examplemod resources",
-        "pack_format": 9
+        "description": {
+            "translate": "pack.nebs.description"
+        },
+        "pack_format": 9,
+        "forge:data_pack_format": 10
     }
 }
