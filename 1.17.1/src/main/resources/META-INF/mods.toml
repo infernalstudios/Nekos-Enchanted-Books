@@ -9,7 +9,7 @@ displayName="Neko's Enchanted Books"
 updateJSONURL="https://infernalstudios.org/api/mods/nekosenchantedbooks/forge"
 credits="Nekomaster, CGessinger, Jonathing"
 authors="Infernal Studios"
-description='''A small mod that enables adding unique textures for Enchanted Books. See our CurseForge page for what mods are natively supported and how you can add your own support!'''
+description='''A small mod that enables adding unique textures for Enchanted Books. See our mod's page for more details on what mods are natively supported and how you can add your own support!'''
 
 [[dependencies.nebs]]
     modId="forge"
@@ -23,5 +23,5 @@ description='''A small mod that enables adding unique textures for Enchanted Boo
     mandatory=true
     versionRange="[1.17.1,1.18)"
     ordering="NONE"
-    side="BOTH"
+    side="CLIENT"
 
