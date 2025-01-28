@@ -4,6 +4,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -42,7 +43,7 @@ public class NekosEnchantedBooks {
      * </ol>
      */
     public NekosEnchantedBooks() {
-        // Newer Forge versions make this simpler, but here the old way is used for backwards compatibility with older Forge versions
+        // If this mod is loaded on a server, don't require clients to have it
         ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class,
             () -> new IExtensionPoint.DisplayTest(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
 
@@ -50,8 +51,8 @@ public class NekosEnchantedBooks {
         if (FMLEnvironment.dist != Dist.CLIENT) return;
 
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modBus.<ModelRegistryEvent>addListener(event -> EnchantedBookOverrides.prepare(ModelLoader::addSpecialModel));
         modBus.addListener(this::gatherData);
-        modBus.<ModelRegistryEvent>addListener(event -> EnchantedBookOverrides.prepare());
     }
 
     /**

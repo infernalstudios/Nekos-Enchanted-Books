@@ -2,14 +2,11 @@ package org.infernalstudios.nebs;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.IExtensionPoint;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,16 +36,10 @@ public class NekosEnchantedBooks {
      * </ol>
      */
     public NekosEnchantedBooks() {
-        // Newer Forge versions make this simpler, but here the old way is used for backwards compatibility with older Forge versions
-        ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class,
-            IExtensionPoint.DisplayTest.IGNORE_ALL_VERSION);
-
-        // The rest is client-only stuff
-        if (FMLEnvironment.dist != Dist.CLIENT) return;
-
+        // This is a client-side only mod, enforced by mods.toml's clientSideOnly flag
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modBus.<ModelEvent.RegisterAdditional>addListener(event -> EnchantedBookOverrides.prepare(event::register));
         modBus.addListener(this::gatherData);
-        modBus.addListener(EnchantedBookOverrides::prepare);
     }
 
     /**

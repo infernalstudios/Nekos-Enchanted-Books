@@ -3,6 +3,7 @@ package org.infernalstudios.nebs;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.IExtensionPoint;
@@ -10,7 +11,6 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
-import net.minecraftforge.network.NetworkConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.infernalstudios.nebs.mixin.BlockModelMixin;
@@ -41,16 +41,16 @@ public class NekosEnchantedBooks {
      * </ol>
      */
     public NekosEnchantedBooks() {
-        // Newer Forge versions make this simpler, but here the old way is used for backwards compatibility with older Forge versions
+        // If this mod is loaded on a server, don't require clients to have it
         ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class,
-            () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+            () -> new IExtensionPoint.DisplayTest(() -> IExtensionPoint.DisplayTest.IGNORESERVERONLY, (a, b) -> true));
 
-        // The rest is client-only stuff
+        // This is a client-side only mod
         if (FMLEnvironment.dist != Dist.CLIENT) return;
 
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modBus.<ModelEvent.RegisterAdditional>addListener(event -> EnchantedBookOverrides.prepare(event::register));
         modBus.addListener(this::gatherData);
-        modBus.addListener(EnchantedBookOverrides::prepare);
     }
 
     /**

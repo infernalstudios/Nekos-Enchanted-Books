@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
@@ -178,9 +179,9 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * {@link ModelEvent.RegisterAdditional} event, we can save the trouble of needing to manually resolve and bake them
      * and their parents ourselves.
      *
-     * @param event The event to register the models to
+     * @param models The consumer to accept new models to be registered
      */
-    static void prepare(ModelEvent.RegisterAdditional event) {
+    static void prepare(Consumer<ResourceLocation> models) {
         ForgeRegistries.ENCHANTMENTS.forEach(enchantment -> {
             ResourceLocation model = getEnchantedBookModel(enchantment);
             if (Minecraft.getInstance().getResourceManager().getResource(new ResourceLocation(model.getNamespace(), "models/" + model.getPath() + ".json")).isEmpty()) {
@@ -188,7 +189,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
             }
 
             PREPARED_MODELS.add(model);
-            event.register(model);
+            models.accept(model);
         });
     }
 

@@ -28,6 +28,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
@@ -198,9 +199,9 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * Prepares all custom models to be used by NEBs. By registering them in {@link ModelLoader}, we can save the
      * trouble of needing to manually resolve and bake them and their parents ourselves.
      *
-     * @see net.minecraftforge.client.event.ModelRegistryEvent
+     * @param models The consumer to accept new models to be registered
      */
-    static void prepare() {
+    static void prepare(Consumer<ResourceLocation> models) {
         ForgeRegistries.ENCHANTMENTS.forEach(enchantment -> {
             ResourceLocation model = getEnchantedBookModel(enchantment);
             if (!Minecraft.getInstance().getResourceManager().hasResource(new ResourceLocation(model.getNamespace(), "models/" + model.getPath() + ".json"))) {
@@ -208,7 +209,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
             }
 
             PREPARED_MODELS.add(model);
-            ModelLoader.addSpecialModel(model);
+            models.accept(model);
         });
     }
 

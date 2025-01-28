@@ -4,6 +4,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ExtensionPoint;
@@ -43,16 +44,15 @@ public class NekosEnchantedBooks {
      * </ol>
      */
     public NekosEnchantedBooks() {
-        // Newer Forge versions make this simpler, but here the old way is used for backwards compatibility with older Forge versions
+        // If this mod is loaded on a server, don't require clients to have it
         ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST,
             () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
 
-        // The rest is client-only stuff
-        // DistExecutor instead of checking FMLEnvironment.dist because of a Java 8 issue
+        // This is a client-side only mod
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+            modBus.<ModelRegistryEvent>addListener(event -> EnchantedBookOverrides.prepare(ModelLoader::addSpecialModel));
             modBus.addListener(this::gatherData);
-            modBus.<ModelRegistryEvent>addListener(event -> EnchantedBookOverrides.prepare());
         });
     }
 
