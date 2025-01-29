@@ -90,6 +90,7 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
         return new ResourceLocation(NekosEnchantedBooks.MOD_ID, "item/" + enchantment.replace(".", "/"));
     }
 
+    private static final Set<Enchantment> PREPARED_ENCHANTMENTS = new HashSet<>();
     private static final Set<ResourceLocation> PREPARED_MODELS = new HashSet<>();
 
     private final Map<String, IBakedModel> overrides;
@@ -151,7 +152,7 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      */
     private Map<String, IBakedModel> setup(ModelBakery bakery, ModelBaker baker) {
         // bake overrides
-        IForgeRegistry<Enchantment> enchantments = ForgeRegistries.ENCHANTMENTS;
+        Set<Enchantment> enchantments = PREPARED_ENCHANTMENTS;
         BakeResult result = bakeOverrides(bakery, baker, enchantments);
 
         // log missing models
@@ -207,6 +208,7 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
                 return;
             }
 
+            PREPARED_ENCHANTMENTS.add(enchantment);
             PREPARED_MODELS.add(model);
             models.accept(model);
         });
