@@ -9,11 +9,15 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.infernalstudios.nebs.mixin.BlockModelMixin;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * <h1>Neko's Enchanted Books</h1>
@@ -29,6 +33,26 @@ public class NekosEnchantedBooks {
     public static final String MOD_ID = "nebs";
     /** The logger for this mod. Package-private since it doesn't need to be accessed in many places. */
     static final Logger LOGGER = LogManager.getLogger();
+
+    /**
+     * A set of enchantments that are known to not actually be enchantments or do not have an associated enchanted book.
+     * You should add to this set during {@link FMLClientSetupEvent} using
+     * {@link net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent#enqueueWork(Runnable)
+     * event.enqueueWork(Runnable)} if you have any custom enchantments that fall under this category.
+     */
+    public static final Set<String> NON_ENCHANTMENTS = new HashSet<>();
+
+    /**
+     * Gets the NEBs ID of the given enchantment, which is the base {@link Enchantment#getDescriptionId()} while
+     * removing the {@code enchantment.} prefix if it exists.
+     *
+     * @param enchantment The enchantment to get the ID of
+     * @return The NEBs ID of the enchantment
+     */
+    static String getIdOf(Enchantment enchantment) {
+        String id = enchantment.getDescriptionId();
+        return id.startsWith("enchantment.") ? id.substring("enchantment.".length()) : id;
+    }
 
     /**
      * The constructor for the mod. This does two things:
@@ -49,20 +73,13 @@ public class NekosEnchantedBooks {
         if (FMLEnvironment.dist != Dist.CLIENT) return;
 
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modBus.<FMLClientSetupEvent>addListener(event -> event.enqueueWork(this::setup));
         modBus.<ModelEvent.RegisterAdditional>addListener(event -> EnchantedBookOverrides.prepare(event::register));
         modBus.addListener(this::gatherData);
     }
 
-    /**
-     * Gets the NEBs ID of the given enchantment, which is the base {@link Enchantment#getDescriptionId()} while
-     * removing the {@code enchantment.} prefix if it exists.
-     *
-     * @param enchantment The enchantment to get the ID of
-     * @return The NEBs ID of the enchantment
-     */
-    static String getIdOf(Enchantment enchantment) {
-        String id = enchantment.getDescriptionId();
-        return id.startsWith("enchantment.") ? id.substring("enchantment.".length()) : id;
+    private void setup() {
+        NON_ENCHANTMENTS.add("apotheosis.infusion");
     }
 
     /**
