@@ -149,7 +149,8 @@ public final class EnchantedBookOverrides extends ItemOverrides {
         enchantments.forEach(enchantment -> {
             ResourceLocation model = getEnchantedBookModel(enchantment);
             if (!PREPARED_MODELS.contains(model)) {
-                missing.add(enchantment);
+                if (!NekosEnchantedBooks.NON_ENCHANTMENTS.contains(enchantment))
+                    missing.add(enchantment);
                 return;
             }
 

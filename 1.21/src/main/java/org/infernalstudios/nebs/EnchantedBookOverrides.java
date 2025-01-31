@@ -188,7 +188,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
         Set<String> missing = new TreeSet<>(Comparator.naturalOrder());
         enchantments.forEach(enchantment -> {
             String id = NekosEnchantedBooks.getIdOf(enchantment);
-            if (id != null && !TEXTURED_ENCHANTMENTS.contains(id))
+            if (id != null && !TEXTURED_ENCHANTMENTS.contains(id) && !NekosEnchantedBooks.NON_ENCHANTMENTS.contains(id))
                 missing.add(id);
         });
 
