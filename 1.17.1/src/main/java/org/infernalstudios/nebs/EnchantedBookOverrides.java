@@ -202,13 +202,18 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * @param models The consumer to accept new models to be registered
      */
     static void prepare(Consumer<ResourceLocation> models) {
-        ForgeRegistries.ENCHANTMENTS.forEach(enchantment -> {
+        ForgeRegistries.ENCHANTMENTS.forEach(e -> {
+            // save enchantment
+            String enchantment = NekosEnchantedBooks.getIdOf(e);
+            PREPARED_ENCHANTMENTS.add(enchantment);
+
+            // try and find model for enchantment
             ResourceLocation model = getEnchantedBookModel(enchantment);
             if (!Minecraft.getInstance().getResourceManager().hasResource(new ResourceLocation(model.getNamespace(), "models/" + model.getPath() + ".json"))) {
                 return;
             }
 
-            PREPARED_ENCHANTMENTS.add(enchantment);
+            // model exists? prepare it
             PREPARED_MODELS.add(model);
             models.accept(model);
         });
