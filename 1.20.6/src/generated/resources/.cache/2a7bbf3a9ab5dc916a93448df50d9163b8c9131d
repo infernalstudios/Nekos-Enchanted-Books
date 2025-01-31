@@ -1,4 +1,4 @@
-// 1.20.6	2025-01-31T10:58:01.675659973	Item Models: nebs
+// 1.20.6	2025-01-31T14:20:52.567999656	Item Models: nebs
 a4ad5299d9c1b648feb0e01d827514b0939094d2 assets/nebs/models/item/aileron/cloudskipper.json
 84a8f94268dc92acd2177178047391b76f1ef6da assets/nebs/models/item/aileron/smokestack.json
 88cd33cc2dafc818d788b81838d6ce10a849d616 assets/nebs/models/item/airhop/air_hop.json
@@ -193,6 +193,7 @@ f93597d2319fc07f07d85cc37c71de4992e7da7b assets/nebs/models/item/ensorcellation/
 cd2b27bc93c894240deab8f81037cb80a594f029 assets/nebs/models/item/ensorcellation/weeding.json
 65f8168997ce5ff2ce7a0b26f8b1b92a73d3c845 assets/nebs/models/item/ensorcellation/xp_boost.json
 9efa3b737007cda4a5529065566bf2e5709924cb assets/nebs/models/item/farmersdelight/backstabbing.json
+d584432c7916ffc34b7a015807e673143f2ca861 assets/nebs/models/item/feathers/lightweight.json
 77638e4c16e4bb6e227b1588efc4561a70b2c12f assets/nebs/models/item/fins/crabs_favor.json
 5560eeef38fab1e5d2d998e3d13d81c37155af7e assets/nebs/models/item/fins/fluked_edge.json
 90e187bed1902437dcd184e86ee57e1058b9655c assets/nebs/models/item/fins/uppercutting.json
