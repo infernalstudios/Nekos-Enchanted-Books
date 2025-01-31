@@ -20,13 +20,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraftforge.client.event.ModelEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -58,7 +59,7 @@ import java.util.function.Function;
  *     ignored and the base {@code minecraft:item/enchanted_book} model is used instead. There is no override or fake
  *     model, the vanilla model is used directly.</li>
  *     <ul>
- *         <li>If there are any missing models for enchantments, a warning will be displayed to the console log for
+ *         <li>If there are any failed models for enchantments, a warning will be displayed to the console log for
  *         debugging purposes.</li>
  *     </ul>
  * </ul>
@@ -87,6 +88,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
         return model.id().getPath().substring("item/".length()).replace("/", ".");
     }
 
+    private static final Set<String> TEXTURED_ENCHANTMENTS = new HashSet<>();
     private static final Set<ModelResourceLocation> PREPARED_MODELS = new HashSet<>();
 
     private final Map<String, BakedModel> overrides;
@@ -130,11 +132,9 @@ public final class EnchantedBookOverrides extends ItemOverrides {
         // bake overrides
         BakeResult result = bakeOverrides(baker, spriteGetter, PREPARED_MODELS.size());
 
-        // log missing models
-        if (!result.missing.isEmpty()) {
-            NekosEnchantedBooks.LOGGER.warn("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", result.missing));
-        } else {
-            NekosEnchantedBooks.LOGGER.info("Successfully loaded enchanted book models for all available enchantments");
+        // log failed models
+        if (!result.failed.isEmpty()) {
+            NekosEnchantedBooks.LOGGER.warn("Failed to load enchanted book models for the following enchantments: [{}]", String.join(", ", result.failed));
         }
 
         return result.overrides;
@@ -150,20 +150,21 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      */
     private static BakeResult bakeOverrides(ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter, int expected) {
         ImmutableMap.Builder<String, BakedModel> overrides = ImmutableMap.builderWithExpectedSize(expected);
-        ImmutableSet.Builder<String> missing = ImmutableSet.builderWithExpectedSize(expected);
+        ImmutableSet.Builder<String> failed = ImmutableSet.builderWithExpectedSize(expected);
         PREPARED_MODELS.forEach(model -> {
             String enchantment = modelToEnchantment(model);
 
             // Now we are ready to bake the custom model and add it to our own overrides.
             BakedModel baked = baker.bake(model.id(), BlockModelRotation.X0_Y0, spriteGetter);
             if (baked == null) {
-                missing.add(enchantment);
+                failed.add(enchantment);
                 return;
             }
 
-            overrides.put(modelToEnchantment(model), baked);
+            TEXTURED_ENCHANTMENTS.add(enchantment);
+            overrides.put(enchantment, baked);
         });
-        return new BakeResult(overrides, missing);
+        return new BakeResult(overrides, failed);
     }
 
     /**
@@ -183,15 +184,30 @@ public final class EnchantedBookOverrides extends ItemOverrides {
         });
     }
 
+    static void validate(Iterable<Enchantment> enchantments) {
+        Set<String> missing = new TreeSet<>(Comparator.naturalOrder());
+        enchantments.forEach(enchantment -> {
+            String id = NekosEnchantedBooks.getIdOf(enchantment);
+            if (id != null && !TEXTURED_ENCHANTMENTS.contains(id))
+                missing.add(id);
+        });
+
+        if (!missing.isEmpty()) {
+            NekosEnchantedBooks.LOGGER.warn("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", missing));
+        } else {
+            NekosEnchantedBooks.LOGGER.info("Successfully loaded enchanted book models for all available enchantments");
+        }
+    }
+
     /**
      * Holds the result of the model baking done in {@link #bakeOverrides(ModelBaker, Function, int)}.
      *
      * @param overrides The baked overrides to be used by {@link EnchantedBookOverrides}
-     * @param missing   The enchantments that are missing models
+     * @param failed   The enchantments that are failed models
      */
-    private record BakeResult(Map<String, BakedModel> overrides, Set<String> missing) {
-        private BakeResult(ImmutableMap.Builder<String, BakedModel> overrides, ImmutableSet.Builder<String> missing) {
-            this(overrides.build(), missing.build());
+    private record BakeResult(Map<String, BakedModel> overrides, Set<String> failed) {
+        private BakeResult(ImmutableMap.Builder<String, BakedModel> overrides, ImmutableSet.Builder<String> failed) {
+            this(overrides.build(), failed.build());
         }
     }
 
