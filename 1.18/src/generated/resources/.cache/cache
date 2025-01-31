@@ -33,10 +33,13 @@ cf85232da778203e90797735ae8fd7b2f1cd6ace assets/nebs/models/item/apotheosis/bese
 64e7493262bb02cc1301bf8c45271d9684a50347 assets/nebs/models/item/apotheosis/boon_of_the_earth.json
 ae2636244ce4232daa701757542603d8008c6e57 assets/nebs/models/item/apotheosis/capturing.json
 35039f59407632142203d12df40bb03d9270ad12 assets/nebs/models/item/apotheosis/chainsaw.json
+3d90a61a52ccc334a68883c79a7ace1967652863 assets/nebs/models/item/apotheosis/chromatic.json
 3d90a61a52ccc334a68883c79a7ace1967652863 assets/nebs/models/item/apotheosis/chromatic_aberration.json
 aedfc9cb285ebfd39ba7e965955edacc8d273686 assets/nebs/models/item/apotheosis/crescendo.json
 b3f626dfabb931d86b8dd86f86b27a0f41636f10 assets/nebs/models/item/apotheosis/depth_miner.json
+64e7493262bb02cc1301bf8c45271d9684a50347 assets/nebs/models/item/apotheosis/earths_boon.json
 09d5fc153d09f8630f0c19d719c80e70e66b9f91 assets/nebs/models/item/apotheosis/endless_quiver.json
+4edf26ba07553a3cf5abd45f458a9d2a7e6d0711 assets/nebs/models/item/apotheosis/exploitation.json
 464174ba4523613d371a576320943357de29c6fa assets/nebs/models/item/apotheosis/growth_serum.json
 e1f886e122961f97ce1a551a3c83caf9ae6aacb9 assets/nebs/models/item/apotheosis/hell_infusion.json
 5ca5070f920a67cf2627731aaf401d9fce0f4631 assets/nebs/models/item/apotheosis/icy_thorns.json
@@ -53,6 +56,7 @@ bc145631cf5816b8048a72d7ded991b183baf673 assets/nebs/models/item/apotheosis/natu
 b5ae53b913b8ee96643af45edc9d2a2ee7e157d0 assets/nebs/models/item/apotheosis/sea_infusion.json
 a66da2958bfe8a21f34fe1d354c9882f135f98a3 assets/nebs/models/item/apotheosis/shield_bash.json
 4b4780590c72100d23ab10c7c23da0abd24766d2 assets/nebs/models/item/apotheosis/spear_fishing.json
+4b4780590c72100d23ab10c7c23da0abd24766d2 assets/nebs/models/item/apotheosis/spearfishing.json
 4ba8d0b33b5d2d03e894ddb2671c50501239fd8a assets/nebs/models/item/apotheosis/splitting.json
 1a36f2dcec8f8266ba6ad1d8848681ea98a37a76 assets/nebs/models/item/apotheosis/stable_footing.json
 e08c8324cf1167a0178f6a4ffc2efb2345b1cb58 assets/nebs/models/item/apotheosis/tempting.json

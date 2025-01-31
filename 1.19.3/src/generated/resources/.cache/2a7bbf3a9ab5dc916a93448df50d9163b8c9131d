@@ -1,4 +1,4 @@
-// 1.19.3	2025-01-25T18:21:42.47244913	Item Models: nebs
+// 1.19.3	2025-01-31T10:57:53.549743105	Item Models: nebs
 a4ad5299d9c1b648feb0e01d827514b0939094d2 assets/nebs/models/item/aileron/cloudskipper.json
 84a8f94268dc92acd2177178047391b76f1ef6da assets/nebs/models/item/aileron/smokestack.json
 88cd33cc2dafc818d788b81838d6ce10a849d616 assets/nebs/models/item/airhop/air_hop.json
@@ -34,10 +34,13 @@ c5ebb489924beff87873828e2e6a41eb411b30d6 assets/nebs/models/item/apotheosis/bers
 d40c62cd7bb37c3d1bd760d77b48072f056b5f7e assets/nebs/models/item/apotheosis/boon_of_the_earth.json
 c9ae3ebac99c076558d043ce56d2b53825fb8fda assets/nebs/models/item/apotheosis/capturing.json
 a2ce6331340e9855c230aadfc97a52b9d469b73f assets/nebs/models/item/apotheosis/chainsaw.json
+99b9d73e31a57100d16dee9411037edb30bd80fa assets/nebs/models/item/apotheosis/chromatic.json
 99b9d73e31a57100d16dee9411037edb30bd80fa assets/nebs/models/item/apotheosis/chromatic_aberration.json
 3729b04e1445d4cd407d9b38d2df88e0c3ecc2ed assets/nebs/models/item/apotheosis/crescendo.json
 8251671c5db672127271acccfabf870489aa4d1c assets/nebs/models/item/apotheosis/depth_miner.json
+d40c62cd7bb37c3d1bd760d77b48072f056b5f7e assets/nebs/models/item/apotheosis/earths_boon.json
 fa527de9159e9e25ecd69f701da988f0faf4efd3 assets/nebs/models/item/apotheosis/endless_quiver.json
+0c3b9442e1271ce58da1954aec825414df452f3a assets/nebs/models/item/apotheosis/exploitation.json
 a83f1c4a2a68e8781eddb53a867ca3c39596de66 assets/nebs/models/item/apotheosis/growth_serum.json
 bc052ca6392f8befda4e272f0d507fb7931f5610 assets/nebs/models/item/apotheosis/hell_infusion.json
 3d74c5600881648864eefc5b3f12f491df8ddc86 assets/nebs/models/item/apotheosis/icy_thorns.json
@@ -54,6 +57,7 @@ ef7001b4a7e8d2db761c1b871f345a8225285b7f assets/nebs/models/item/apotheosis/obli
 3faa693a41d9cd5e9b3afa532fd3e4d65afbf75d assets/nebs/models/item/apotheosis/sea_infusion.json
 dac4d002871e5e2320ff2249fff67cdede411169 assets/nebs/models/item/apotheosis/shield_bash.json
 6d43a09e59311bb6daf8ef02a782db7f737730ab assets/nebs/models/item/apotheosis/spear_fishing.json
+6d43a09e59311bb6daf8ef02a782db7f737730ab assets/nebs/models/item/apotheosis/spearfishing.json
 653b7fbd494bfd487d59ab08a867653f2fde1004 assets/nebs/models/item/apotheosis/splitting.json
 df5803589949181a5c287ca4056ae3fe074de038 assets/nebs/models/item/apotheosis/stable_footing.json
 0a0b59281c557bd2e15298dc85ae028a99e3564c assets/nebs/models/item/apotheosis/tempting.json
