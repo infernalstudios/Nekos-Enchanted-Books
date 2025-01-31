@@ -19,6 +19,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -28,6 +29,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -76,21 +78,11 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
     /** The name of the vanilla enchanted book model, used as a base for NEBs own models. */
     public static final String ENCHANTED_BOOK_UNBAKED_MODEL_NAME = "minecraft:item/enchanted_book";
 
-    /**
-     * Gets the expected location of a model for an enchanted book with the given enchantment.
-     *
-     * @param enchantment The enchantment to get the model location for
-     * @return The expected model location
-     */
-    public static ResourceLocation getEnchantedBookModel(Enchantment enchantment) {
-        return getEnchantedBookModel(NekosEnchantedBooks.getIdOf(enchantment));
-    }
-
     static ResourceLocation getEnchantedBookModel(String enchantment) {
         return new ResourceLocation(NekosEnchantedBooks.MOD_ID, "item/" + enchantment.replace(".", "/"));
     }
 
-    private static final Set<Enchantment> PREPARED_ENCHANTMENTS = new HashSet<>();
+    private static final Set<String> PREPARED_ENCHANTMENTS = new HashSet<>();
     private static final Set<ResourceLocation> PREPARED_MODELS = new HashSet<>();
 
     private final Map<String, IBakedModel> overrides;
@@ -152,12 +144,12 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      */
     private Map<String, IBakedModel> setup(ModelBakery bakery, ModelBaker baker) {
         // bake overrides
-        Set<Enchantment> enchantments = PREPARED_ENCHANTMENTS;
+        Set<String> enchantments = PREPARED_ENCHANTMENTS;
         BakeResult result = bakeOverrides(bakery, baker, enchantments);
 
         // log missing models
         if (!result.missing.isEmpty()) {
-            NekosEnchantedBooks.LOGGER.warn("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", result.missing.stream().<CharSequence>map(NekosEnchantedBooks::getIdOf)::iterator));
+            NekosEnchantedBooks.LOGGER.warn("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", result.missing));
         } else {
             NekosEnchantedBooks.LOGGER.info("Successfully loaded enchanted book models for all available enchantments");
         }
@@ -173,9 +165,9 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      * @param enchantments The enchantments to automatically load models for
      * @return The map of enchantment IDs to their respective baked models
      */
-    private static BakeResult bakeOverrides(ModelBakery bakery, ModelBaker modelBaker, Iterable<Enchantment> enchantments) {
+    private static BakeResult bakeOverrides(ModelBakery bakery, ModelBaker modelBaker, Iterable<String> enchantments) {
         ImmutableMap.Builder<String, IBakedModel> overrides = ImmutableMap.builder();
-        ImmutableSet.Builder<Enchantment> missing = ImmutableSet.builder();
+        ImmutableSet.Builder<String> missing = ImmutableSet.builder();
         enchantments.forEach(enchantment -> {
             ResourceLocation model = getEnchantedBookModel(enchantment);
             if (!PREPARED_MODELS.contains(model)) {
@@ -190,7 +182,7 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
                 return;
             }
 
-            overrides.put(enchantment.getDescriptionId(), baked);
+            overrides.put(enchantment, baked);
         });
         return new BakeResult(overrides, missing);
     }
@@ -257,11 +249,11 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
         /** The baked overrides to be used by {@link EnchantedBookOverrides} */
         private final Map<String, IBakedModel> overrides;
         /** The enchantments that are missing models */
-        private final Set<Enchantment> missing;
+        private final Set<String> missing;
 
-        private BakeResult(ImmutableMap.Builder<String, IBakedModel> overrides, ImmutableSet.Builder<Enchantment> missing) {
+        private BakeResult(ImmutableMap.Builder<String, IBakedModel> overrides, ImmutableSet.Builder<String> missing) {
             this.overrides = overrides.build();
-            this.missing = missing.build();
+            this.missing = Util.make(new TreeSet<>(), set -> set.addAll(missing.build()));
         }
     }
 

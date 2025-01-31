@@ -2,6 +2,7 @@ package org.infernalstudios.nebs;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.block.model.ItemOverride;
@@ -19,13 +20,14 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.IForgeRegistry;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -74,21 +76,11 @@ public final class EnchantedBookOverrides extends ItemOverrides {
     /** The name of the vanilla enchanted book model, used as a base for NEBs own models. */
     public static final String ENCHANTED_BOOK_UNBAKED_MODEL_NAME = "minecraft:item/enchanted_book";
 
-    /**
-     * Gets the expected location of a model for an enchanted book with the given enchantment.
-     *
-     * @param enchantment The enchantment to get the model location for
-     * @return The expected model location
-     */
-    public static ResourceLocation getEnchantedBookModel(Enchantment enchantment) {
-        return getEnchantedBookModel(NekosEnchantedBooks.getIdOf(enchantment));
-    }
-
     static ResourceLocation getEnchantedBookModel(String enchantment) {
         return new ResourceLocation(NekosEnchantedBooks.MOD_ID, "item/" + enchantment.replace(".", "/"));
     }
 
-    private static final Set<Enchantment> PREPARED_ENCHANTMENTS = new HashSet<>();
+    private static final Set<String> PREPARED_ENCHANTMENTS = new HashSet<>();
     private static final Set<ResourceLocation> PREPARED_MODELS = new HashSet<>();
 
     private final Map<String, BakedModel> overrides;
@@ -131,12 +123,12 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      */
     private Map<String, BakedModel> setup(ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter) {
         // bake overrides
-        Set<Enchantment> enchantments = PREPARED_ENCHANTMENTS;
+        Set<String> enchantments = PREPARED_ENCHANTMENTS;
         BakeResult result = bakeOverrides(baker, spriteGetter, enchantments, enchantments.size());
 
         // log missing models
         if (!result.missing.isEmpty()) {
-            NekosEnchantedBooks.LOGGER.warn("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", result.missing.stream().<CharSequence>map(NekosEnchantedBooks::getIdOf)::iterator));
+            NekosEnchantedBooks.LOGGER.warn("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", result.missing));
         } else {
             NekosEnchantedBooks.LOGGER.info("Successfully loaded enchanted book models for all available enchantments");
         }
@@ -153,9 +145,9 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * @param expected     The expected number of enchantments to load models for
      * @return The map of enchantment IDs to their respective baked models
      */
-    private static BakeResult bakeOverrides(ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter, Iterable<Enchantment> enchantments, int expected) {
+    private static BakeResult bakeOverrides(ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter, Iterable<String> enchantments, int expected) {
         ImmutableMap.Builder<String, BakedModel> overrides = ImmutableMap.builderWithExpectedSize(expected);
-        ImmutableSet.Builder<Enchantment> missing = ImmutableSet.builderWithExpectedSize(expected);
+        ImmutableSet.Builder<String> missing = ImmutableSet.builderWithExpectedSize(expected);
         enchantments.forEach(enchantment -> {
             ResourceLocation model = getEnchantedBookModel(enchantment);
             if (!PREPARED_MODELS.contains(model)) {
@@ -170,7 +162,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
                 return;
             }
 
-            overrides.put(enchantment.getDescriptionId(), baked);
+            overrides.put(enchantment, baked);
         });
         return new BakeResult(overrides, missing);
     }
@@ -206,9 +198,9 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * @param overrides The baked overrides to be used by {@link EnchantedBookOverrides}
      * @param missing   The enchantments that are missing models
      */
-    private record BakeResult(Map<String, BakedModel> overrides, Set<Enchantment> missing) {
-        private BakeResult(ImmutableMap.Builder<String, BakedModel> overrides, ImmutableSet.Builder<Enchantment> missing) {
-            this(overrides.build(), missing.build());
+    private record BakeResult(Map<String, BakedModel> overrides, Set<String> missing) {
+        private BakeResult(ImmutableMap.Builder<String, BakedModel> overrides, ImmutableSet.Builder<String> missing) {
+            this(overrides.build(), Util.make(new TreeSet<>(Comparator.naturalOrder()), set -> set.addAll(missing.build())));
         }
     }
 
@@ -230,9 +222,8 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      */
     @Override
     public BakedModel resolve(BakedModel model, ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
-        Enchantment enchantment = getEnchantment(stack);
-        if (enchantment != null) {
-            String key = enchantment.getDescriptionId();
+        for (Enchantment enchantment : getEnchantments(stack)) {
+            String key = NekosEnchantedBooks.getIdOf(enchantment);
             if (this.overrides.containsKey(key)) {
                 return this.overrides.get(key);
             }
@@ -248,8 +239,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * @param stack The stack to get the enchantment from
      * @return The enchantment of the stack, or {@code null} if it does not have any
      */
-    private static @Nullable Enchantment getEnchantment(ItemStack stack) {
-        Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(stack);
-        return !enchantments.isEmpty() ? enchantments.keySet().iterator().next() : null;
+    private static Set<Enchantment> getEnchantments(ItemStack stack) {
+        return EnchantmentHelper.getEnchantments(stack).keySet();
     }
 }
