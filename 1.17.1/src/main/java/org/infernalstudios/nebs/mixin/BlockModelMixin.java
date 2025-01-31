@@ -58,10 +58,9 @@ public class BlockModelMixin {
      * This injector exists for backwards compatibility with older versions of Minecraft and Forge that do not strictly
      * use Forge's sprite getter.
      *
-     * @param bakery       The model bakery
-     * @param model        The unbaked model to get overrides for
-     * @param callback     The callback for Mixin, which is used if we are cancelling the original method
-     *
+     * @param bakery   The model bakery
+     * @param model    The unbaked model to get overrides for
+     * @param callback The callback for Mixin, which is used if we are cancelling the original method
      * @see #getOverrides(ModelBakery, BlockModel, Function, CallbackInfoReturnable)
      */
     @Inject(

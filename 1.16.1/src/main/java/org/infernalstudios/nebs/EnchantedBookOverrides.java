@@ -22,7 +22,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.IForgeRegistry;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
@@ -213,8 +212,9 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
 
     /**
      * A functional interface that allows us to use {@link ModelBakery#bake(ResourceLocation, IModelTransform)} or
-     * {@link ModelBakery#getBakedModel(ResourceLocation, IModelTransform, Function)} without needing to arbitrarily pass around any
-     * additional attributes that might be needed. It effectively acts as a wrapper around 1.20's {@code ModelBaker}.
+     * {@link ModelBakery#getBakedModel(ResourceLocation, IModelTransform, Function)} without needing to arbitrarily
+     * pass around any additional attributes that might be needed. It effectively acts as a wrapper around 1.20's
+     * {@code ModelBaker}.
      */
     @FunctionalInterface
     private interface ModelBaker {

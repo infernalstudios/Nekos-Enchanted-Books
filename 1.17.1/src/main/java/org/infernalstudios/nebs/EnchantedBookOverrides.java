@@ -22,7 +22,6 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.IForgeRegistry;
 
 import javax.annotation.Nullable;
 import java.util.Comparator;
@@ -242,8 +241,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
     }
 
     /**
-     * Holds the result of the model baking done in
-     * {@link #bakeOverrides(ModelBakery, ModelBaker, Iterable)}.
+     * Holds the result of the model baking done in {@link #bakeOverrides(ModelBakery, ModelBaker, Iterable)}.
      *
      * @param overrides The baked overrides to be used by {@link EnchantedBookOverrides}
      * @param missing   The enchantments that are missing models
