@@ -274,7 +274,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
     public BakedModel resolve(BakedModel model, ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
         Enchantment enchantment = getEnchantment(stack);
         if (enchantment != null) {
-            String key = enchantment.getDescriptionId();
+            String key = NekosEnchantedBooks.getIdOf(enchantment);
             if (this.overrides.containsKey(key)) {
                 return this.overrides.get(key);
             }
