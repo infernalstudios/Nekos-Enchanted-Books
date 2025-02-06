@@ -66,7 +66,7 @@ import java.util.function.Function;
  * <h2>Usage for NEBs Developers</h2>
  * Apart from what has already been mentioned, you should read the documentation for each of the methods:
  * <ul>
- *     <li>{@link EnchantedBookOverrides#EnchantedBookOverrides(ModelBaker, UnbakedModel, List, Function)}</li>
+ *     <li>{@link #EnchantedBookOverrides(ModelBaker, UnbakedModel, List, Function)}</li>
  *     <li>{@link #resolve(BakedModel, ItemStack, ClientLevel, LivingEntity, int)}</li>
  * </ul>
  *
@@ -112,14 +112,14 @@ public final class EnchantedBookOverrides extends ItemOverrides {
 
     /**
      * The setup as described in
-     * {@link EnchantedBookOverrides#EnchantedBookOverrides(ModelBaker, UnbakedModel, List, Function)}. Use this to
+     * {@link #EnchantedBookOverrides(ModelBaker, UnbakedModel, List, Function)}. Use this to
      * assign {@link #overrides}.
      *
      * @param baker        The model baker
      * @param spriteGetter The sprite getter for model baking
      * @return The map of enchantment IDs to their respective baked models
      *
-     * @see EnchantedBookOverrides#EnchantedBookOverrides(ModelBaker, UnbakedModel, List, Function)
+     * @see #EnchantedBookOverrides(ModelBaker, UnbakedModel, List, Function)
      */
     private Map<String, BakedModel> setup(ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter) {
         // bake overrides

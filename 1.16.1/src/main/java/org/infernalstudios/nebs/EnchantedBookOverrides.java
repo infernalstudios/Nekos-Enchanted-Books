@@ -67,7 +67,7 @@ import java.util.function.Function;
  * <h2>Usage for NEBs Developers</h2>
  * Apart from what has already been mentioned, you should read the documentation for each of the methods:
  * <ul>
- *     <li>{@link EnchantedBookOverrides#EnchantedBookOverrides(ModelBakery, IUnbakedModel, Function, Function, List)}</li>
+ *     <li>{@link #EnchantedBookOverrides(ModelBakery, IUnbakedModel, Function, Function, List)}</li>
  *     <li>{@link #resolve(IBakedModel, ItemStack, ClientWorld, LivingEntity)}</li>
  * </ul>
  *
@@ -94,7 +94,7 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      *                      {@link org.infernalstudios.nebs.mixin.BlockModelMixin BlockModelMixin})
      * @param modelGetter   The model getter
      * @param existing      Any existing item overrides that exist in the base enchanted book model
-     * @see EnchantedBookOverrides#EnchantedBookOverrides(ModelBakery, IUnbakedModel, Function, Function, List)
+     * @see #EnchantedBookOverrides(ModelBakery, IUnbakedModel, Function, Function, List)
      * @see EnchantedBookOverrides
      * @deprecated For use by vanilla only.
      */
@@ -132,14 +132,14 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
 
     /**
      * The setup as described in
-     * {@link EnchantedBookOverrides#EnchantedBookOverrides(ModelBakery, IUnbakedModel, Function, Function, List)}. Use
+     * {@link #EnchantedBookOverrides(ModelBakery, IUnbakedModel, Function, Function, List)}. Use
      * this to assign {@link #overrides}.
      *
      * @param bakery The model bakery
      * @param baker  The model baker
      * @return The map of enchantment IDs to their respective baked models
      *
-     * @see EnchantedBookOverrides#EnchantedBookOverrides(ModelBakery, IUnbakedModel, Function, Function, List)
+     * @see #EnchantedBookOverrides(ModelBakery, IUnbakedModel, Function, Function, List)
      */
     private Map<String, IBakedModel> setup(ModelBakery bakery, ModelBaker baker) {
         // bake overrides
