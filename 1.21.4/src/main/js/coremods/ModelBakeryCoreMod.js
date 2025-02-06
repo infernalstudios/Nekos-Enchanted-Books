@@ -12,13 +12,13 @@ function initializeCoreMod() {
                 'methodName': 'm_371696_', // lambda$bakeModels$6
                 'methodDesc': '(Lnet/minecraft/client/resources/model/ModelBakery$TextureGetter;Lnet/minecraft/client/renderer/item/ItemModel;Ljava/util/Map;Ljava/util/Map;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/item/ClientItem;)V'
             },
-            'transformer': transform
+            'transformer': getOverrides
         }
     };
 }
 
 // TODO: Replace with new API to wrap baked item models
-function transform(method) {
+function getOverrides(method) {
     const bake = ASMAPI.findFirstMethodCall(method, ASMAPI.MethodType.INTERFACE, 'net/minecraft/client/renderer/item/ItemModel$Unbaked', ASMAPI.mapMethod('m_372419_'), '(Lnet/minecraft/client/renderer/item/ItemModel$BakingContext;)Lnet/minecraft/client/renderer/item/ItemModel;'); // bake
     const list = ASMAPI.listOf(
         // itemmodel1

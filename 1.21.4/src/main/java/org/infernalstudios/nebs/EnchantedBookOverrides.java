@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.BlockModelRotation;
 import net.minecraft.client.resources.model.ModelBaker;
+import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.client.resources.model.ResolvableModel;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.core.Holder;
@@ -66,7 +67,7 @@ import java.util.function.Consumer;
  * <h2>Usage for NEBs Developers</h2>
  * Apart from what has already been mentioned, you should read the documentation for each of the methods:
  * <ul>
- *     <li>{@link #EnchantedBookOverrides(ItemModel, ModelBaker)}</li>
+ *     <li>{@link #EnchantedBookOverrides(ItemModel, ModelBaker, ModelState)}</li>
  *     <li>{@link #update(ItemStackRenderState, ItemStack, ItemModelResolver, ItemDisplayContext, ClientLevel, LivingEntity, int)}</li>
  * </ul>
  *
@@ -94,12 +95,12 @@ public final class EnchantedBookOverrides implements ItemModel {
 
     @SuppressWarnings("unused") // ModelBakeryCoreMod
     public static ItemModel of(ItemModel base, ResourceLocation location, ModelBaker baker) {
-        return ENCHANTED_BOOK_LOCATION.equals(location) ? new EnchantedBookOverrides(base, baker) : base;
+        return ENCHANTED_BOOK_LOCATION.equals(location) ? new EnchantedBookOverrides(base, baker, BlockModelRotation.X0_Y0) : base;
     }
 
     /**
      * This constructor follows up on the creation of the enchanted book item model. It calls the
-     * {@link #setup(ModelBaker)} method, where existing models and are queried for automatic model loading.
+     * {@link #setup(ModelBaker, ModelState)} method, where existing models and are queried for automatic model loading.
      * The process of taking advantage of automatic model loading was described in the documentation for the class in
      * {@link EnchantedBookOverrides}.
      * <p>
@@ -109,26 +110,27 @@ public final class EnchantedBookOverrides implements ItemModel {
      *
      * @param base  The base enchanted book model
      * @param baker The model baker
+     * @param state The model state
      * @see #update(ItemStackRenderState, ItemStack, ItemModelResolver, ItemDisplayContext, ClientLevel, LivingEntity, int)
      * @see EnchantedBookOverrides
      */
-    public EnchantedBookOverrides(ItemModel base, ModelBaker baker) {
+    public EnchantedBookOverrides(ItemModel base, ModelBaker baker, ModelState state) {
         this.base = base;
-        this.overrides = this.setup(baker);
+        this.overrides = this.setup(baker, state);
     }
 
     /**
-     * The setup as described in {@link #EnchantedBookOverrides(ItemModel, ModelBaker)}. Use this to assign
+     * The setup as described in {@link #EnchantedBookOverrides(ItemModel, ModelBaker, ModelState)}. Use this to assign
      * {@link #overrides}.
      *
      * @param baker The model baker
      * @return The map of enchantment IDs to their respective baked models
      *
-     * @see #EnchantedBookOverrides(ItemModel, ModelBaker)
+     * @see #EnchantedBookOverrides(ItemModel, ModelBaker, ModelState)
      */
-    private Map<String, BakedModel> setup(ModelBaker baker) {
+    private Map<String, BakedModel> setup(ModelBaker baker, ModelState state) {
         // bake overrides
-        return bakeOverrides(baker);
+        return bakeOverrides(baker, state);
     }
 
     /**
@@ -137,16 +139,22 @@ public final class EnchantedBookOverrides implements ItemModel {
      * @param baker The model baker
      * @return The map of enchantment IDs to their respective baked models
      */
-    private static Map<String, BakedModel> bakeOverrides(ModelBaker baker) {
+    private static Map<String, BakedModel> bakeOverrides(ModelBaker baker, ModelState state) {
         ImmutableMap.Builder<String, BakedModel> overrides = ImmutableMap.builderWithExpectedSize(PREPARED_MODELS.size());
         PREPARED_MODELS.forEach(model -> {
             String enchantment = modelToEnchantment(model);
-            BakedModel baked = baker.bake(model, BlockModelRotation.X0_Y0);
+            BakedModel baked = baker.bake(model, state);
 
             TEXTURED_ENCHANTMENTS.add(enchantment);
             overrides.put(enchantment, baked);
         });
         return overrides.build();
+    }
+
+    @Deprecated // this is a stop-gap until ModelEvent.RegisterAdditional is re-added
+    @SuppressWarnings("unused") // ModelDiscoveryCoreMod
+    public static void prepare(Map<ResourceLocation, UnbakedModel> models, ResolvableModel.Resolver resolver) {
+        prepare(resolver::resolve, models.keySet());
     }
 
     /**
@@ -156,15 +164,15 @@ public final class EnchantedBookOverrides implements ItemModel {
      *
      * @param models The consumer to accept new models to be registered
      */
-    @SuppressWarnings({"unused", "JavadocReference"}) // ModelDiscoveryCoreMod, ModelEvent.RegisterAdditional has not yet been re-added
-    public static void prepare(Map<ResourceLocation, UnbakedModel> models, ResolvableModel.Resolver resolver) {
-        for (var model : models.keySet()) {
+    @SuppressWarnings("JavadocReference") // ModelEvent.RegisterAdditional has not yet been re-added
+    static void prepare(Consumer<ResourceLocation> resolver, Set<ResourceLocation> models) {
+        for (var model : models) {
             if (model.getNamespace().equals(NekosEnchantedBooks.MOD_ID)) {
                 // save enchantment
                 PREPARED_MODELS.add(model);
 
                 // resolve model to load textures
-                resolver.resolve(model);
+                resolver.accept(model);
             }
         }
     }
