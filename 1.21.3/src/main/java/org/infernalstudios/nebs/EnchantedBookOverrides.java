@@ -258,7 +258,7 @@ public final class EnchantedBookOverrides extends BakedOverrides {
      */
     private static Iterable<Enchantment> getEnchantments(ItemStack stack) {
         var enchantments = stack.getOrDefault(DataComponents.STORED_ENCHANTMENTS, ItemEnchantments.EMPTY);
-        return enchantments.isEmpty() ? null : () -> new Iterator<>() {
+        return () -> new Iterator<>() {
             private final Iterator<Holder<Enchantment>> iterator = enchantments.keySet().iterator();
 
             @Override

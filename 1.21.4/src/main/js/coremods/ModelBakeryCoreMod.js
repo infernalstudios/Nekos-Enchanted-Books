@@ -17,14 +17,17 @@ function initializeCoreMod() {
     };
 }
 
+// TODO: Replace with new API to wrap baked item models
 function transform(method) {
-    var bake = ASMAPI.findFirstMethodCall(method, ASMAPI.MethodType.INTERFACE, 'net/minecraft/client/renderer/item/ItemModel$Unbaked', ASMAPI.mapMethod('m_372419_'), '(Lnet/minecraft/client/renderer/item/ItemModel$BakingContext;)Lnet/minecraft/client/renderer/item/ItemModel;');
-    var list = ASMAPI.listOf(
-        new VarInsnNode(Opcodes.ALOAD, 5),
-        new VarInsnNode(Opcodes.ALOAD, 8),
+    const bake = ASMAPI.findFirstMethodCall(method, ASMAPI.MethodType.INTERFACE, 'net/minecraft/client/renderer/item/ItemModel$Unbaked', ASMAPI.mapMethod('m_372419_'), '(Lnet/minecraft/client/renderer/item/ItemModel$BakingContext;)Lnet/minecraft/client/renderer/item/ItemModel;'); // bake
+    const list = ASMAPI.listOf(
+        // itemmodel1
+        new VarInsnNode(Opcodes.ALOAD, 5), // p_374705_
+        new VarInsnNode(Opcodes.ALOAD, 8), // modelbakery$modelbakerimpl
         ASMAPI.buildMethodCall(ASMAPI.MethodType.STATIC, 'org/infernalstudios/nebs/EnchantedBookOverrides', 'of', '(Lnet/minecraft/client/renderer/item/ItemModel;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/resources/model/ModelBaker;)Lnet/minecraft/client/renderer/item/ItemModel;')
     );
 
+    // ItemModel itemmodel1 = EnchantedBookOverrides.of(p_374706_.model().bake(itemmodel$bakingcontext), p_374705_, modelbakery$modelbakerimpl);
     ASMAPI.insertInsnList(method, bake, list, ASMAPI.InsertMode.INSERT_AFTER);
 
     return method;

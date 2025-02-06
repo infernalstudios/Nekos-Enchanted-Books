@@ -28,6 +28,11 @@ java.withSourcesJar()
 minecraft {
     mappings channel: config.MAPPINGS_CHANNEL, version: config.MAPPINGS_VERSION
 
+    // Unfortunately, we can't just disable reobf because MixinGradle requires it to actually do anything
+    // For some reason, addMixinsToJar is inherently linked to the registration of the reobfJar tasks
+    // Even if the reobfJar task is disabled (which I've done in this build.gradle file), this flag still needs to be enabled
+    //reobf = false
+
     copyIdeResources = true
 
     runs {
@@ -89,8 +94,15 @@ jar {
             'Implementation-Vendor' : config.AUTHOR
         ])
     }
+
+    // Mixin will attempt to include the refmap since minecraft.reobf = true
+    // See why that's enabled, it's a hacky fix for MixinGradle
+    // This ensures that we yeet the refmap before the build is finished
+    exclude('mixin.refmap.json')
 }
 
+// Hacky fix to disable reobfJar while still keeping the minecraft.reobf flag enabled
+// This is due to a bug in MixinGradle where it wont add mixins to jar otherwise
 tasks.configureEach { task ->
     if (task.name.startsWith("reobf")) {
         task.enabled = false

@@ -2,15 +2,18 @@ module org.infernalstudios.nebs {
     exports org.infernalstudios.nebs;
     exports org.infernalstudios.nebs.mixin;
 
-    requires net.minecraftforge.eventbus;
-    requires net.minecraftforge.fmlcore;
-    requires net.minecraftforge.forge;
-    requires net.minecraftforge.javafmlmod;
-    requires net.minecraftforge.mergetool.api;
+    // forge
+    requires net.minecraftforge.javafmlmod;    // @Mod
+    requires net.minecraftforge.forge;         // forge
+    requires net.minecraftforge.eventbus;      // event bus
 
-    requires org.spongepowered.mixin;
-    requires com.google.gson;
-    requires com.google.common;
-    requires org.slf4j;
-    requires static org.jetbrains.annotations;
+    // coremods
+    requires org.spongepowered.mixin;          // mixin
+
+    // helper libraries
+    requires org.apache.logging.log4j;         // logging
+    requires com.google.gson;                  // overrides.json for the data generator
+    requires com.google.common;                // immutable maps and sets
+
+    requires static org.jetbrains.annotations; // @Nullable
 }
