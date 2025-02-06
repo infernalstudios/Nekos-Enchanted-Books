@@ -12,6 +12,7 @@ import net.minecraft.client.resources.model.BlockModelRotation;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.ModelBaker;
 import net.minecraft.client.resources.model.UnbakedModel;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,6 +24,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -220,9 +222,8 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      */
     @Override
     public BakedModel resolve(BakedModel model, ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
-        Enchantment enchantment = getEnchantment(stack);
-        if (enchantment != null) {
-            String key = enchantment.getDescriptionId();
+        for (Enchantment enchantment : getEnchantments(stack)) {
+            String key = NekosEnchantedBooks.getIdOf(enchantment);
             if (this.overrides.containsKey(key)) {
                 return this.overrides.get(key);
             }
@@ -238,8 +239,20 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * @param stack The stack to get the enchantment from
      * @return The enchantment of the stack, or {@code null} if it does not have any
      */
-    private static @Nullable Enchantment getEnchantment(ItemStack stack) {
+    private static Iterable<Enchantment> getEnchantments(ItemStack stack) {
         var enchantments = stack.getOrDefault(DataComponents.STORED_ENCHANTMENTS, ItemEnchantments.EMPTY);
-        return !enchantments.isEmpty() ? enchantments.keySet().iterator().next().get() : null;
+        return enchantments.isEmpty() ? null : () -> new Iterator<>() {
+            private final Iterator<Holder<Enchantment>> iterator = enchantments.keySet().iterator();
+
+            @Override
+            public boolean hasNext() {
+                return iterator.hasNext();
+            }
+
+            @Override
+            public Enchantment next() {
+                return iterator.next().get();
+            }
+        };
     }
 }

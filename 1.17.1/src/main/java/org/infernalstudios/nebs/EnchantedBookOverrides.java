@@ -271,8 +271,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      */
     @Override
     public BakedModel resolve(BakedModel model, ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
-        Enchantment enchantment = getEnchantment(stack);
-        if (enchantment != null) {
+        for (Enchantment enchantment : getEnchantments(stack)) {
             String key = NekosEnchantedBooks.getIdOf(enchantment);
             if (this.overrides.containsKey(key)) {
                 return this.overrides.get(key);
@@ -289,8 +288,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * @param stack The stack to get the enchantment from
      * @return The enchantment of the stack, or {@code null} if it does not have any
      */
-    private static @Nullable Enchantment getEnchantment(ItemStack stack) {
-        Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(stack);
-        return !enchantments.isEmpty() ? enchantments.keySet().iterator().next() : null;
+    private static Iterable<Enchantment> getEnchantments(ItemStack stack) {
+        return EnchantmentHelper.getEnchantments(stack).keySet();
     }
 }

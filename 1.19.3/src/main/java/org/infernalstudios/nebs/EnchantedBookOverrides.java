@@ -240,7 +240,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * @param stack The stack to get the enchantment from
      * @return The enchantment of the stack, or {@code null} if it does not have any
      */
-    private static Set<Enchantment> getEnchantments(ItemStack stack) {
+    private static Iterable<Enchantment> getEnchantments(ItemStack stack) {
         return EnchantmentHelper.getEnchantments(stack).keySet();
     }
 }

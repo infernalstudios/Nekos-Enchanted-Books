@@ -275,8 +275,7 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      */
     @Override
     public IBakedModel resolve(IBakedModel model, ItemStack stack, @Nullable ClientWorld level, @Nullable LivingEntity entity) {
-        Enchantment enchantment = getEnchantment(stack);
-        if (enchantment != null) {
+        for (Enchantment enchantment : getEnchantments(stack)) {
             String key = NekosEnchantedBooks.getIdOf(enchantment);
             if (this.overrides.containsKey(key)) {
                 return this.overrides.get(key);
@@ -293,8 +292,7 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      * @param stack The stack to get the enchantment from
      * @return The enchantment of the stack, or {@code null} if it does not have any
      */
-    private static @Nullable Enchantment getEnchantment(ItemStack stack) {
-        Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(stack);
-        return !enchantments.isEmpty() ? enchantments.keySet().iterator().next() : null;
+    private static Iterable<Enchantment> getEnchantments(ItemStack stack) {
+        return EnchantmentHelper.getEnchantments(stack).keySet();
     }
 }
