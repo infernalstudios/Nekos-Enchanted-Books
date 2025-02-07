@@ -3,6 +3,7 @@ package org.infernalstudios.nebs;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.client.event.ModelEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -49,24 +50,19 @@ public class NekosEnchantedBooks {
         return id.startsWith("enchantment.") ? id.substring("enchantment.".length()) : id;
     }
 
-    /**
-     * The constructor for the mod. This does two things:
-     *
-     * <ol>
-     *     <li>Register the display test extension point, which tells the game to ignore this mod when polling servers
-     *     for mod compatibility.</li>
-     *     <li>Add our data generator as a listener to the {@link GatherDataEvent}. See
-     *     {@link #gatherData(GatherDataEvent)}</li>
-     * </ol>
-     */
     public NekosEnchantedBooks() {
-        // This is a client-side only mod, enforced by mods.toml's clientSideOnly flag
-        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+        FMLJavaModLoadingContext context = FMLJavaModLoadingContext.get();
+
+        this.setupListeners(context.getModEventBus());
+    }
+
+    private void setupListeners(IEventBus modBus) {
         modBus.<FMLClientSetupEvent>addListener(event -> event.enqueueWork(this::setup));
         modBus.<ModelEvent.RegisterAdditional>addListener(event -> EnchantedBookOverrides.prepare(event::register));
         modBus.addListener(this::gatherData);
     }
 
+    @Deprecated(forRemoval = true, since = "2.0.3") // gotta replace this with a config
     private void setup() {
         NON_ENCHANTMENTS.add("apotheosis.infusion");
     }

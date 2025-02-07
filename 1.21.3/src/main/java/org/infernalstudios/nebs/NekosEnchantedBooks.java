@@ -22,9 +22,8 @@ import java.util.Set;
  * <h1>Neko's Enchanted Books</h1>
  * <p>
  * This is the main class for the Neko's Enchanted Books (shortened to NEBs) mod, loaded by Forge. The mod itself does
- * not interface much with Forge itself, but rather uses
- * {@link ItemModelMixin BlockModelMixin} to inject the custom item overrides for the
- * enchanted books provided in {@link EnchantedBookOverrides}.
+ * not interface much with Forge itself, but rather uses coremods to ensure the injection of the custom item overrides
+ * for the enchanted books provided in {@link EnchantedBookOverrides}.
  */
 @Mod(NekosEnchantedBooks.MOD_ID)
 public class NekosEnchantedBooks {
@@ -56,26 +55,18 @@ public class NekosEnchantedBooks {
         return id.startsWith("enchantment.") ? id.substring("enchantment.".length()) : id;
     }
 
-    /**
-     * The constructor for the mod. This does two things:
-     *
-     * <ol>
-     *     <li>Register the display test extension point, which tells the game to ignore this mod when polling servers
-     *     for mod compatibility.</li>
-     *     <li>Add our data generator as a listener to the {@link GatherDataEvent}. See
-     *     {@link #gatherData(GatherDataEvent)}</li>
-     * </ol>
-     */
     public NekosEnchantedBooks(FMLJavaModLoadingContext context) {
-        // This is a client-side only mod, enforced by mods.toml's clientSideOnly flag
-        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-        IEventBus modBus = context.getModEventBus();
+        this.setupListeners(context.getModEventBus(), MinecraftForge.EVENT_BUS);
+    }
+
+    private void setupListeners(IEventBus modBus, IEventBus forgeBus) {
         modBus.<FMLClientSetupEvent>addListener(event -> event.enqueueWork(this::setup));
-        //modBus.<ModelEvent.RegisterAdditional>addListener(event -> EnchantedBookOverrides.prepare(event::register));
+        //modBus.<ModelEvent.RegisterAdditional>addListener(event -> EnchantedBookOverrides.prepare(event::register, event.getInputModels()));
         forgeBus.<ClientPlayerNetworkEvent.LoggingIn>addListener(event -> EnchantedBookOverrides.validate(event.getPlayer().registryAccess().lookupOrThrow(Registries.ENCHANTMENT)));
         modBus.addListener(this::gatherData);
     }
 
+    @Deprecated(forRemoval = true, since = "2.0.3") // gotta replace this with a config
     private void setup() {
         NON_ENCHANTMENTS.add("apotheosis.infusion");
     }

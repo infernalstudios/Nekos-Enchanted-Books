@@ -87,7 +87,7 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
     private void generateModel(String texture, String destination) {
         ResourceLocation textureLoc = EnchantedBookOverrides.getEnchantedBookModel(texture);
         ResourceLocation destLoc = EnchantedBookOverrides.getEnchantedBookModel(destination);
-        if (!existingFileHelper.exists(textureLoc, PackType.CLIENT_RESOURCES, ".png", "textures")) {
+        if (!this.existingFileHelper.exists(textureLoc, PackType.CLIENT_RESOURCES, ".png", "textures")) {
             throw new IllegalStateException(texture + " book texture not found, yet it was found as a resource earlier...");
         }
 

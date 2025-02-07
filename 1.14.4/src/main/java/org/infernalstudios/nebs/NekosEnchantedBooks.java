@@ -54,44 +54,46 @@ public class NekosEnchantedBooks {
         return id.startsWith("enchantment.") ? id.substring("enchantment.".length()) : id;
     }
 
-    /**
-     * The constructor for the mod. This does two things:
-     *
-     * <ol>
-     *     <li>Register the display test extension point, which tells the game to ignore this mod when polling servers
-     *     for mod compatibility.</li>
-     *     <li>Add our data generator as a listener to the {@link GatherDataEvent}. See
-     *     {@link #gatherData(GatherDataEvent)}</li>
-     * </ol>
-     */
     public NekosEnchantedBooks() {
+        ModLoadingContext context = ModLoadingContext.get();
+
         // If this mod is loaded on a server, don't require clients to have it
-        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST,
+        context.registerExtensionPoint(ExtensionPoint.DISPLAYTEST,
             () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
 
         // This is a client-side only mod
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-            IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> Client::new);
+    }
+
+    private static final class Client {
+        private Client() {
+            ModLoadingContext context = ModLoadingContext.get();
+
+            this.setupListeners(context.<FMLJavaModLoadingContext>extension().getModEventBus());
+        }
+
+        private void setupListeners(IEventBus modBus) {
             modBus.<FMLClientSetupEvent>addListener(event -> this.setup());
             modBus.<ModelRegistryEvent>addListener(event -> EnchantedBookOverrides.prepare(ModelLoader::addSpecialModel));
             modBus.addListener(this::gatherData);
-        });
-    }
+        }
 
-    private void setup() {
-        NON_ENCHANTMENTS.add("apotheosis.infusion");
-    }
+        @Deprecated // gotta replace this with a config
+        private void setup() {
+            NON_ENCHANTMENTS.add("apotheosis.infusion");
+        }
 
-    /**
-     * Adds our data generator, {@link EnchantedBookModelProvider}, to the {@link GatherDataEvent} event. This is used
-     * to generate the item models for the enchanted books that NEBs natively supports.
-     *
-     * @param event The event to add our generator to
-     */
-    private void gatherData(GatherDataEvent event) {
-        DataGenerator generator = event.getGenerator();
+        /**
+         * Adds our data generator, {@link EnchantedBookModelProvider}, to the {@link GatherDataEvent} event. This is used
+         * to generate the item models for the enchanted books that NEBs natively supports.
+         *
+         * @param event The event to add our generator to
+         */
+        private void gatherData(GatherDataEvent event) {
+            DataGenerator generator = event.getGenerator();
 
-        // native enchanted book models
-        if (event.includeClient()) generator.addProvider(new EnchantedBookModelProvider(generator, NekosEnchantedBooks.MOD_ID, event.getExistingFileHelper()));
+            // native enchanted book models
+            if (event.includeClient()) generator.addProvider(new EnchantedBookModelProvider(generator, NekosEnchantedBooks.MOD_ID, event.getExistingFileHelper()));
+        }
     }
 }

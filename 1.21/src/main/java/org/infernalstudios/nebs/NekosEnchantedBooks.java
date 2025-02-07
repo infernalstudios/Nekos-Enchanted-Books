@@ -59,26 +59,18 @@ public class NekosEnchantedBooks {
         return id.startsWith("enchantment.") ? id.substring("enchantment.".length()) : id;
     }
 
-    /**
-     * The constructor for the mod. This does two things:
-     *
-     * <ol>
-     *     <li>Register the display test extension point, which tells the game to ignore this mod when polling servers
-     *     for mod compatibility.</li>
-     *     <li>Add our data generator as a listener to the {@link GatherDataEvent}. See
-     *     {@link #gatherData(GatherDataEvent)}</li>
-     * </ol>
-     */
     public NekosEnchantedBooks() {
-        // This is a client-side only mod, enforced by mods.toml's clientSideOnly flag
-        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+        this.setupListeners(FMLJavaModLoadingContext.get().getModEventBus(), MinecraftForge.EVENT_BUS);
+    }
+
+    private void setupListeners(IEventBus modBus, IEventBus forgeBus) {
         modBus.<FMLClientSetupEvent>addListener(event -> event.enqueueWork(this::setup));
         modBus.<ModelEvent.RegisterAdditional>addListener(event -> EnchantedBookOverrides.prepare(event::register));
         forgeBus.<ClientPlayerNetworkEvent.LoggingIn>addListener(event -> EnchantedBookOverrides.validate(event.getPlayer().registryAccess().registryOrThrow(Registries.ENCHANTMENT)));
         modBus.addListener(this::gatherData);
     }
 
+    @Deprecated(forRemoval = true, since = "2.0.3") // gotta replace this with a config
     private void setup() {
         NON_ENCHANTMENTS.add("apotheosis.infusion");
     }
