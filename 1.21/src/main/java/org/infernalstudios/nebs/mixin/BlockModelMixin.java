@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.ModelBaker;
 import org.infernalstudios.nebs.EnchantedBookOverrides;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -27,6 +28,16 @@ import java.util.function.Function;
 @Mixin(BlockModel.class)
 public class BlockModelMixin {
     @Shadow private @Final List<ItemOverride> overrides;
+
+    @Inject(
+        method = "getItemOverrides(Lnet/minecraft/client/resources/model/ModelBaker;Lnet/minecraft/client/renderer/block/model/BlockModel;)Lnet/minecraft/client/renderer/block/model/ItemOverrides;",
+        at = @At("HEAD"),
+        cancellable = true
+    )
+    private void getOverrides(ModelBaker baker, BlockModel model, CallbackInfoReturnable<ItemOverrides> callback) {
+        @Nullable var nebs = EnchantedBookOverrides.of(model, model.name, baker, this.overrides);
+        if (nebs != null) callback.setReturnValue(nebs);
+    }
 
     /**
      * Checks if the model we are getting overrides for is Minecraft's Enchanted Book (defined by
@@ -50,7 +61,7 @@ public class BlockModelMixin {
         cancellable = true
     )
     private void getOverrides(ModelBaker baker, BlockModel model, Function<Material, TextureAtlasSprite> spriteGetter, CallbackInfoReturnable<ItemOverrides> callback) {
-        if (EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(model.name))
-            callback.setReturnValue(new EnchantedBookOverrides(baker, model, this.overrides, spriteGetter));
+        @Nullable var nebs = EnchantedBookOverrides.of(model, model.name, baker, this.overrides, spriteGetter);
+        if (nebs != null) callback.setReturnValue(nebs);
     }
 }

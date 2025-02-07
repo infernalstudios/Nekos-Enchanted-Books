@@ -1,0 +1,6 @@
+{
+  "parent": "item/enchanted_book",
+  "textures": {
+    "layer0": "nebs:item/spells_and_shields/mana_regeneration"
+  }
+}

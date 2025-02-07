@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.renderer.block.model.ItemOverride;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -12,6 +13,7 @@ import net.minecraft.client.resources.model.BlockModelRotation;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.ModelBaker;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
@@ -68,7 +70,7 @@ import java.util.function.Function;
  * <h2>Usage for NEBs Developers</h2>
  * Apart from what has already been mentioned, you should read the documentation for each of the methods:
  * <ul>
- *     <li>{@link #EnchantedBookOverrides(ModelBaker, UnbakedModel, List, Function)}</li>
+ *     <li>{@link #EnchantedBookOverrides(ModelBaker, BlockModel, List)}</li>
  *     <li>{@link #resolve(BakedModel, ItemStack, ClientLevel, LivingEntity, int)}</li>
  * </ul>
  *
@@ -95,10 +97,38 @@ public final class EnchantedBookOverrides extends ItemOverrides {
 
     private final Map<String, BakedModel> overrides;
 
+    public static @Nullable ItemOverrides of(BlockModel base, String location, ModelBaker baker, List<ItemOverride> existing) {
+        return !EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location) ? null : new EnchantedBookOverrides(baker, base, existing);
+    }
+
+    public static @Nullable ItemOverrides of(BlockModel base, String location, ModelBaker baker, List<ItemOverride> existing, Function<Material, TextureAtlasSprite> spriteGetter) {
+        return !EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location) ? null : new EnchantedBookOverrides(new ModelBaker() {
+            @Override
+            public UnbakedModel getModel(ResourceLocation location) {
+                return baker.getModel(location);
+            }
+
+            @Override
+            public @Nullable BakedModel bake(ResourceLocation location, ModelState state) {
+                return baker.bake(location, state, this.getModelTextureGetter());
+            }
+
+            @Override
+            public @Nullable BakedModel bake(ResourceLocation location, ModelState state, Function<Material, TextureAtlasSprite> sprites) {
+                return baker.bake(location, state, sprites);
+            }
+
+            @Override
+            public Function<Material, TextureAtlasSprite> getModelTextureGetter() {
+                return spriteGetter;
+            }
+        }, base, existing);
+    }
+
     /**
      * This constructor follows up on the initialization done in its super method,
      * {@link ItemOverrides#ItemOverrides(ModelBaker, UnbakedModel, List, Function)}. It calls the
-     * {@link #setup(ModelBaker, Function)} method, where existing models and are queried for automatic model loading.
+     * {@link #setup(ModelBaker)} method, where existing models and are queried for automatic model loading.
      * The process of taking advantage of automatic model loading was described in the documentation for the class in
      * {@link EnchantedBookOverrides}.
      * <p>
@@ -106,33 +136,31 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * model. However, this is only the case if an enchanted book has an enchantment that is not saved in our own
      * overrides.
      *
-     * @param baker         The model baker
-     * @param enchantedBook The vanilla enchanted book unbaked model (ensured by
-     *                      {@link org.infernalstudios.nebs.mixin.BlockModelMixin BlockModelMixin})
-     * @param existing      Any existing item overrides that exist in the base enchanted book model
-     * @param spriteGetter  The sprite getter for model baking
+     * @param baker        The model baker
+     * @param base         The base enchanted book model
+     * @param existing     Any existing item overrides that exist in the base enchanted book model
      * @see #resolve(BakedModel, ItemStack, ClientLevel, LivingEntity, int)
      * @see EnchantedBookOverrides
      */
-    public EnchantedBookOverrides(ModelBaker baker, UnbakedModel enchantedBook, List<ItemOverride> existing, Function<Material, TextureAtlasSprite> spriteGetter) {
-        super(baker, enchantedBook, existing, spriteGetter);
-        this.overrides = this.setup(baker, spriteGetter);
+    @SuppressWarnings("deprecation")
+    private EnchantedBookOverrides(ModelBaker baker, BlockModel base, List<ItemOverride> existing) {
+        super(baker, base, existing);
+        this.overrides = this.setup(baker);
     }
 
     /**
      * The setup as described in
-     * {@link #EnchantedBookOverrides(ModelBaker, UnbakedModel, List, Function)}. Use this to
+     * {@link #EnchantedBookOverrides(ModelBaker, BlockModel, List)}. Use this to
      * assign {@link #overrides}.
      *
-     * @param baker        The model baker
-     * @param spriteGetter The sprite getter for model baking
+     * @param baker The model baker
      * @return The map of enchantment IDs to their respective baked models
      *
-     * @see #EnchantedBookOverrides(ModelBaker, UnbakedModel, List, Function)
+     * @see #EnchantedBookOverrides(ModelBaker, BlockModel, List)
      */
-    private Map<String, BakedModel> setup(ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter) {
+    private Map<String, BakedModel> setup(ModelBaker baker) {
         // bake overrides
-        BakeResult result = bakeOverrides(baker, spriteGetter, PREPARED_MODELS.size());
+        BakeResult result = bakeOverrides(baker);
 
         // log failed models
         if (!result.failed.isEmpty()) {
@@ -146,18 +174,17 @@ public final class EnchantedBookOverrides extends ItemOverrides {
      * Bakes the custom overrides used for the enchanted books.
      *
      * @param baker        The model baker
-     * @param spriteGetter The sprite getter for model baking
-     * @param expected     The expected number of enchantments to load models for
      * @return The map of enchantment IDs to their respective baked models
      */
-    private static BakeResult bakeOverrides(ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter, int expected) {
-        ImmutableMap.Builder<String, BakedModel> overrides = ImmutableMap.builderWithExpectedSize(expected);
-        ImmutableSet.Builder<String> failed = ImmutableSet.builderWithExpectedSize(expected);
+    private static BakeResult bakeOverrides(ModelBaker baker) {
+        ImmutableMap.Builder<String, BakedModel> overrides = ImmutableMap.builderWithExpectedSize(PREPARED_MODELS.size());
+        ImmutableSet.Builder<String> failed = ImmutableSet.builderWithExpectedSize(PREPARED_MODELS.size());
         PREPARED_MODELS.forEach(model -> {
             String enchantment = modelToEnchantment(model);
 
             // Now we are ready to bake the custom model and add it to our own overrides.
-            BakedModel baked = baker.bake(model.id(), BlockModelRotation.X0_Y0, spriteGetter);
+            @SuppressWarnings("deprecation") // baker is wrapped to use sprite getter
+            BakedModel baked = baker.bake(model.id(), BlockModelRotation.X0_Y0);
             if (baked == null) {
                 failed.add(enchantment);
                 return;
@@ -202,7 +229,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
     }
 
     /**
-     * Holds the result of the model baking done in {@link #bakeOverrides(ModelBaker, Function, int)}.
+     * Holds the result of the model baking done in {@link #bakeOverrides(ModelBaker)}.
      *
      * @param overrides The baked overrides to be used by {@link EnchantedBookOverrides}
      * @param failed   The enchantments that are failed models

@@ -67,12 +67,13 @@ import java.util.function.Function;
  * <h2>Usage for NEBs Developers</h2>
  * Apart from what has already been mentioned, you should read the documentation for each of the methods:
  * <ul>
- *     <li>{@link #EnchantedBookOverrides(ModelBakery, IUnbakedModel, Function, Function, List)}</li>
+ *     <li>{@link #EnchantedBookOverrides(ModelBakery, BlockModel, Function, List, Function)}</li>
  *     <li>{@link #resolve(IBakedModel, ItemStack, ClientWorld, LivingEntity)}</li>
  * </ul>
  *
  * @since 2.0.0
  */
+@SuppressWarnings("deprecation") // We are wrapping things that use deprecated methods
 public final class EnchantedBookOverrides extends ItemOverrideList {
     /** The name of the vanilla enchanted book model, used as a base for NEBs own models. */
     public static final String ENCHANTED_BOOK_UNBAKED_MODEL_NAME = "minecraft:item/enchanted_book";
@@ -86,6 +87,14 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
 
     private final Map<String, IBakedModel> overrides;
 
+    public static @Nullable ItemOverrideList of(BlockModel base, String location, ModelBakery bakery, List<ItemOverride> existing) {
+        return !EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location) ? null : new EnchantedBookOverrides(bakery, base, bakery::getModel, existing);
+    }
+
+    public static @Nullable ItemOverrideList of(BlockModel base, String location, ModelBakery bakery, List<ItemOverride> existing, Function<RenderMaterial, TextureAtlasSprite> spriteGetter) {
+        return !EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location) ? null : new EnchantedBookOverrides(bakery, base, bakery::getModel, existing, spriteGetter);
+    }
+
     /**
      * This constructor acts as a bouncer for legacy vanilla model baking.
      *
@@ -94,21 +103,18 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      *                      {@link org.infernalstudios.nebs.mixin.BlockModelMixin BlockModelMixin})
      * @param modelGetter   The model getter
      * @param existing      Any existing item overrides that exist in the base enchanted book model
-     * @see #EnchantedBookOverrides(ModelBakery, IUnbakedModel, Function, Function, List)
+     * @see #EnchantedBookOverrides(ModelBakery, BlockModel, Function, List, Function)
      * @see EnchantedBookOverrides
-     * @deprecated For use by vanilla only.
      */
-    @Deprecated
-    @SuppressWarnings("DeprecatedIsStillUsed")
-    public EnchantedBookOverrides(ModelBakery bakery, BlockModel enchantedBook, Function<ResourceLocation, IUnbakedModel> modelGetter, List<ItemOverride> existing) {
+    private EnchantedBookOverrides(ModelBakery bakery, BlockModel enchantedBook, Function<ResourceLocation, IUnbakedModel> modelGetter, List<ItemOverride> existing) {
         super(bakery, enchantedBook, modelGetter, existing);
-        this.overrides = setup(bakery, ModelBaker.of());
+        this.overrides = this.setup(bakery::bake);
     }
 
     /**
      * This constructor follows up on the initialization done in its super method,
      * {@link ItemOverrideList#ItemOverrideList(ModelBakery, IUnbakedModel, Function, Function, List)}. It calls the
-     * {@link #setup(ModelBakery, ModelBaker)} method, where all the registered enchantments are grabbed from the
+     * {@link #setup(ModelBaker)} method, where all the registered enchantments are grabbed from the
      * {@linkplain ForgeRegistries#ENCHANTMENTS Enchantments registry} and are queried for automatic model loading. The
      * process of taking advantage of automatic model loading was described in the documentation for the class in
      * {@link EnchantedBookOverrides}.
@@ -120,31 +126,30 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      * @param bakery        The model bakery
      * @param enchantedBook The vanilla enchanted book unbaked model (ensured by
      *                      {@link org.infernalstudios.nebs.mixin.BlockModelMixin BlockModelMixin})
-     * @param existing      Any existing item overrides that exist in the base enchanted book model
+     * @param modelGetter   The model getter
      * @param spriteGetter  The sprite getter for model baking
+     * @param existing      Any existing item overrides that exist in the base enchanted book model
      * @see #resolve(IBakedModel, ItemStack, ClientWorld, LivingEntity)
      * @see EnchantedBookOverrides
      */
-    public EnchantedBookOverrides(ModelBakery bakery, IUnbakedModel enchantedBook, Function<ResourceLocation, IUnbakedModel> modelGetter, Function<RenderMaterial, TextureAtlasSprite> spriteGetter, List<ItemOverride> existing) {
+    private EnchantedBookOverrides(ModelBakery bakery, BlockModel enchantedBook, Function<ResourceLocation, IUnbakedModel> modelGetter, List<ItemOverride> existing, Function<RenderMaterial, TextureAtlasSprite> spriteGetter) {
         super(bakery, enchantedBook, modelGetter, spriteGetter, existing);
-        this.overrides = setup(bakery, ModelBaker.of(spriteGetter));
+        this.overrides = setup((model, state) -> bakery.getBakedModel(model, state, spriteGetter));
     }
 
     /**
      * The setup as described in
-     * {@link #EnchantedBookOverrides(ModelBakery, IUnbakedModel, Function, Function, List)}. Use
+     * {@link #EnchantedBookOverrides(ModelBakery, BlockModel, Function, List, Function)}. Use
      * this to assign {@link #overrides}.
      *
-     * @param bakery The model bakery
-     * @param baker  The model baker
+     * @param baker The model baker
      * @return The map of enchantment IDs to their respective baked models
      *
-     * @see #EnchantedBookOverrides(ModelBakery, IUnbakedModel, Function, Function, List)
+     * @see #EnchantedBookOverrides(ModelBakery, BlockModel, Function, List, Function)
      */
-    private Map<String, IBakedModel> setup(ModelBakery bakery, ModelBaker baker) {
+    private Map<String, IBakedModel> setup(ModelBaker baker) {
         // bake overrides
-        Set<String> enchantments = PREPARED_ENCHANTMENTS;
-        BakeResult result = bakeOverrides(bakery, baker, enchantments);
+        BakeResult result = bakeOverrides(baker);
 
         // log missing models
         if (!result.missing.isEmpty()) {
@@ -159,15 +164,13 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
     /**
      * Bakes the custom overrides used for the enchanted books.
      *
-     * @param bakery       The model bakery
-     * @param modelBaker   The model baker to use with the bakery
-     * @param enchantments The enchantments to automatically load models for
+     * @param baker   The model baker to use with the bakery
      * @return The map of enchantment IDs to their respective baked models
      */
-    private static BakeResult bakeOverrides(ModelBakery bakery, ModelBaker modelBaker, Iterable<String> enchantments) {
+    private static BakeResult bakeOverrides(ModelBaker baker) {
         ImmutableMap.Builder<String, IBakedModel> overrides = ImmutableMap.builder();
         ImmutableSet.Builder<String> missing = ImmutableSet.builder();
-        enchantments.forEach(enchantment -> {
+        PREPARED_ENCHANTMENTS.forEach(enchantment -> {
             ResourceLocation model = getEnchantedBookModel(enchantment);
             if (!PREPARED_MODELS.contains(model)) {
                 if (!NekosEnchantedBooks.NON_ENCHANTMENTS.contains(enchantment))
@@ -176,7 +179,7 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
             }
 
             // Now we are ready to bake the custom model and add it to our own overrides.
-            IBakedModel baked = modelBaker.bake(bakery, model, ModelRotation.X0_Y0);
+            IBakedModel baked = baker.bake(model, ModelRotation.X0_Y0);
             if (baked == null) {
                 missing.add(enchantment);
                 return;
@@ -219,30 +222,11 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      */
     @FunctionalInterface
     private interface ModelBaker {
-        /** @see ModelBakery#bake(ResourceLocation, IModelTransform) */
-        @SuppressWarnings("deprecation")
-        static ModelBaker of() {
-            return ModelBakery::bake;
-        }
-
-        /** @see ModelBakery#getBakedModel(ResourceLocation, IModelTransform, Function) */
-        static ModelBaker of(Function<RenderMaterial, TextureAtlasSprite> spriteGetter) {
-            return (b, n, r) -> b.getBakedModel(n, r, spriteGetter);
-        }
-
-        /**
-         * Bakes the model using the given bakery and parameters.
-         *
-         * @param bakery The model bakery to bake with
-         * @param model  The model name to bake
-         * @param state  The model state to use
-         * @return The baked model
-         */
-        IBakedModel bake(ModelBakery bakery, ResourceLocation model, IModelTransform state);
+        IBakedModel bake(ResourceLocation model, IModelTransform state);
     }
 
     /**
-     * Holds the result of the model baking done in {@link #bakeOverrides(ModelBakery, ModelBaker, Iterable)}.
+     * Holds the result of the model baking done in {@link #bakeOverrides(ModelBaker)}.
      *
      * @see BakeResult#BakeResult(ImmutableMap.Builder, ImmutableSet.Builder)
      */

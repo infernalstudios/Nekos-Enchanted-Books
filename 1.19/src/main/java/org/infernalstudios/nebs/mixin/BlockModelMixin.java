@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.ModelBakery;
 import org.infernalstudios.nebs.EnchantedBookOverrides;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -27,6 +28,25 @@ import java.util.function.Function;
 @Mixin(BlockModel.class)
 public class BlockModelMixin {
     @Shadow private @Final List<ItemOverride> overrides;
+
+    /**
+     * This injector exists for backwards compatibility with older versions of Minecraft and Forge that do not strictly
+     * use Forge's sprite getter.
+     *
+     * @param bakery   The model bakery
+     * @param model    The unbaked model to get overrides for
+     * @param callback The callback for Mixin, which is used if we are cancelling the original method
+     * @see #getOverrides(ModelBakery, BlockModel, Function, CallbackInfoReturnable)
+     */
+    @Inject(
+        method = "getItemOverrides(Lnet/minecraft/client/resources/model/ModelBakery;Lnet/minecraft/client/renderer/block/model/BlockModel;)Lnet/minecraft/client/renderer/block/model/ItemOverrides;",
+        at = @At("HEAD"),
+        cancellable = true
+    )
+    private void getOverrides(ModelBakery bakery, BlockModel model, CallbackInfoReturnable<ItemOverrides> callback) {
+        @Nullable var nebs = EnchantedBookOverrides.of(model, model.name, bakery, this.overrides);
+        if (nebs != null) callback.setReturnValue(nebs);
+    }
 
     /**
      * Checks if the model we are getting overrides for is Minecraft's Enchanted Book (defined by
@@ -50,27 +70,8 @@ public class BlockModelMixin {
         cancellable = true
     )
     private void getOverrides(ModelBakery bakery, BlockModel model, Function<Material, TextureAtlasSprite> spriteGetter, CallbackInfoReturnable<ItemOverrides> callback) {
-        if (EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(model.name))
-            callback.setReturnValue(new EnchantedBookOverrides(bakery, model, bakery::getModel, spriteGetter, this.overrides));
+        @Nullable var nebs = EnchantedBookOverrides.of(model, model.name, bakery, this.overrides, spriteGetter);
+        if (nebs != null) callback.setReturnValue(nebs);
     }
 
-    /**
-     * This injector exists for backwards compatibility with older versions of Minecraft and Forge that do not strictly
-     * use Forge's sprite getter.
-     *
-     * @param bakery   The model bakery
-     * @param model    The unbaked model to get overrides for
-     * @param callback The callback for Mixin, which is used if we are cancelling the original method
-     * @see #getOverrides(ModelBakery, BlockModel, Function, CallbackInfoReturnable)
-     */
-    @Inject(
-        method = "getItemOverrides(Lnet/minecraft/client/resources/model/ModelBakery;Lnet/minecraft/client/renderer/block/model/BlockModel;)Lnet/minecraft/client/renderer/block/model/ItemOverrides;",
-        at = @At("HEAD"),
-        cancellable = true
-    )
-    @SuppressWarnings("deprecation")
-    private void getOverrides(ModelBakery bakery, BlockModel model, CallbackInfoReturnable<ItemOverrides> callback) {
-        if (EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(model.name))
-            callback.setReturnValue(new EnchantedBookOverrides(bakery, model, bakery::getModel, this.overrides));
-    }
 }
