@@ -63,6 +63,11 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
         super(output, modId, existingFileHelper);
     }
 
+    @Override
+    public String getName() {
+        return "Enchanted Book Item Models";
+    }
+
     /**
      * Registers all models for the enchanted books. See {@link EnchantedBookModelProvider} for details.
      *
@@ -85,8 +90,8 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
     }
 
     private void generateModel(String texture, String destination) {
-        ResourceLocation textureLoc = EnchantedBookOverrides.getEnchantedBookModel(texture);
-        ResourceLocation destLoc = EnchantedBookOverrides.getEnchantedBookModel(destination);
+        ResourceLocation textureLoc = EnchantedBookOverrides.locationFrom(texture);
+        ResourceLocation destLoc = EnchantedBookOverrides.locationFrom(destination);
         if (!existingFileHelper.exists(textureLoc, PackType.CLIENT_RESOURCES, ".png", "textures")) {
             throw new IllegalStateException(texture + " book texture not found, yet it was found as a resource earlier...");
         }

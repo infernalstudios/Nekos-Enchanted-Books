@@ -46,7 +46,7 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
     private static final String OVERRIDES_PATH = "assets/nebs/overrides.json";
     private static final String EXPECTED_PATH = "assets/nebs/textures/item";
 
-    private static final ModelFile ENCHANTED_BOOK_MODEL = new ModelFile.UncheckedModelFile(EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME);
+    private static final ModelFile ENCHANTED_BOOK_MODEL = new ModelFile.UncheckedModelFile(EnchantedBookItemModel.ENCHANTED_BOOK_UNBAKED_MODEL_LOCATION);
     private static final String ENCHANTED_BOOK_TEXTURE_KEY = "layer0";
 
     private Map<String, List<String>> overrides = Collections.emptyMap();
@@ -61,6 +61,11 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
      */
     protected EnchantedBookModelProvider(PackOutput output, String modId, ExistingFileHelper existingFileHelper) {
         super(output, modId, existingFileHelper);
+    }
+
+    @Override
+    public String getName() {
+        return "Enchanted Book Item Models";
     }
 
     /**
@@ -85,8 +90,8 @@ public class EnchantedBookModelProvider extends ItemModelProvider {
     }
 
     private void generateModel(String texture, String destination) {
-        ResourceLocation textureLoc = EnchantedBookOverrides.getEnchantedBookModel(texture);
-        ResourceLocation destLoc = EnchantedBookOverrides.getEnchantedBookModel(destination);
+        ResourceLocation textureLoc = EnchantedBookItemModel.locationFrom(texture);
+        ResourceLocation destLoc = EnchantedBookItemModel.locationFrom(destination);
         if (!this.existingFileHelper.exists(textureLoc, PackType.CLIENT_RESOURCES, ".png", "textures")) {
             throw new IllegalStateException(texture + " book texture not found, yet it was found as a resource earlier...");
         }

@@ -23,31 +23,32 @@ import java.util.Set;
  * <p>
  * This is the main class for the Neko's Enchanted Books (shortened to NEBs) mod, loaded by Forge. The mod itself does
  * not interface much with Forge itself, but rather uses coremods to ensure the injection of the custom item overrides
- * for the enchanted books provided in {@link EnchantedBookOverrides}.
+ * for the enchanted books provided in {@link EnchantedBookItemModel}.
  */
 @Mod(NekosEnchantedBooks.MOD_ID)
 public class NekosEnchantedBooks {
     /** The Mod ID for this mod. Note that this variable is in-lined at compile time, so it is safe to reference. */
     public static final String MOD_ID = "nebs";
     /** The logger for this mod. Package-private since it doesn't need to be accessed in many places. */
-    public static final Logger LOGGER = LogManager.getLogger();
+    static final Logger LOGGER = LogManager.getLogger();
 
     /**
      * A set of enchantments that are known to not actually be enchantments or do not have an associated enchanted book.
      * You should add to this set during {@link FMLClientSetupEvent} using
-     * {@link net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent#enqueueWork(Runnable)
-     * event.enqueueWork(Runnable)} if you have any custom enchantments that fall under this category.
+     * {@link FMLClientSetupEvent#enqueueWork(Runnable) event.enqueueWork(Runnable)} if you have any custom enchantments
+     * that fall under this category.
      */
+    @Deprecated(forRemoval = true, since = "2.0.3") // gotta replace this with a config
     public static final Set<String> NON_ENCHANTMENTS = new HashSet<>();
 
     /**
-     * Gets the NEBs ID of the given enchantment, which is the base {@link Enchantment#description()} while removing the
-     * {@code enchantment.} prefix if it exists.
+     * Gets the NEBs ID of the given enchantment, which is the base {@linkplain Enchantment#description() description}
+     * while removing the {@code enchantment.} prefix if it exists.
      *
      * @param enchantment The enchantment to get the ID of
      * @return The NEBs ID of the enchantment
      */
-    static @Nullable String getIdOf(Enchantment enchantment) {
+    static @Nullable String idOf(Enchantment enchantment) {
         if (!(enchantment.description().getContents() instanceof TranslatableContents contents))
             return null;
 
@@ -62,7 +63,7 @@ public class NekosEnchantedBooks {
     private void setupListeners(IEventBus modBus, IEventBus forgeBus) {
         modBus.<FMLClientSetupEvent>addListener(event -> event.enqueueWork(this::setup));
         //modBus.<ModelEvent.RegisterAdditional>addListener(event -> EnchantedBookOverrides.prepare(event::register, event.getInputModels()));
-        forgeBus.<ClientPlayerNetworkEvent.LoggingIn>addListener(event -> EnchantedBookOverrides.validate(event.getPlayer().registryAccess().lookupOrThrow(Registries.ENCHANTMENT)));
+        forgeBus.<ClientPlayerNetworkEvent.LoggingIn>addListener(event -> EnchantedBookItemModel.validate(event.getPlayer().registryAccess().lookupOrThrow(Registries.ENCHANTMENT)));
         modBus.addListener(this::gatherData);
     }
 

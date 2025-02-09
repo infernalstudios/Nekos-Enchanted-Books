@@ -22,12 +22,8 @@ function getOverrides(clazz) {
 
         if (method.name.equals(ASMAPI.mapMethod('func_217646_a')) && method.desc.equals('(Lnet/minecraft/client/renderer/model/ModelBakery;Lnet/minecraft/client/renderer/model/BlockModel;)Lnet/minecraft/client/renderer/model/ItemOverrideList;')) {
             transform(method, onVanilla);
-            continue;
-        }
-
-        if (method.name.equals('getOverrides') && method.desc.equals('(Lnet/minecraft/client/renderer/model/ModelBakery;Lnet/minecraft/client/renderer/model/BlockModel;Ljava/util/function/Function;Lnet/minecraft/client/renderer/vertex/VertexFormat;)Lnet/minecraft/client/renderer/model/ItemOverrideList;')) {
+        } else if (method.name.equals('getOverrides') && method.desc.equals('(Lnet/minecraft/client/renderer/model/ModelBakery;Lnet/minecraft/client/renderer/model/BlockModel;Ljava/util/function/Function;Lnet/minecraft/client/renderer/vertex/VertexFormat;)Lnet/minecraft/client/renderer/model/ItemOverrideList;')) {
             transform(method, onForge);
-            continue;
         }
     }
 

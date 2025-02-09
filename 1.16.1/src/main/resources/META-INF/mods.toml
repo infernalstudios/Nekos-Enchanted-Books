@@ -1,26 +1,26 @@
-modLoader="javafml"
-loaderVersion="[32,)"
-license="All rights reserved"
+modLoader = "javafml"
+loaderVersion = "[32,)"
+license = "All rights reserved"
 
 [[mods]]
-modId="nebs"
-version="${file.jarVersion}"
-displayName="Neko's Enchanted Books"
-updateJSONURL="https://infernalstudios.org/api/mods/nekosenchantedbooks/forge"
-credits="Nekomaster, CGessinger, Jonathing"
-authors="Infernal Studios"
-description='''A small mod that enables adding unique textures for Enchanted Books. See our mod's page for more details on what mods are natively supported and how you can add your own support!'''
+modId = "nebs"
+version = "${file.jarVersion}"
+displayName = "Neko's Enchanted Books"
+updateJSONURL = "https://infernalstudios.org/api/mods/nekosenchantedbooks/forge"
+credits = "Nekomaster, CGessinger, Jonathing"
+authors = "Infernal Studios"
+description = '''A small mod that enables adding unique textures for Enchanted Books. See our mod's page for more details on what mods are natively supported and how you can add your own support!'''
 
 [[dependencies.nebs]]
-    modId="forge"
-    mandatory=true
-    versionRange="[32.0.72,)" # Mixin added
-    ordering="NONE"
-    side="CLIENT"
+modId = "forge"
+mandatory = true
+versionRange = "[32.0.72,)" # Mixin added
+ordering = "NONE"
+side = "CLIENT"
 
 [[dependencies.nebs]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.16.1,1.17)"
-    ordering="NONE"
-    side="CLIENT"
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.16.1,1.17)"
+ordering = "NONE"
+side = "CLIENT"

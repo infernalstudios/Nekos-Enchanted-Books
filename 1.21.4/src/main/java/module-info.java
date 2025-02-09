@@ -9,7 +9,6 @@ module org.infernalstudios.nebs {
     // helper libraries
     requires org.apache.logging.log4j;         // logging
     requires com.google.gson;                  // overrides.json for the data generator
-    requires com.google.common;                // immutable maps and sets
 
     // annotations
     requires static org.jetbrains.annotations; // @Nullable

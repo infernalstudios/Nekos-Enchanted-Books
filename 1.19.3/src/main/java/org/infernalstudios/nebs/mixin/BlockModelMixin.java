@@ -35,7 +35,7 @@ public class BlockModelMixin {
         cancellable = true
     )
     private void getOverrides(ModelBaker baker, BlockModel model, CallbackInfoReturnable<ItemOverrides> callback) {
-        @Nullable var nebs = EnchantedBookOverrides.of(model, model.name, baker, this.overrides);
+        @Nullable ItemOverrides nebs = EnchantedBookOverrides.of(model, model.name, baker, this.overrides);
         if (nebs != null) callback.setReturnValue(nebs);
     }
 
@@ -61,7 +61,7 @@ public class BlockModelMixin {
         cancellable = true
     )
     private void getOverrides(ModelBaker baker, BlockModel model, Function<Material, TextureAtlasSprite> spriteGetter, CallbackInfoReturnable<ItemOverrides> callback) {
-        @Nullable var nebs = EnchantedBookOverrides.of(model, model.name, baker, this.overrides, spriteGetter);
+        @Nullable ItemOverrides nebs = EnchantedBookOverrides.of(model, model.name, baker, this.overrides, spriteGetter);
         if (nebs != null) callback.setReturnValue(nebs);
     }
 }

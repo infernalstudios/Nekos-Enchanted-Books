@@ -1,9 +1,9 @@
 {
-    "pack": {
-        "description": {
-            "translate": "pack.nebs.description"
-        },
-        "pack_format": 8,
-        "forge:data_pack_format": 9
-    }
+  "pack": {
+    "description": {
+      "translate": "pack.nebs.description"
+    },
+    "pack_format": 8,
+    "forge:data_pack_format": 9
+  }
 }

@@ -1,8 +1,8 @@
 {
-    "pack": {
-        "description": {
-            "translate": "pack.nebs.description"
-        },
-        "pack_format": 6
-    }
+  "pack": {
+    "description": {
+      "translate": "pack.nebs.description"
+    },
+    "pack_format": 6
+  }
 }

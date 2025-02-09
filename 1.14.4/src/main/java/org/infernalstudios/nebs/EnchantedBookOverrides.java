@@ -1,12 +1,9 @@
 package org.infernalstudios.nebs;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.model.BlockModel;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.IUnbakedModel;
-import net.minecraft.client.renderer.model.ItemOverride;
 import net.minecraft.client.renderer.model.ItemOverrideList;
 import net.minecraft.client.renderer.model.ModelBakery;
 import net.minecraft.client.renderer.model.ModelRotation;
@@ -18,17 +15,16 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -42,7 +38,7 @@ import java.util.function.Function;
  * enchantments or the enchantments of other mods (in the case of modpackers):
  * <ul>
  *     <li>All models are automatically loaded from the root folder {@code assets/nebs/models/item}. Each model is
- *     organized into the {@linkplain NekosEnchantedBooks#getIdOf(Enchantment) enchantment's NEBs ID} where each point
+ *     organized into the {@linkplain NekosEnchantedBooks#idOf(Enchantment) enchantment's NEBs ID} where each point
  *     is a folder separation.</li>
  *     <ul>
  *         <li>For example, if you want to load a model for your enchantment of key
@@ -64,10 +60,13 @@ import java.util.function.Function;
  *         debugging purposes.</li>
  *     </ul>
  * </ul>
+ * <strong>It is important to note</strong> that this class respects any existing overrides that might have been added
+ * to the base enchanted book model. However, this is only the case if an enchanted book has an enchantment that is not
+ * saved in our own overrides, so it merely acts as a fallback.
  * <h2>Usage for NEBs Developers</h2>
  * Apart from what has already been mentioned, you should read the documentation for each of the methods:
  * <ul>
- *     <li>{@link #EnchantedBookOverrides(ModelBakery, BlockModel, Function, List, Function, VertexFormat)}</li>
+ *     <li>{@link #EnchantedBookOverrides(ItemOverrideList, ModelBaker)}</li>
  *     <li>{@link #resolve(IBakedModel, ItemStack, World, LivingEntity)}</li>
  * </ul>
  *
@@ -76,169 +75,133 @@ import java.util.function.Function;
 @SuppressWarnings("deprecation") // We are wrapping things that use deprecated methods
 public final class EnchantedBookOverrides extends ItemOverrideList {
     /** The name of the vanilla enchanted book model, used as a base for NEBs own models. */
-    public static final String ENCHANTED_BOOK_UNBAKED_MODEL_NAME = "minecraft:item/enchanted_book";
+    static final String ENCHANTED_BOOK_UNBAKED_MODEL_NAME = "minecraft:item/enchanted_book";
 
-    static ResourceLocation getEnchantedBookModel(String enchantment) {
+    static ResourceLocation locationFrom(String enchantment) {
         return new ResourceLocation(NekosEnchantedBooks.MOD_ID, "item/" + enchantment.replace(".", "/"));
     }
 
     private static final Set<String> PREPARED_ENCHANTMENTS = new HashSet<>();
     private static final Set<ResourceLocation> PREPARED_MODELS = new HashSet<>();
 
+    private final ItemOverrideList base;
     private final Map<String, IBakedModel> overrides;
 
+    @SuppressWarnings("unused") // BlockModelCoreMod
     public static ItemOverrideList of(ItemOverrideList existing, BlockModel base, String location, ModelBakery bakery) {
-        return !EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location) ? existing : new EnchantedBookOverrides(bakery, base, bakery::getModel, existing.getOverrides());
+        if (!EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location)) return existing;
+
+        try {
+            return new EnchantedBookOverrides(existing, bakery::bake);
+        } catch (RuntimeException e) {
+            NekosEnchantedBooks.LOGGER.error("Failed to bake custom enchanted book overrides!", e);
+            return existing;
+        }
     }
 
+    @SuppressWarnings("unused") // BlockModelCoreMod
     public static ItemOverrideList of(ItemOverrideList existing, BlockModel base, String location, ModelBakery bakery, Function<ResourceLocation, TextureAtlasSprite> spriteGetter, VertexFormat vertexFormat) {
-        return !EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location) ? existing : new EnchantedBookOverrides(bakery, base, bakery::getModel, existing.getOverrides(), spriteGetter, vertexFormat);
-    }
+        if (!EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location)) return existing;
 
-    /**
-     * This constructor acts as a bouncer for legacy vanilla model baking.
-     *
-     * @param bakery        The model bakery
-     * @param enchantedBook The vanilla enchanted book unbaked model (ensured by
-     *                      {@link org.infernalstudios.nebs.mixin.BlockModelMixin BlockModelMixin})
-     * @param modelGetter   The model getter
-     * @param existing      Any existing item overrides that exist in the base enchanted book model
-     * @see #EnchantedBookOverrides(ModelBakery, BlockModel, Function, List, Function, VertexFormat)
-     * @see EnchantedBookOverrides
-     */
-    private EnchantedBookOverrides(ModelBakery bakery, BlockModel enchantedBook, Function<ResourceLocation, IUnbakedModel> modelGetter, List<ItemOverride> existing) {
-        super(bakery, enchantedBook, modelGetter, existing);
-        this.overrides = this.setup(bakery::bake);
+        try {
+            return new EnchantedBookOverrides(existing, (model, state) -> bakery.getBakedModel(model, state, spriteGetter, vertexFormat));
+        } catch (RuntimeException e) {
+            NekosEnchantedBooks.LOGGER.error("Failed to bake custom enchanted book overrides!", e);
+            return existing;
+        }
     }
 
     /**
      * This constructor follows up on the initialization done in its super method,
      * {@link ItemOverrideList#ItemOverrideList(ModelBakery, IUnbakedModel, Function, Function, List, VertexFormat)}. It
-     * calls the {@link #setup(ModelBaker)} method, where all the registered enchantments are grabbed from the
-     * {@linkplain ForgeRegistries#ENCHANTMENTS Enchantments registry} and are queried for automatic model loading. The
-     * process of taking advantage of automatic model loading was described in the documentation for the class in
-     * {@link EnchantedBookOverrides}.
-     * <p>
-     * Also note that this class respects any existing overrides that might have been added to the base enchanted book
-     * model. However, this is only the case if an enchanted book has an enchantment that is not saved in our own
-     * overrides.
+     * {@link #bakeOverrides(ModelBaker)} method, where existing models and registered enchantments are queried for
+     * automatic model loading. The process of taking advantage of automatic model loading was described in the
+     * documentation for the class in {@link EnchantedBookOverrides}.
      *
-     * @param bakery        The model bakery
-     * @param enchantedBook The vanilla enchanted book unbaked model (ensured by
-     *                      {@link org.infernalstudios.nebs.mixin.BlockModelMixin BlockModelMixin})
-     * @param modelGetter   The model getter
-     * @param spriteGetter  The sprite getter for model baking
-     * @param existing      Any existing item overrides that exist in the base enchanted book model
+     * @param baker    The model baker
+     * @param base Any existing item overrides that exist in the base enchanted book model
      * @see #resolve(IBakedModel, ItemStack, World, LivingEntity)
      * @see EnchantedBookOverrides
      */
-    private EnchantedBookOverrides(ModelBakery bakery, BlockModel enchantedBook, Function<ResourceLocation, IUnbakedModel> modelGetter, List<ItemOverride> existing, Function<ResourceLocation, TextureAtlasSprite> spriteGetter, VertexFormat vertexFormat) {
-        super(bakery, enchantedBook, modelGetter, spriteGetter, existing, vertexFormat);
-        this.overrides = setup((model, state) -> bakery.getBakedModel(model, state, spriteGetter, vertexFormat));
-    }
-
-    /**
-     * The setup as described in
-     * {@link #EnchantedBookOverrides(ModelBakery, BlockModel, Function, List, Function, VertexFormat)}. Use
-     * this to assign {@link #overrides}.
-     *
-     * @param baker The model baker
-     * @return The map of enchantment IDs to their respective baked models
-     *
-     * @see #EnchantedBookOverrides(ModelBakery, BlockModel, Function, List, Function, VertexFormat)
-     */
-    private Map<String, IBakedModel> setup(ModelBaker baker) {
-        // bake overrides
-        BakeResult result = bakeOverrides(baker);
-
-        // log missing models
-        if (!result.missing.isEmpty()) {
-            NekosEnchantedBooks.LOGGER.warn("Missing enchanted book models for the following enchantments: [{}]", String.join(", ", result.missing));
-        } else {
-            NekosEnchantedBooks.LOGGER.info("Successfully loaded enchanted book models for all available enchantments");
-        }
-
-        return result.overrides;
+    private EnchantedBookOverrides(ItemOverrideList base, ModelBaker baker) {
+        this.base = base;
+        this.overrides = bakeOverrides(baker);
     }
 
     /**
      * Bakes the custom overrides used for the enchanted books.
      *
-     * @param baker   The model baker to use with the bakery
+     * @param baker The model baker to use with the bakery
      * @return The map of enchantment IDs to their respective baked models
      */
-    private static BakeResult bakeOverrides(ModelBaker baker) {
-        ImmutableMap.Builder<String, IBakedModel> overrides = ImmutableMap.builder();
-        ImmutableSet.Builder<String> missing = ImmutableSet.builder();
+    private static Map<String, IBakedModel> bakeOverrides(ModelBaker baker) {
+        Map<String, IBakedModel> overrides = new HashMap<>(PREPARED_ENCHANTMENTS.size());
+        Set<String> failed = new TreeSet<>();
         PREPARED_ENCHANTMENTS.forEach(enchantment -> {
-            ResourceLocation model = getEnchantedBookModel(enchantment);
+            ResourceLocation model = locationFrom(enchantment);
             if (!PREPARED_MODELS.contains(model)) {
                 if (!NekosEnchantedBooks.NON_ENCHANTMENTS.contains(enchantment))
-                    missing.add(enchantment);
+                    failed.add(enchantment);
                 return;
             }
 
             // Now we are ready to bake the custom model and add it to our own overrides.
             IBakedModel baked = baker.bake(model, ModelRotation.X0_Y0);
             if (baked == null) {
-                missing.add(enchantment);
+                failed.add(enchantment);
                 return;
             }
 
             overrides.put(enchantment, baked);
         });
-        return new BakeResult(overrides, missing);
+
+        // log missing models
+        if (!failed.isEmpty()) {
+            NekosEnchantedBooks.LOGGER.warn("Missing, or failed to load, enchanted book models for the following enchantments: [{}]", String.join(", ", failed));
+        } else {
+            NekosEnchantedBooks.LOGGER.info("Successfully loaded enchanted book models for all available enchantments");
+        }
+
+        return overrides;
     }
 
     /**
-     * Prepares all custom models to be used by NEBs. By registering them in {@link ModelLoader}, we can save the
-     * trouble of needing to manually resolve and bake them and their parents ourselves.
+     * Prepares all custom models to be used by NEBs. This includes resolving models so that their textures can be
+     * referenced even though it doesn't exist in a model file that is directly tied to an item.
      *
-     * @param models The consumer to accept new models to be registered
+     * @param enchantments All registered enchantments
+     * @param resolver     The model resolver
      */
-    static void prepare(Consumer<ResourceLocation> models) {
-        ForgeRegistries.ENCHANTMENTS.forEach(e -> {
+    static void prepare(Iterable<Enchantment> enchantments, Consumer<ResourceLocation> resolver) {
+        enchantments.forEach(e -> {
             // save enchantment
-            String enchantment = NekosEnchantedBooks.getIdOf(e);
+            String enchantment = NekosEnchantedBooks.idOf(e);
             PREPARED_ENCHANTMENTS.add(enchantment);
 
             // try and find model for enchantment
-            ResourceLocation model = getEnchantedBookModel(enchantment);
+            ResourceLocation model = locationFrom(enchantment);
             if (!Minecraft.getInstance().getResourceManager().hasResource(new ResourceLocation(model.getNamespace(), "models/" + model.getPath() + ".json"))) {
                 return;
             }
 
-            // model exists? prepare it
             PREPARED_MODELS.add(model);
-            models.accept(model);
+            resolver.accept(model);
         });
     }
 
     /**
      * A functional interface that allows us to use {@link ModelBakery#bake(ResourceLocation, ISprite)} or
-     * {@link ModelBakery#getBakedModel(ResourceLocation, ISprite, Function, VertexFormat)} without needing to arbitrarily
-     * pass around any additional attributes that might be needed. It effectively acts as a wrapper around 1.20's
-     * {@code ModelBaker}.
+     * {@link ModelBakery#getBakedModel(ResourceLocation, ISprite, Function, VertexFormat)} without needing to
+     * arbitrarily pass around any additional attributes that might be needed. It effectively acts as a wrapper around
+     * 1.20's {@code ModelBaker}.
      */
     @FunctionalInterface
-    private interface ModelBaker {
+    private interface ModelBaker extends BiFunction<ResourceLocation, ISprite, IBakedModel> {
         IBakedModel bake(ResourceLocation model, ISprite state);
-    }
 
-    /**
-     * Holds the result of the model baking done in {@link #bakeOverrides(ModelBaker)}.
-     *
-     * @see BakeResult#BakeResult(ImmutableMap.Builder, ImmutableSet.Builder)
-     */
-    private static final class BakeResult {
-        /** The baked overrides to be used by {@link EnchantedBookOverrides} */
-        private final Map<String, IBakedModel> overrides;
-        /** The enchantments that are missing models */
-        private final Set<String> missing;
-
-        private BakeResult(ImmutableMap.Builder<String, IBakedModel> overrides, ImmutableSet.Builder<String> missing) {
-            this.overrides = overrides.build();
-            this.missing = Util.make(new TreeSet<>(), set -> set.addAll(missing.build()));
+        @Override
+        default IBakedModel apply(ResourceLocation location, ISprite state) {
+            return this.bake(location, state);
         }
     }
 
@@ -248,8 +211,8 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
     /**
      * Resolves the baked model based on the given stack's enchantment. If the enchantment is not found in the custom
      * overrides, we default back to the super method
-     * {@link ItemOverrideList#resolve(IBakedModel, ItemStack, World, LivingEntity)} which will likely return the
-     * base enchanted book model.
+     * {@link ItemOverrideList#resolve(IBakedModel, ItemStack, World, LivingEntity)} which will likely return the base
+     * enchanted book model.
      *
      * @param model  The model to get the override for
      * @param stack  The item stack to get the override for
@@ -260,13 +223,13 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
     @Override
     public @Nullable IBakedModel resolve(IBakedModel model, ItemStack stack, @Nullable World level, @Nullable LivingEntity entity) {
         for (Enchantment enchantment : getEnchantments(stack)) {
-            String key = NekosEnchantedBooks.getIdOf(enchantment);
+            String key = NekosEnchantedBooks.idOf(enchantment);
             if (this.overrides.containsKey(key)) {
                 return this.overrides.get(key);
             }
         }
 
-        return super.resolve(model, stack, level, entity);
+        return this.base.resolve(model, stack, level, entity);
     }
 
     /**

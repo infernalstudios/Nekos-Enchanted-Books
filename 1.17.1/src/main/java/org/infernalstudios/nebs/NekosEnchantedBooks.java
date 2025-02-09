@@ -12,11 +12,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
-import net.minecraftforge.fmllegacy.network.FMLNetworkConstants;
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.infernalstudios.nebs.mixin.BlockModelMixin;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,8 +24,9 @@ import java.util.Set;
  * <h1>Neko's Enchanted Books</h1>
  * <p>
  * This is the main class for the Neko's Enchanted Books (shortened to NEBs) mod, loaded by Forge. The mod itself does
- * not interface much with Forge itself, but rather uses {@link BlockModelMixin BlockModelMixin} to inject the custom
- * item overrides for the enchanted books provided in {@link EnchantedBookOverrides}.
+ * not interface much with Forge itself, but rather uses
+ * {@link org.infernalstudios.nebs.mixin.BlockModelMixin BlockModelMixin} to inject the custom item overrides for the
+ * enchanted books provided in {@link EnchantedBookOverrides}.
  */
 @Mod(NekosEnchantedBooks.MOD_ID)
 public class NekosEnchantedBooks {
@@ -38,19 +38,20 @@ public class NekosEnchantedBooks {
     /**
      * A set of enchantments that are known to not actually be enchantments or do not have an associated enchanted book.
      * You should add to this set during {@link FMLClientSetupEvent} using
-     * {@link net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent#enqueueWork(Runnable)
-     * event.enqueueWork(Runnable)} if you have any custom enchantments that fall under this category.
+     * {@link FMLClientSetupEvent#enqueueWork(Runnable) event.enqueueWork(Runnable)} if you have any custom enchantments
+     * that fall under this category.
      */
+    @Deprecated(forRemoval = true, since = "2.0.3") // gotta replace this with a config
     public static final Set<String> NON_ENCHANTMENTS = new HashSet<>();
 
     /**
-     * Gets the NEBs ID of the given enchantment, which is the base {@link Enchantment#getDescriptionId()} while
-     * removing the {@code enchantment.} prefix if it exists.
+     * Gets the NEBs ID of the given enchantment, which is the base {@linkplain Enchantment#getDescriptionId()}
+     * description} while removing the {@code enchantment.} prefix if it exists.
      *
      * @param enchantment The enchantment to get the ID of
      * @return The NEBs ID of the enchantment
      */
-    static String getIdOf(Enchantment enchantment) {
+    static String idOf(Enchantment enchantment) {
         String id = enchantment.getDescriptionId();
         return id.startsWith("enchantment.") ? id.substring("enchantment.".length()) : id;
     }
@@ -59,8 +60,7 @@ public class NekosEnchantedBooks {
         ModLoadingContext context = ModLoadingContext.get();
 
         // If this mod is loaded on a server, don't require clients to have it
-        context.registerExtensionPoint(IExtensionPoint.DisplayTest.class,
-            () -> new IExtensionPoint.DisplayTest(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+        context.registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> "", (a, b) -> true));
 
         // If we're on a server, stop now
         if (FMLEnvironment.dist != Dist.CLIENT) return;
@@ -70,7 +70,7 @@ public class NekosEnchantedBooks {
 
     private void setupListeners(IEventBus modBus) {
         modBus.<FMLClientSetupEvent>addListener(event -> event.enqueueWork(this::setup));
-        modBus.<ModelRegistryEvent>addListener(event -> EnchantedBookOverrides.prepare(ModelLoader::addSpecialModel));
+        modBus.<ModelRegistryEvent>addListener(event -> EnchantedBookOverrides.prepare(ForgeRegistries.ENCHANTMENTS, ModelLoader::addSpecialModel));
         modBus.addListener(this::gatherData);
     }
 
@@ -88,7 +88,9 @@ public class NekosEnchantedBooks {
     private void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
 
-        // native enchanted book models
-        if (event.includeClient()) generator.addProvider(new EnchantedBookModelProvider(generator, NekosEnchantedBooks.MOD_ID, event.getExistingFileHelper()));
+        if (event.includeClient()) {
+            // native enchanted book models
+            generator.addProvider(new EnchantedBookModelProvider(generator, NekosEnchantedBooks.MOD_ID, event.getExistingFileHelper()));
+        }
     }
 }
