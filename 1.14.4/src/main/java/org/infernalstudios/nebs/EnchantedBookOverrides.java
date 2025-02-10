@@ -1,7 +1,6 @@
 package org.infernalstudios.nebs;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.model.BlockModel;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.IUnbakedModel;
 import net.minecraft.client.renderer.model.ItemOverrideList;

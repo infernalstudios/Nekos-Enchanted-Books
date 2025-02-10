@@ -2,8 +2,6 @@ package org.infernalstudios.nebs;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.block.model.BlockModel;
-import net.minecraft.client.renderer.block.model.ItemOverride;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
@@ -67,7 +65,7 @@ import java.util.function.Function;
  * <h2>Usage for NEBs Developers</h2>
  * Apart from what has already been mentioned, you should read the documentation for each of the methods:
  * <ul>
- *     <li>{@link #EnchantedBookOverrides(ModelBakery, BlockModel, Function, List, Function)}</li>
+ *     <li>{@link #EnchantedBookOverrides(ItemOverrides, ModelBaker)}</li>
  *     <li>{@link #resolve(BakedModel, ItemStack, ClientLevel, LivingEntity, int)}</li>
  * </ul>
  *

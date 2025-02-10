@@ -1,11 +1,9 @@
 package org.infernalstudios.nebs;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.model.BlockModel;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.IModelTransform;
 import net.minecraft.client.renderer.model.IUnbakedModel;
-import net.minecraft.client.renderer.model.ItemOverride;
 import net.minecraft.client.renderer.model.ItemOverrideList;
 import net.minecraft.client.renderer.model.ModelBakery;
 import net.minecraft.client.renderer.model.ModelRotation;
@@ -67,7 +65,7 @@ import java.util.function.Function;
  * <h2>Usage for NEBs Developers</h2>
  * Apart from what has already been mentioned, you should read the documentation for each of the methods:
  * <ul>
- *     <li>{@link #EnchantedBookOverrides(ModelBakery, BlockModel, Function, List, Function)}</li>
+ *     <li>{@link #EnchantedBookOverrides(ItemOverrideList, ModelBaker)}</li>
  *     <li>{@link #resolve(IBakedModel, ItemStack, ClientWorld, LivingEntity)}</li>
  * </ul>
  *

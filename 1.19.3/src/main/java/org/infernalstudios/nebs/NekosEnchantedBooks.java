@@ -23,9 +23,8 @@ import java.util.Set;
  * <h1>Neko's Enchanted Books</h1>
  * <p>
  * This is the main class for the Neko's Enchanted Books (shortened to NEBs) mod, loaded by Forge. The mod itself does
- * not interface much with Forge itself, but rather uses
- * {@link org.infernalstudios.nebs.mixin.BlockModelMixin BlockModelMixin} to inject the custom item overrides for the
- * enchanted books provided in {@link EnchantedBookOverrides}.
+ * not interface much with Forge itself, but rather uses coremods to ensure the injection of the custom item overrides
+ * for the enchanted books provided in {@link EnchantedBookOverrides}.
  */
 @Mod(NekosEnchantedBooks.MOD_ID)
 public class NekosEnchantedBooks {
