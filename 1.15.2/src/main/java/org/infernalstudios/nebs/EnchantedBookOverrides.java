@@ -67,7 +67,7 @@ import java.util.function.Function;
  * <h2>Usage for NEBs Developers</h2>
  * Apart from what has already been mentioned, you should read the documentation for each of the methods:
  * <ul>
- *     <li>{@link #EnchantedBookOverrides(ModelBakery, BlockModel, Function, List, Function)}</li>
+ *     <li>{@link #EnchantedBookOverrides(ItemOverrideList, ModelBaker)}</li>
  *     <li>{@link #resolve(IBakedModel, ItemStack, World, LivingEntity)}</li>
  * </ul>
  *
@@ -85,44 +85,31 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
     private static final Set<String> PREPARED_ENCHANTMENTS = new HashSet<>();
     private static final Set<ResourceLocation> PREPARED_MODELS = new HashSet<>();
 
+    private final ItemOverrideList base;
     private final Map<String, IBakedModel> overrides;
 
-    public static @Nullable ItemOverrideList of(BlockModel base, String location, ModelBakery bakery, List<ItemOverride> existing) {
-        if (!EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location)) return null;
+    @SuppressWarnings("unused") // BlockModelCoreMod
+    public static ItemOverrideList of(ItemOverrideList base, String location, ModelBakery bakery) {
+        if (!EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location)) return base;
 
         try {
-            return new EnchantedBookOverrides(bakery, base, bakery::getModel, existing);
+            return new EnchantedBookOverrides(base, bakery::bake);
         } catch (RuntimeException e) {
             NekosEnchantedBooks.LOGGER.error("Failed to bake custom enchanted book overrides!", e);
-            return null;
+            return base;
         }
     }
 
-    public static @Nullable ItemOverrideList of(BlockModel base, String location, ModelBakery bakery, List<ItemOverride> existing, Function<Material, TextureAtlasSprite> spriteGetter) {
-        if (!EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location)) return null;
+    @SuppressWarnings("unused") // BlockModelCoreMod
+    public static ItemOverrideList of(ItemOverrideList base, String location, ModelBakery bakery, Function<Material, TextureAtlasSprite> spriteGetter) {
+        if (!EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location)) return base;
 
         try {
-            return new EnchantedBookOverrides(bakery, base, bakery::getModel, existing, spriteGetter);
+            return new EnchantedBookOverrides(base, (model, state) -> bakery.getBakedModel(model, state, spriteGetter));
         } catch (RuntimeException e) {
             NekosEnchantedBooks.LOGGER.error("Failed to bake custom enchanted book overrides!", e);
-            return null;
+            return base;
         }
-    }
-
-    /**
-     * This constructor acts as a bouncer for legacy vanilla model baking.
-     *
-     * @param bakery        The model bakery
-     * @param enchantedBook The vanilla enchanted book unbaked model (ensured by
-     *                      {@link org.infernalstudios.nebs.mixin.BlockModelMixin BlockModelMixin})
-     * @param modelGetter   The model getter
-     * @param existing      Any existing item overrides that exist in the base enchanted book model
-     * @see #EnchantedBookOverrides(ModelBakery, BlockModel, Function, List, Function)
-     * @see EnchantedBookOverrides
-     */
-    private EnchantedBookOverrides(ModelBakery bakery, BlockModel enchantedBook, Function<ResourceLocation, IUnbakedModel> modelGetter, List<ItemOverride> existing) {
-        super(bakery, enchantedBook, modelGetter, existing);
-        this.overrides = bakeOverrides(bakery::bake);
     }
 
     /**
@@ -132,18 +119,14 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      * automatic model loading. The process of taking advantage of automatic model loading was described in the
      * documentation for the class in {@link EnchantedBookOverrides}.
      *
-     * @param bakery        The model bakery
-     * @param enchantedBook The vanilla enchanted book unbaked model (ensured by
-     *                      {@link org.infernalstudios.nebs.mixin.BlockModelMixin BlockModelMixin})
-     * @param modelGetter   The model getter
-     * @param spriteGetter  The sprite getter for model baking
-     * @param existing      Any existing item overrides that exist in the base enchanted book model
+     * @param base  Any existing item overrides that exist in the base enchanted book model
+     * @param baker The model baker
      * @see #resolve(IBakedModel, ItemStack, World, LivingEntity)
      * @see EnchantedBookOverrides
      */
-    private EnchantedBookOverrides(ModelBakery bakery, BlockModel enchantedBook, Function<ResourceLocation, IUnbakedModel> modelGetter, List<ItemOverride> existing, Function<Material, TextureAtlasSprite> spriteGetter) {
-        super(bakery, enchantedBook, modelGetter, spriteGetter, existing);
-        this.overrides = bakeOverrides((model, state) -> bakery.getBakedModel(model, state, spriteGetter));
+    private EnchantedBookOverrides(ItemOverrideList base, ModelBaker baker) {
+        this.base = base;
+        this.overrides = bakeOverrides(baker);
     }
 
     /**
@@ -247,7 +230,7 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
             }
         }
 
-        return super.resolve(model, stack, level, entity);
+        return this.base.resolve(model, stack, level, entity);
     }
 
     /**

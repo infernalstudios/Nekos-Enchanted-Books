@@ -42,22 +42,20 @@ function transform(method, instructions) {
 
 function onVanilla() {
     return ASMAPI.listOf(
-        new VarInsnNode(Opcodes.ALOAD, 2), // p_217646_2_
         new VarInsnNode(Opcodes.ALOAD, 2),
         new FieldInsnNode(Opcodes.GETFIELD, 'net/minecraft/client/renderer/model/BlockModel', ASMAPI.mapField('field_178317_b'), 'Ljava/lang/String;'), // model.name
         new VarInsnNode(Opcodes.ALOAD, 1), // p_217646_1_
-        ASMAPI.buildMethodCall('org/infernalstudios/nebs/EnchantedBookOverrides', 'of', '(Lnet/minecraft/client/renderer/model/ItemOverrideList;Lnet/minecraft/client/renderer/model/BlockModel;Ljava/lang/String;Lnet/minecraft/client/renderer/model/ModelBakery;)Lnet/minecraft/client/renderer/model/ItemOverrideList;', ASMAPI.MethodType.STATIC)
+        ASMAPI.buildMethodCall('org/infernalstudios/nebs/EnchantedBookOverrides', 'of', '(Lnet/minecraft/client/renderer/model/ItemOverrideList;Ljava/lang/String;Lnet/minecraft/client/renderer/model/ModelBakery;)Lnet/minecraft/client/renderer/model/ItemOverrideList;', ASMAPI.MethodType.STATIC)
     );
 }
 
 function onForge() {
     return ASMAPI.listOf(
-        new VarInsnNode(Opcodes.ALOAD, 2), // p_217646_2_
         new VarInsnNode(Opcodes.ALOAD, 2),
         new FieldInsnNode(Opcodes.GETFIELD, 'net/minecraft/client/renderer/model/BlockModel', ASMAPI.mapField('field_178317_b'), 'Ljava/lang/String;'), // model.name
         new VarInsnNode(Opcodes.ALOAD, 1), // p_217646_1_
         new VarInsnNode(Opcodes.ALOAD, 3), // textureGetter
         new VarInsnNode(Opcodes.ALOAD, 4), // format
-        ASMAPI.buildMethodCall('org/infernalstudios/nebs/EnchantedBookOverrides', 'of', '(Lnet/minecraft/client/renderer/model/ItemOverrideList;Lnet/minecraft/client/renderer/model/BlockModel;Ljava/lang/String;Lnet/minecraft/client/renderer/model/ModelBakery;Ljava/util/function/Function;Lnet/minecraft/client/renderer/vertex/VertexFormat;)Lnet/minecraft/client/renderer/model/ItemOverrideList;', ASMAPI.MethodType.STATIC)
+        ASMAPI.buildMethodCall('org/infernalstudios/nebs/EnchantedBookOverrides', 'of', '(Lnet/minecraft/client/renderer/model/ItemOverrideList;Ljava/lang/String;Lnet/minecraft/client/renderer/model/ModelBakery;Ljava/util/function/Function;Lnet/minecraft/client/renderer/vertex/VertexFormat;)Lnet/minecraft/client/renderer/model/ItemOverrideList;', ASMAPI.MethodType.STATIC)
     );
 }

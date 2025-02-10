@@ -14,7 +14,7 @@ description = '''A small mod that enables adding unique textures for Enchanted B
 [[dependencies.nebs]]
 modId = "forge"
 mandatory = true
-versionRange = "[28.0.49,)" # ModelRegistryEvent added
+versionRange = "[28.0.49,)" # ModelLoader.addSpecialModel added
 ordering = "NONE"
 side = "CLIENT"
 

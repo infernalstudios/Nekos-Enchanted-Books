@@ -28,10 +28,10 @@ function registerAdditional(method) {
         new InsnNode(Opcodes.DUP),
         new VarInsnNode(Opcodes.ALOAD, 0), // this
         ASMAPI.buildMethodCall(ASMAPI.MethodType.SPECIAL, 'net/minecraft/client/resources/model/ModelDiscovery$ResolverImpl', '<init>', '(Lnet/minecraft/client/resources/model/ModelDiscovery;)V'),
-        ASMAPI.buildMethodCall(ASMAPI.MethodType.STATIC, 'org/infernalstudios/nebs/EnchantedBookOverrides', 'prepare', '(Ljava/util/Map;Lnet/minecraft/client/resources/model/ResolvableModel$Resolver;)V')
+        ASMAPI.buildMethodCall(ASMAPI.MethodType.STATIC, 'org/infernalstudios/nebs/EnchantedBookItemModel', 'prepare', '(Ljava/util/Map;Lnet/minecraft/client/resources/model/ResolvableModel$Resolver;)V')
     );
 
-    // EnchantedBookOverrides.prepare(this.inputModels, new ModelDiscovery.ResolverImpl(/* this (implied) */));
+    // EnchantedBookItemModel.prepare(this.inputModels, new ModelDiscovery.ResolverImpl(/* this (implied) */));
     ASMAPI.insertInsnList(method, method.instructions.getFirst(), list, ASMAPI.InsertMode.INSERT_BEFORE);
 
     return method;

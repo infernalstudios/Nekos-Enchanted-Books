@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[31,)"
+loaderVersion = "[29,)"
 license = "All rights reserved"
 
 [[mods]]
@@ -14,7 +14,7 @@ description = '''A small mod that enables adding unique textures for Enchanted B
 [[dependencies.nebs]]
 modId = "forge"
 mandatory = true
-versionRange = "[31.2.44,)" # Mixin added
+versionRange = "[29,)"
 ordering = "NONE"
 side = "CLIENT"
 

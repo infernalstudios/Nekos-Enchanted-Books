@@ -2,7 +2,6 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-    id 'org.spongepowered.mixin' version '[0.7,0.8)'
     id 'com.matthewprenger.cursegradle' version '1.4.0' apply false
     id 'com.modrinth.minotaur' version '[2,)' apply false
 }
@@ -15,7 +14,6 @@ ext.config.FORGE_VERSION = customConfig.FORGE_VERSION
 ext.config.MAPPINGS_CHANNEL = customConfig.MAPPINGS_CHANNEL
 ext.config.MAPPINGS_VERSION = customConfig.MAPPINGS_VERSION
 ext.config.JAVA_LANG_VERSION = customConfig.JAVA_LANG_VERSION
-ext.config.MIXIN_VERSION = customConfig.MIXIN_VERSION
 
 project.version = config.VERSION
 project.group = "${config.GROUP}.${config.ARTIFACT}"
@@ -28,10 +26,7 @@ java.withSourcesJar()
 minecraft {
     mappings channel: config.MAPPINGS_CHANNEL, version: config.MAPPINGS_VERSION
 
-    // Unfortunately, we can't just disable reobf because MixinGradle requires it to actually do anything
-    // For some reason, addMixinsToJar is inherently linked to the registration of the reobfJar tasks
-    // Even if the reobfJar task is disabled (which I've done in this build.gradle file), this flag still needs to be enabled
-    //reobf = false
+    reobf = false
 
     copyIdeResources = true
 
@@ -62,25 +57,13 @@ minecraft {
 }
 
 sourceSets.main.resources {
+    srcDir 'src/main/js'
     srcDir 'src/generated/resources'
     srcDir '../common/src/main/resources'
 }
 
-mixin {
-    config 'META-INF/mixin/nebs.mixins.json'
-    disableAnnotationProcessorCheck = true
-
-    debug.export = true
-    dumpTargetOnFailure = true
-}
-
 dependencies {
     minecraft "net.minecraftforge:forge:${config.MINECRAFT_VERSION}-${config.FORGE_VERSION}"
-
-    annotationProcessor "org.spongepowered:mixin:${config.MIXIN_VERSION}:processor"
-
-    // Hack fix for now, force jopt-simple to be exactly 5.0.4 because Mojang ships that version, but some transitive dependencies request 6.0+
-    implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
 }
 
 jar {
@@ -93,19 +76,6 @@ jar {
             'Implementation-Version': config.VERSION,
             'Implementation-Vendor' : config.AUTHOR
         ])
-    }
-
-    // Mixin will attempt to include the refmap since minecraft.reobf = true
-    // See why that's enabled, it's a hacky fix for MixinGradle
-    // This ensures that we yeet the refmap before the build is finished
-    exclude('mixin.refmap.json')
-}
-
-// Hacky fix to disable reobfJar while still keeping the minecraft.reobf flag enabled
-// This is due to a bug in MixinGradle where it wont add mixins to jar otherwise
-tasks.configureEach { task ->
-    if (task.name.startsWith("reobf")) {
-        task.enabled = false
     }
 }
 

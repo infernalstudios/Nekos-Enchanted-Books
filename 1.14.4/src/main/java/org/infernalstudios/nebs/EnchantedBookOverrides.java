@@ -88,26 +88,26 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
     private final Map<String, IBakedModel> overrides;
 
     @SuppressWarnings("unused") // BlockModelCoreMod
-    public static ItemOverrideList of(ItemOverrideList existing, BlockModel base, String location, ModelBakery bakery) {
-        if (!EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location)) return existing;
+    public static ItemOverrideList of(ItemOverrideList base, String location, ModelBakery bakery) {
+        if (!EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location)) return base;
 
         try {
-            return new EnchantedBookOverrides(existing, bakery::bake);
+            return new EnchantedBookOverrides(base, bakery::bake);
         } catch (RuntimeException e) {
             NekosEnchantedBooks.LOGGER.error("Failed to bake custom enchanted book overrides!", e);
-            return existing;
+            return base;
         }
     }
 
     @SuppressWarnings("unused") // BlockModelCoreMod
-    public static ItemOverrideList of(ItemOverrideList existing, BlockModel base, String location, ModelBakery bakery, Function<ResourceLocation, TextureAtlasSprite> spriteGetter, VertexFormat vertexFormat) {
-        if (!EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location)) return existing;
+    public static ItemOverrideList of(ItemOverrideList base, String location, ModelBakery bakery, Function<ResourceLocation, TextureAtlasSprite> spriteGetter, VertexFormat vertexFormat) {
+        if (!EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location)) return base;
 
         try {
-            return new EnchantedBookOverrides(existing, (model, state) -> bakery.getBakedModel(model, state, spriteGetter, vertexFormat));
+            return new EnchantedBookOverrides(base, (model, state) -> bakery.getBakedModel(model, state, spriteGetter, vertexFormat));
         } catch (RuntimeException e) {
             NekosEnchantedBooks.LOGGER.error("Failed to bake custom enchanted book overrides!", e);
-            return existing;
+            return base;
         }
     }
 
@@ -118,8 +118,8 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      * automatic model loading. The process of taking advantage of automatic model loading was described in the
      * documentation for the class in {@link EnchantedBookOverrides}.
      *
-     * @param baker    The model baker
-     * @param base Any existing item overrides that exist in the base enchanted book model
+     * @param base  Any existing item overrides that exist in the base enchanted book model
+     * @param baker The model baker
      * @see #resolve(IBakedModel, ItemStack, World, LivingEntity)
      * @see EnchantedBookOverrides
      */

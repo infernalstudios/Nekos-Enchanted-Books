@@ -90,11 +90,18 @@ public final class EnchantedBookOverrides extends BakedOverrides {
     private static final Set<String> TEXTURED_ENCHANTMENTS = new HashSet<>();
     private static final Set<ResourceLocation> PREPARED_MODELS = new HashSet<>();
 
+    /**
+     * 1.21.3 is special in that the overrides for item models are lazily loaded when {@link BakedModel#overrides()} is
+     * invoked. This means that we need to defer the validation of enchantments until our overrides are baked, so the
+     * enchantments that are pending validation will be stored here from {@link #validate(Iterable)} if necessary.
+     */
+    private static @Nullable Iterable<Enchantment> pendingValidation;
+
     private final BakedModel base;
     private final Map<String, BakedModel> overrides;
 
     @SuppressWarnings("unused") // ItemModelCoreMod
-    public static BakedModel of(BakedModel base, ResourceLocation location, ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter, ModelState state) {
+    public static BakedModel of(BakedModel base, ResourceLocation location, ModelBaker baker, ModelState state, Function<Material, TextureAtlasSprite> spriteGetter) {
         if (!EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_LOCATION.equals(location)) return base;
 
         try {
@@ -142,6 +149,7 @@ public final class EnchantedBookOverrides extends BakedOverrides {
     public EnchantedBookOverrides(BakedModel base, ModelBaker baker, ModelState state) {
         this.base = base;
         this.overrides = bakeOverrides(baker, state);
+        validate(pendingValidation);
     }
 
     /**
@@ -152,6 +160,7 @@ public final class EnchantedBookOverrides extends BakedOverrides {
      * @return The map of enchantment IDs to their respective baked models
      */
     private static Map<String, BakedModel> bakeOverrides(ModelBaker baker, ModelState state) {
+        TEXTURED_ENCHANTMENTS.clear();
         Map<String, BakedModel> overrides = new HashMap<>(PREPARED_MODELS.size());
         PREPARED_MODELS.forEach(model -> {
             String enchantment = idFromModel(model);
@@ -187,7 +196,18 @@ public final class EnchantedBookOverrides extends BakedOverrides {
         }
     }
 
-    static void validate(Iterable<Enchantment> enchantments) {
+    static void validate(@Nullable Iterable<Enchantment> enchantments) {
+        // If enchantments is null, we have nothing to validate.
+        if (enchantments == null) return;
+
+        // If nothing is textured, we probably haven't baked yet. Just defer it to later.
+        if (TEXTURED_ENCHANTMENTS.isEmpty()) {
+            pendingValidation = enchantments;
+            return;
+        } else if (enchantments == pendingValidation) {
+            pendingValidation = null;
+        }
+
         Set<String> missing = new TreeSet<>();
         enchantments.forEach(enchantment -> {
             @Nullable String id = NekosEnchantedBooks.idOf(enchantment);
