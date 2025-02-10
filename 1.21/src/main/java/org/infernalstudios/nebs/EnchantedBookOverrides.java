@@ -142,8 +142,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
     }
 
     /**
-     * This constructor follows up on the initialization done in its super method,
-     * {@link ItemOverrides#ItemOverrides(ModelBaker, UnbakedModel, List, Function)}. It calls the
+     * This constructor follows up on the baking of the enchanted book item model's overrides. It calls the
      * {@link #bakeOverrides(ModelBaker)} method, where existing models are queried for automatic model loading. The
      * enchantments are later validated in {@link #validate(Iterable)} when a world is loaded, since enchantments are a
      * data pack registry. The process of taking advantage of automatic model loading was described in the documentation

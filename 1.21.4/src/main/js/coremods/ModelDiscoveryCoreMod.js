@@ -19,7 +19,7 @@ function initializeCoreMod() {
     };
 }
 
-// TODO: Replace with new ModelEvent.RegisterAdditional event
+// TODO: Eventually replace with new ModelEvent.RegisterAdditional event
 function registerAdditional(method) {
     const list = ASMAPI.listOf(
         new VarInsnNode(Opcodes.ALOAD, 0),

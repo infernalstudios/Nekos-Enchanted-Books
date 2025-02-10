@@ -133,11 +133,10 @@ public final class EnchantedBookOverrides extends ItemOverrides {
     }
 
     /**
-     * This constructor follows up on the initialization done in its super method,
-     * {@link ItemOverrides#ItemOverrides(ModelBaker, UnbakedModel, List, Function)}. It calls the
-     * {@link #bakeOverrides(ModelBaker)} method, where existing models and registered enchantments are queried for
-     * automatic model loading. The process of taking advantage of automatic model loading was described in the
-     * documentation for the class in {@link EnchantedBookOverrides}.
+     * This constructor follows up on the baking of the enchanted book item model's overrides. It calls the
+     * {@link #bakeOverrides(ModelBaker)} method, where existing models are queried for automatic model loading.
+     * The process of taking advantage of automatic model loading was described in the documentation for the class in
+     * {@link EnchantedBookOverrides}.
      *
      * @param base  Any existing item overrides that exist in the base enchanted book model
      * @param baker The model baker

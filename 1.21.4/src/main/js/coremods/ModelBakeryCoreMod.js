@@ -17,7 +17,7 @@ function initializeCoreMod() {
     };
 }
 
-// TODO: Replace with new API to wrap baked item models
+// TODO: Eventually replace with new API to wrap baked item models
 function wrapModel(method) {
     const bake = ASMAPI.findFirstMethodCall(method, ASMAPI.MethodType.INTERFACE, 'net/minecraft/client/renderer/item/ItemModel$Unbaked', ASMAPI.mapMethod('m_372419_'), '(Lnet/minecraft/client/renderer/item/ItemModel$BakingContext;)Lnet/minecraft/client/renderer/item/ItemModel;'); // bake
     const list = ASMAPI.listOf(

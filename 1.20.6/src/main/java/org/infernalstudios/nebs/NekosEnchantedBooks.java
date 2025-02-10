@@ -1,5 +1,6 @@
 package org.infernalstudios.nebs;
 
+import net.minecraft.Util;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.client.event.ModelEvent;
@@ -29,14 +30,8 @@ public class NekosEnchantedBooks {
     /** The logger for this mod. Package-private since it doesn't need to be accessed in many places. */
     static final Logger LOGGER = LogManager.getLogger();
 
-    /**
-     * A set of enchantments that are known to not actually be enchantments or do not have an associated enchanted book.
-     * You should add to this set during {@link FMLClientSetupEvent} using
-     * {@link FMLClientSetupEvent#enqueueWork(Runnable) event.enqueueWork(Runnable)} if you have any custom enchantments
-     * that fall under this category.
-     */
     @Deprecated(forRemoval = true, since = "2.0.3") // gotta replace this with a config
-    public static final Set<String> NON_ENCHANTMENTS = new HashSet<>();
+    public static final Set<String> NON_ENCHANTMENTS = Util.make(new HashSet<>(), set -> set.add("apotheosis.infusion"));
 
     /**
      * Gets the NEBs ID of the given enchantment, which is the base {@linkplain Enchantment#getDescriptionId()}
@@ -57,14 +52,8 @@ public class NekosEnchantedBooks {
     }
 
     private void setupListeners(IEventBus modBus) {
-        modBus.<FMLClientSetupEvent>addListener(event -> event.enqueueWork(this::setup));
         modBus.<ModelEvent.RegisterAdditional>addListener(event -> EnchantedBookOverrides.prepare(ForgeRegistries.ENCHANTMENTS, event::register));
         modBus.addListener(this::gatherData);
-    }
-
-    @Deprecated(forRemoval = true, since = "2.0.3") // gotta replace this with a config
-    private void setup() {
-        NON_ENCHANTMENTS.add("apotheosis.infusion");
     }
 
     /**

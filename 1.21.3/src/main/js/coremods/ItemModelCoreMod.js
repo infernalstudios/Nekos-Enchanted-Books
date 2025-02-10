@@ -17,16 +17,15 @@ function initializeCoreMod() {
     };
 }
 
-// TODO: Replace with new API to wrap baked item models
+// TODO: Eventually replace with new API to wrap baked item models
 function getOverrides(method) {
     const list = () => ASMAPI.listOf(
         // bakedmodel
         new VarInsnNode(Opcodes.ALOAD, 0),
         ASMAPI.buildFieldCall(Opcodes.GETFIELD, 'net/minecraft/client/resources/model/ItemModel', ASMAPI.mapField('f_347422_'), 'Lnet/minecraft/resources/ResourceLocation;'), // this.id
         new VarInsnNode(Opcodes.ALOAD, 1), // baker
-        new VarInsnNode(Opcodes.ALOAD, 3), // state
         new VarInsnNode(Opcodes.ALOAD, 2), // spriteGetter
-        ASMAPI.buildMethodCall(ASMAPI.MethodType.STATIC, 'org/infernalstudios/nebs/EnchantedBookOverrides', 'of', '(Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/resources/model/ModelBaker;Lnet/minecraft/client/resources/model/ModelState;Ljava/util/function/Function;)Lnet/minecraft/client/resources/model/BakedModel;')
+        ASMAPI.buildMethodCall(ASMAPI.MethodType.STATIC, 'org/infernalstudios/nebs/EnchantedBookOverrides', 'of', '(Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/resources/model/ModelBaker;Ljava/util/function/Function;)Lnet/minecraft/client/resources/model/BakedModel;')
     );
 
     for (let insn of method.instructions)

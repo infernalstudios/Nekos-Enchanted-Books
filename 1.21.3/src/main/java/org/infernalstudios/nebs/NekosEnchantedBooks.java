@@ -1,5 +1,6 @@
 package org.infernalstudios.nebs;
 
+import net.minecraft.Util;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.network.chat.contents.TranslatableContents;
@@ -32,14 +33,8 @@ public class NekosEnchantedBooks {
     /** The logger for this mod. Package-private since it doesn't need to be accessed in many places. */
     static final Logger LOGGER = LogManager.getLogger();
 
-    /**
-     * A set of enchantments that are known to not actually be enchantments or do not have an associated enchanted book.
-     * You should add to this set during {@link FMLClientSetupEvent} using
-     * {@link FMLClientSetupEvent#enqueueWork(Runnable) event.enqueueWork(Runnable)} if you have any custom enchantments
-     * that fall under this category.
-     */
     @Deprecated(forRemoval = true, since = "2.0.3") // gotta replace this with a config
-    public static final Set<String> NON_ENCHANTMENTS = new HashSet<>();
+    public static final Set<String> NON_ENCHANTMENTS = Util.make(new HashSet<>(), set -> set.add("apotheosis.infusion"));
 
     /**
      * Gets the NEBs ID of the given enchantment, which is the base {@linkplain Enchantment#description() description}
@@ -57,19 +52,15 @@ public class NekosEnchantedBooks {
     }
 
     public NekosEnchantedBooks(FMLJavaModLoadingContext context) {
-        this.setupListeners(context.getModEventBus(), MinecraftForge.EVENT_BUS);
+        this.setupListeners(context.getModEventBus());
     }
 
-    private void setupListeners(IEventBus modBus, IEventBus forgeBus) {
-        modBus.<FMLClientSetupEvent>addListener(event -> event.enqueueWork(this::setup));
+    private void setupListeners(IEventBus modBus) {
+        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+
         //modBus.<ModelEvent.RegisterAdditional>addListener(event -> EnchantedBookOverrides.prepare(event::register, event.getInputModels()));
         forgeBus.<ClientPlayerNetworkEvent.LoggingIn>addListener(event -> EnchantedBookOverrides.validate(event.getPlayer().registryAccess().lookupOrThrow(Registries.ENCHANTMENT)));
         modBus.addListener(this::gatherData);
-    }
-
-    @Deprecated(forRemoval = true, since = "2.0.3") // gotta replace this with a config
-    private void setup() {
-        NON_ENCHANTMENTS.add("apotheosis.infusion");
     }
 
     /**
