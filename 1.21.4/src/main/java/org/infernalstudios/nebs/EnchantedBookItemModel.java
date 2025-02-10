@@ -69,7 +69,7 @@ import java.util.function.Consumer;
  * <h2>Usage for NEBs Developers</h2>
  * Apart from what has already been mentioned, you should read the documentation for each of the methods:
  * <ul>
- *     <li>{@link #EnchantedBookItemModel(ItemModel, ModelBaker, ModelState)}</li>
+ *     <li>{@link #EnchantedBookItemModel(ItemModel, ModelBaker)}</li>
  *     <li>{@link #update(ItemStackRenderState, ItemStack, ItemModelResolver, ItemDisplayContext, ClientLevel, LivingEntity, int)}</li>
  * </ul>
  *
@@ -100,7 +100,7 @@ public final class EnchantedBookItemModel implements ItemModel {
         if (!ENCHANTED_BOOK_LOCATION.equals(location)) return base;
 
         try {
-            return new EnchantedBookItemModel(base, baker, BlockModelRotation.X0_Y0);
+            return new EnchantedBookItemModel(base, baker);
         } catch (RuntimeException e) {
             NekosEnchantedBooks.LOGGER.error("Failed to wrap enchanted book model with custom overrides!", e);
             return base;
@@ -108,36 +108,34 @@ public final class EnchantedBookItemModel implements ItemModel {
     }
 
     /**
-     * This constructor follows up on the creation of the enchanted book item model. It calls the
-     * {@link #bakeOverrides(ModelBaker, ModelState)} method, where existing models are queried for automatic model
-     * loading. The enchantments are later validated in {@link #validate(Iterable)} when a world is loaded, since
-     * enchantments are a data pack registry. The process of taking advantage of automatic model loading was described
-     * in the documentation for the class in {@link EnchantedBookItemModel}.
+     * This constructor follows up on the baking of the enchanted book item model. It calls the
+     * {@link #bakeOverrides(ModelBaker)} method, where existing models are queried for automatic model loading. The
+     * enchantments are later validated in {@link #validate(Iterable)} when a world is loaded, since enchantments are a
+     * data pack registry. The process of taking advantage of automatic model loading was described in the documentation
+     * for the class in {@link EnchantedBookItemModel}.
      *
      * @param base  The base enchanted book model
      * @param baker The model baker
-     * @param state The model state
      * @see #update(ItemStackRenderState, ItemStack, ItemModelResolver, ItemDisplayContext, ClientLevel, LivingEntity,
      * int)
      * @see EnchantedBookItemModel
      */
-    public EnchantedBookItemModel(ItemModel base, ModelBaker baker, ModelState state) {
+    public EnchantedBookItemModel(ItemModel base, ModelBaker baker) {
         this.base = base;
-        this.overrides = bakeOverrides(baker, state);
+        this.overrides = bakeOverrides(baker);
     }
 
     /**
      * Bakes the custom overrides used for the enchanted books.
      *
      * @param baker The model baker
-     * @param state The model state
      * @return The map of enchantment IDs to their respective baked models
      */
-    private static Map<String, BakedModel> bakeOverrides(ModelBaker baker, ModelState state) {
+    private static Map<String, BakedModel> bakeOverrides(ModelBaker baker) {
         Map<String, BakedModel> overrides = new HashMap<>(PREPARED_MODELS.size());
         PREPARED_MODELS.forEach(model -> {
             String enchantment = idFromModel(model);
-            BakedModel baked = Objects.requireNonNull(baker.bake(model, state));
+            BakedModel baked = Objects.requireNonNull(baker.bake(model, BlockModelRotation.X0_Y0));
 
             TEXTURED_ENCHANTMENTS.add(enchantment);
             overrides.put(enchantment, baked);

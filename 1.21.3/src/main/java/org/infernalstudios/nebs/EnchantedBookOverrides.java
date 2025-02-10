@@ -4,6 +4,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.block.model.BakedOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.BlockModelRotation;
 import net.minecraft.client.resources.model.DelegateBakedModel;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.ModelBaker;
@@ -66,7 +67,7 @@ import java.util.function.Function;
  * <h2>Usage for NEBs Developers</h2>
  * Apart from what has already been mentioned, you should read the documentation for each of the methods:
  * <ul>
- *     <li>{@link #EnchantedBookOverrides(BakedModel, ModelBaker, ModelState)}</li>
+ *     <li>{@link #EnchantedBookOverrides(BakedModel, ModelBaker)}</li>
  *     <li>{@link #findOverride(ItemStack, ClientLevel, LivingEntity, int)}</li>
  * </ul>
  *
@@ -90,41 +91,36 @@ public final class EnchantedBookOverrides extends BakedOverrides {
     private static final Set<String> TEXTURED_ENCHANTMENTS = new HashSet<>();
     private static final Set<ResourceLocation> PREPARED_MODELS = new HashSet<>();
 
-    /**
-     * 1.21.3 is special in that the overrides for item models are lazily loaded when {@link BakedModel#overrides()} is
-     * invoked. This means that we need to defer the validation of enchantments until our overrides are baked, so the
-     * enchantments that are pending validation will be stored here from {@link #validate(Iterable)} if necessary.
-     */
-    private static @Nullable Iterable<Enchantment> pendingValidation;
-
     private final BakedModel base;
     private final Map<String, BakedModel> overrides;
 
     @SuppressWarnings("unused") // ItemModelCoreMod
-    public static BakedModel of(BakedModel base, ResourceLocation location, ModelBaker baker, ModelState state, Function<Material, TextureAtlasSprite> spriteGetter) {
+    public static BakedModel of(BakedModel base, ResourceLocation location, ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter) {
         if (!EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_LOCATION.equals(location)) return base;
 
         try {
             return new DelegateBakedModel(base) {
+                private final BakedOverrides overrides = new EnchantedBookOverrides(this.parent, new ModelBaker() {
+                    @Override
+                    @SuppressWarnings("DataFlowIssue") // Forge prevents ModelBaker.bake from returning null
+                    public BakedModel bake(ResourceLocation location, ModelState state) {
+                        return this.bake(location, state, spriteGetter);
+                    }
+
+                    @Override
+                    public BakedModel bake(ResourceLocation location, ModelState state, Function<Material, TextureAtlasSprite> sprites) {
+                        return baker.bake(location, state, sprites);
+                    }
+
+                    @Override
+                    public Function<Material, TextureAtlasSprite> getModelTextureGetter() {
+                        return spriteGetter;
+                    }
+                });
+
                 @Override
                 public BakedOverrides overrides() {
-                    return new EnchantedBookOverrides(this.parent, new ModelBaker() {
-                        @Override
-                        @SuppressWarnings("DataFlowIssue") // Forge prevents ModelBaker.bake from returning null
-                        public BakedModel bake(ResourceLocation location, ModelState state) {
-                            return this.bake(location, state, spriteGetter);
-                        }
-
-                        @Override
-                        public BakedModel bake(ResourceLocation location, ModelState state, Function<Material, TextureAtlasSprite> sprites) {
-                            return baker.bake(location, state, sprites);
-                        }
-
-                        @Override
-                        public Function<Material, TextureAtlasSprite> getModelTextureGetter() {
-                            return spriteGetter;
-                        }
-                    }, state);
+                    return this.overrides;
                 }
             };
         } catch (RuntimeException e) {
@@ -134,37 +130,34 @@ public final class EnchantedBookOverrides extends BakedOverrides {
     }
 
     /**
-     * This constructor follows up on the creation of the enchanted book item model. It calls the
-     * {@link #bakeOverrides(ModelBaker, ModelState)} method, where existing models are queried for automatic model
-     * loading. The enchantments are later validated in {@link #validate(Iterable)} when a world is loaded, since
-     * enchantments are a data pack registry. The process of taking advantage of automatic model loading was described
-     * in the documentation for the class in {@link EnchantedBookOverrides}.
+     * This constructor follows up on the baking of the enchanted book item model. It calls the
+     * {@link #bakeOverrides(ModelBaker)} method, where existing models are queried for automatic model loading. The
+     * enchantments are later validated in {@link #validate(Iterable)} when a world is loaded, since enchantments are a
+     * data pack registry. The process of taking advantage of automatic model loading was described in the documentation
+     * for the class in {@link EnchantedBookOverrides}.
      *
      * @param base  The base enchanted book model
      * @param baker The model baker
-     * @param state The model state
      * @see #findOverride(ItemStack, ClientLevel, LivingEntity, int)
      * @see EnchantedBookOverrides
      */
-    public EnchantedBookOverrides(BakedModel base, ModelBaker baker, ModelState state) {
+    public EnchantedBookOverrides(BakedModel base, ModelBaker baker) {
         this.base = base;
-        this.overrides = bakeOverrides(baker, state);
-        validate(pendingValidation);
+        this.overrides = bakeOverrides(baker);
     }
 
     /**
      * Bakes the custom overrides used for the enchanted books.
      *
      * @param baker The model baker
-     * @param state The model state
      * @return The map of enchantment IDs to their respective baked models
      */
-    private static Map<String, BakedModel> bakeOverrides(ModelBaker baker, ModelState state) {
+    private static Map<String, BakedModel> bakeOverrides(ModelBaker baker) {
         TEXTURED_ENCHANTMENTS.clear();
         Map<String, BakedModel> overrides = new HashMap<>(PREPARED_MODELS.size());
         PREPARED_MODELS.forEach(model -> {
             String enchantment = idFromModel(model);
-            BakedModel baked = Objects.requireNonNull(baker.bake(model, state));
+            BakedModel baked = Objects.requireNonNull(baker.bake(model, BlockModelRotation.X0_Y0));
 
             TEXTURED_ENCHANTMENTS.add(enchantment);
             overrides.put(enchantment, baked);
@@ -196,18 +189,7 @@ public final class EnchantedBookOverrides extends BakedOverrides {
         }
     }
 
-    static void validate(@Nullable Iterable<Enchantment> enchantments) {
-        // If enchantments is null, we have nothing to validate.
-        if (enchantments == null) return;
-
-        // If nothing is textured, we probably haven't baked yet. Just defer it to later.
-        if (TEXTURED_ENCHANTMENTS.isEmpty()) {
-            pendingValidation = enchantments;
-            return;
-        } else if (enchantments == pendingValidation) {
-            pendingValidation = null;
-        }
-
+    static void validate(Iterable<Enchantment> enchantments) {
         Set<String> missing = new TreeSet<>();
         enchantments.forEach(enchantment -> {
             @Nullable String id = NekosEnchantedBooks.idOf(enchantment);
