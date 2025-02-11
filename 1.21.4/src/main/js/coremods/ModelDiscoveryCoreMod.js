@@ -7,7 +7,7 @@ var InsnNode = Java.type('org.objectweb.asm.tree.InsnNode');
 
 function initializeCoreMod() {
     return {
-        'nebs_discoverDependencies_resolveEnchantedBooks': {
+        'register_additional_models': {
             'target': {
                 'type': 'METHOD',
                 'class': 'net.minecraft.client.resources.model.ModelDiscovery',

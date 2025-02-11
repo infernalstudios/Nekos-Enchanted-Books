@@ -1,9 +1,7 @@
 package org.infernalstudios.nebs;
 
-import com.google.common.collect.ImmutableList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.ItemOverride;
 import net.minecraft.client.renderer.model.ItemOverrideList;
 import net.minecraft.client.renderer.model.ModelBakery;
 import net.minecraft.client.renderer.model.ModelRotation;
@@ -195,7 +193,7 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      */
     @FunctionalInterface
     private interface ModelBaker extends BiFunction<ResourceLocation, ISprite, IBakedModel> {
-        IBakedModel bake(ResourceLocation model, ISprite state);
+        IBakedModel bake(ResourceLocation location, ISprite state);
 
         @Override
         default IBakedModel apply(ResourceLocation location, ISprite state) {

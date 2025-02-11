@@ -12,7 +12,7 @@ var MethodNode = Java.type('org.objectweb.asm.tree.MethodNode');
 
 function initializeCoreMod() {
     return {
-        'nebs_EnchantedBookOverrides_forge': {
+        'override_forge_method': {
             'target': {
                 'type': 'CLASS',
                 'name': 'org.infernalstudios.nebs.EnchantedBookOverrides'

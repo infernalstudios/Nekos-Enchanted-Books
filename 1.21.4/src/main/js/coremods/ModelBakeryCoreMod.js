@@ -5,7 +5,7 @@ var VarInsnNode = Java.type('org.objectweb.asm.tree.VarInsnNode');
 
 function initializeCoreMod() {
     return {
-        'nebs_bakeModels_wrapEnchantedBook': {
+        'wrap_enchanted_book_model': {
             'target': {
                 'type': 'METHOD',
                 'class': 'net.minecraft.client.resources.model.ModelBakery',

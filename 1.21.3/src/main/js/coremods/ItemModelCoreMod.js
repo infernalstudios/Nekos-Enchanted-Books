@@ -5,20 +5,20 @@ var VarInsnNode = Java.type('org.objectweb.asm.tree.VarInsnNode');
 
 function initializeCoreMod() {
     return {
-        'nebs_discoverDependencies_resolveEnchantedBooks': {
+        'wrap_enchanted_book_model': {
             'target': {
                 'type': 'METHOD',
                 'class': 'net.minecraft.client.resources.model.ItemModel',
                 'methodName': 'm_7611_', // bake
                 'methodDesc': '(Lnet/minecraft/client/resources/model/ModelBaker;Ljava/util/function/Function;Lnet/minecraft/client/resources/model/ModelState;)Lnet/minecraft/client/resources/model/BakedModel;'
             },
-            'transformer': getOverrides
+            'transformer': wrapModel
         }
     };
 }
 
 // TODO: Eventually replace with new API to wrap baked item models
-function getOverrides(method) {
+function wrapModel(method) {
     const list = () => ASMAPI.listOf(
         // bakedmodel
         new VarInsnNode(Opcodes.ALOAD, 0),

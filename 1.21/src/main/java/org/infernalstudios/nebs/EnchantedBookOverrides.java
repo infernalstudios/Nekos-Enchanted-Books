@@ -1,6 +1,5 @@
 package org.infernalstudios.nebs;
 
-import com.google.common.collect.ImmutableList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
@@ -98,7 +97,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
     private final Map<String, BakedModel> overrides;
 
     @SuppressWarnings("unused") // BlockModelCoreMod
-    public static @Nullable ItemOverrides of(ItemOverrides base, String location, ModelBaker baker) {
+    public static ItemOverrides of(ItemOverrides base, String location, ModelBaker baker) {
         if (!EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location)) return base;
 
         try {
@@ -110,7 +109,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
     }
 
     @SuppressWarnings("unused") // BlockModelCoreMod
-    public static @Nullable ItemOverrides of(ItemOverrides base, String location, ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter) {
+    public static ItemOverrides of(ItemOverrides base, String location, ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter) {
         if (!EnchantedBookOverrides.ENCHANTED_BOOK_UNBAKED_MODEL_NAME.equals(location)) return base;
 
         try {

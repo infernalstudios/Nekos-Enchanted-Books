@@ -12,7 +12,7 @@ var FieldInsnNode = Java.type('org.objectweb.asm.tree.FieldInsnNode');
 
 function initializeCoreMod() {
     return {
-        'nebs_BlockModel_enchantedBookOverrides': {
+        'wrap_enchanted_book_overrides': {
             'target': {
                 'type': 'CLASS',
                 'name': 'net.minecraft.client.renderer.block.model.BlockModel'

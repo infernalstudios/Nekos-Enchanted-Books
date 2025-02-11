@@ -1,10 +1,8 @@
 package org.infernalstudios.nebs;
 
-import com.google.common.collect.ImmutableList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.IUnbakedModel;
-import net.minecraft.client.renderer.model.ItemOverride;
 import net.minecraft.client.renderer.model.ItemOverrideList;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.client.renderer.model.ModelRotation;
@@ -27,6 +25,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -136,9 +135,6 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      * @return The map of enchantment IDs to their respective baked models
      */
     private static Map<String, IBakedModel> bakeOverrides(ModelBaker baker) {
-        NekosEnchantedBooks.LOGGER.warn("BAKING MODELS!");
-        if (PREPARED_ENCHANTMENTS.isEmpty())
-            throw new RuntimeException("RUHH???");
         Map<String, IBakedModel> overrides = new HashMap<>(PREPARED_ENCHANTMENTS.size());
         Set<String> failed = new TreeSet<>();
         PREPARED_ENCHANTMENTS.forEach(enchantment -> {
@@ -171,7 +167,6 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
 
     @SuppressWarnings("unused") // BlockModelCoreMod
     public static void prepare(Consumer<ModelResourceLocation> resolver) {
-        NekosEnchantedBooks.LOGGER.warn("Preparing");
         prepare(ForgeRegistries.ENCHANTMENTS, rl -> resolver.accept(new ModelResourceLocation(rl, "inventory")));
     }
 
@@ -209,8 +204,13 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
      * {@code ModelBaker}.
      */
     @FunctionalInterface
-    private interface ModelBaker {
-        IBakedModel bake(ResourceLocation model, ModelRotation rotation);
+    private interface ModelBaker extends BiFunction<ResourceLocation, ModelRotation, IBakedModel> {
+        IBakedModel bake(ResourceLocation location, ModelRotation rotation);
+
+        @Override
+        default IBakedModel apply(ResourceLocation location, ModelRotation rotation) {
+            return this.bake(location, rotation);
+        }
     }
 
 

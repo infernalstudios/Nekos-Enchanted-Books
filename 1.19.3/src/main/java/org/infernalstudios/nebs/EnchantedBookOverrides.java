@@ -1,6 +1,5 @@
 package org.infernalstudios.nebs;
 
-import com.google.common.collect.ImmutableList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
@@ -172,7 +171,7 @@ public final class EnchantedBookOverrides extends ItemOverrides {
             overrides.put(enchantment, baked);
         });
 
-        // log failed models
+        // log missing models
         if (!failed.isEmpty()) {
             NekosEnchantedBooks.LOGGER.warn("Missing, or failed to load, enchanted book models for the following enchantments: [{}]", String.join(", ", failed));
         } else {

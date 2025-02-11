@@ -153,7 +153,6 @@ public final class EnchantedBookOverrides extends BakedOverrides {
      * @return The map of enchantment IDs to their respective baked models
      */
     private static Map<String, BakedModel> bakeOverrides(ModelBaker baker) {
-        TEXTURED_ENCHANTMENTS.clear();
         Map<String, BakedModel> overrides = new HashMap<>(PREPARED_MODELS.size());
         PREPARED_MODELS.forEach(model -> {
             String enchantment = idFromModel(model);
