@@ -1,5 +1,6 @@
 package org.infernalstudios.nebs;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
@@ -22,7 +23,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -134,8 +134,8 @@ public final class EnchantedBookOverrides extends ItemOverrides {
 
     /**
      * This constructor follows up on the baking of the enchanted book item model's overrides. It calls the
-     * {@link #bakeOverrides(ModelBaker)} method, where existing models are queried for automatic model loading.
-     * The process of taking advantage of automatic model loading was described in the documentation for the class in
+     * {@link #bakeOverrides(ModelBaker)} method, where existing models are queried for automatic model loading. The
+     * process of taking advantage of automatic model loading was described in the documentation for the class in
      * {@link EnchantedBookOverrides}.
      *
      * @param base  Any existing item overrides that exist in the base enchanted book model

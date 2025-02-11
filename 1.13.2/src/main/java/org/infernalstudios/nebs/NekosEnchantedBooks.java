@@ -30,8 +30,8 @@ public class NekosEnchantedBooks {
     public static final Set<String> NON_ENCHANTMENTS = Util.make(new HashSet<>(), set -> set.add("apotheosis.infusion"));
 
     /**
-     * Gets the NEBs ID of the given enchantment, which is the base {@linkplain Enchantment#getName()
-     * description} while removing the {@code enchantment.} prefix if it exists.
+     * Gets the NEBs ID of the given enchantment, which is the base {@linkplain Enchantment#getName() description} while
+     * removing the {@code enchantment.} prefix if it exists.
      *
      * @param enchantment The enchantment to get the ID of
      * @return The NEBs ID of the enchantment

@@ -65,7 +65,7 @@ function transform(clazz, method) {
     instructions.add(new VarInsnNode(Opcodes.ALOAD, 1));
     instructions.add(new InvokeDynamicInsnNode(
         'accept',
-        '(L'+ clazz.name + ';Ljava/util/Map;)Ljava/util/function/Consumer;',
+        '(L' + clazz.name + ';Ljava/util/Map;)Ljava/util/function/Consumer;',
         new Handle(Opcodes.H_INVOKESTATIC, 'java/lang/invoke/LambdaMetafactory', 'metafactory', '(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;', false),
         Type.getMethodType('(Ljava/lang/Object;)V'),
         new Handle(Opcodes.H_INVOKESPECIAL, clazz.name, 'nebs$prepare', '(Ljava/util/Map;Lnet/minecraft/client/renderer/model/ModelResourceLocation;)V', false),

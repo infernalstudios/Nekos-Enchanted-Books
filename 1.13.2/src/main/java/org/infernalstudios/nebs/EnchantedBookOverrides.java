@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.IUnbakedModel;
 import net.minecraft.client.renderer.model.ItemOverride;
 import net.minecraft.client.renderer.model.ItemOverrideList;
-import net.minecraft.client.renderer.model.ModelBakery;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.client.renderer.model.ModelRotation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -25,7 +24,6 @@ import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -117,8 +115,8 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
 
     /**
      * This constructor follows up on the baking of the enchanted book item model's overrides. It calls the
-     * {@link #bakeOverrides(ModelBaker)} method, where existing models are queried for automatic model loading.
-     * The process of taking advantage of automatic model loading was described in the documentation for the class in
+     * {@link #bakeOverrides(ModelBaker)} method, where existing models are queried for automatic model loading. The
+     * process of taking advantage of automatic model loading was described in the documentation for the class in
      * {@link EnchantedBookOverrides}.
      *
      * @param base  Any existing item overrides that exist in the base enchanted book model
@@ -240,11 +238,6 @@ public final class EnchantedBookOverrides extends ItemOverrideList {
         }
 
         return this.base.getModelWithOverrides(model, stack, level, entity);
-    }
-
-    @Override
-    public ImmutableList<ItemOverride> getOverrides() {
-        return this.base.getOverrides();
     }
 
     /**

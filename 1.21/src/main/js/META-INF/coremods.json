@@ -1,3 +1,4 @@
 {
-  "BlockModelCoreMod": "coremods/BlockModelCoreMod.js"
+  "BlockModelCoreMod": "coremods/BlockModelCoreMod.js",
+  "EnchantedBookOverridesCoreMod": "coremods/EnchantedBookOverridesCoreMod.js"
 }
