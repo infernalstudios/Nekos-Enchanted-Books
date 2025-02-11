@@ -2,6 +2,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.moddingx.modgradle.sourcejar' version '4.0.5-jupitersoft' apply false
     id 'com.matthewprenger.cursegradle' version '1.4.0' apply false
     id 'com.modrinth.minotaur' version '[2,)' apply false
 }
@@ -19,7 +20,7 @@ project.version = config.VERSION
 project.group = "${config.GROUP}.${config.ARTIFACT}"
 base.archivesName = "${config.ARCHIVES_BASE_NAME}-${config.MIN_SUPPORTED_VERSION}"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(config.JAVA_LANG_VERSION)
+apply plugin: 'org.moddingx.modgradle.sourcejar'
 
 java.withSourcesJar()
 
@@ -73,10 +74,6 @@ jar {
     }
 
     finalizedBy 'reobfJar'
-}
-
-sourcesJar {
-    archiveClassifier = 'deobf-sources'
 }
 
 afterEvaluate {
