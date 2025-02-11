@@ -20,9 +20,9 @@ project.version = config.VERSION
 project.group = "${config.GROUP}.${config.ARTIFACT}"
 base.archivesName = "${config.ARCHIVES_BASE_NAME}-${config.MIN_SUPPORTED_VERSION}"
 
-apply plugin: 'org.moddingx.modgradle.sourcejar'
+java.toolchain.languageVersion = JavaLanguageVersion.of(config.JAVA_LANG_VERSION)
 
-java.withSourcesJar()
+apply plugin: 'org.moddingx.modgradle.sourcejar'
 
 minecraft {
     mappings channel: config.MAPPINGS_CHANNEL, version: config.MAPPINGS_VERSION

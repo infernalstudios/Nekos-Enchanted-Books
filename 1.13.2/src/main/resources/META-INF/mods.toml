@@ -22,5 +22,5 @@ side = "CLIENT"
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.13.2,1.14)"
-ordering = "AFTER" # Replacement of enchanted_book.png in default resource pack
+ordering = "NONE"
 side = "CLIENT"
